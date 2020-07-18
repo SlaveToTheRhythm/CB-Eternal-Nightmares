@@ -31,7 +31,7 @@ Include "Update.bb"
 
 Include "DevilParticleSystem.bb"
 
-Global ErrorFile$ = "errorlogs\error_log_"
+Global ErrorFile$ = "error_log_"
 Local ErrorFileInd% = 0
 While FileType(ErrorFile+Str(ErrorFileInd)+".txt")<>0
 	ErrorFileInd = ErrorFileInd+1
