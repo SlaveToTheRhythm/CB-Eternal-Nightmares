@@ -43,11 +43,6 @@ MagnetDownSFX = LoadSound_Strict("SFX\Room\106Chamber\MagnetDown.ogg")
  ;EndBreathCHN%
  ;EndBreathSFX%
 
-;Dim StoneDrag2SFX%(2)
-For i = 0 To 1
-    StoneDrag2SFX(i) = LoadSound_Strict("SFX\SCP\173\StoneDrag" + i + ".ogg")
-Next
-
 ;Dim DecaySFX%(5)
 For i = 0 To 3
 	DecaySFX(i) = LoadSound_Strict("SFX\SCP\106\Decay" + i + ".ogg")

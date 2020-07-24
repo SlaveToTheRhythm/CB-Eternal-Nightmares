@@ -1774,8 +1774,6 @@ Global BreathCHN%
 
 Dim NeckSnapSFX(3)
 
-Dim StoneDrag2SFX%(2)
-
 Dim DamageSFX%(10)
 
 Global DeathMenuSFX%
