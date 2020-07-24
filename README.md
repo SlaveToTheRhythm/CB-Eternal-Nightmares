@@ -1,6 +1,9 @@
-# SCP - Containment Breach
+# SCP - Containment Breach - You Cannot Escape v0.0.7
+# SCP - Containment Breach Modification for v1.3.11
 
 The game is based on the works of the SCP Foundation community (http://www.scp-wiki.net/).
+But the mod is inspired by:
+# SCP: Ultimate Edition, SCP: Nine Tailed Fox Mod and SCP: Dark Confinement Mod.
 
 This game and the source code are licensed under Creative Commons Attribution-ShareAlike 3.0 License.
 
