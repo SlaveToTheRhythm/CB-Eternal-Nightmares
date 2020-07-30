@@ -4,7 +4,8 @@ Const NPCtype173% = 1, NPCtypeOldMan% = 2, NPCtypeGuard% = 3, NPCtypeD% = 4
 Const NPCtype372% = 6, NPCtypeApache% = 7, NPCtypeMTF% = 8, NPCtype096 = 9
 Const NPCtype049% = 10, NPCtypeZombie% = 11, NPCtype5131% = 12, NPCtypeTentacle% = 13
 Const NPCtype860% = 14, NPCtype939% = 15, NPCtype066% = 16, NPCtypePdPlane% = 17
-Const NPCtype966% = 18, NPCtype1048a = 19, NPCtype1499% = 20, NPCtype008% = 21, NPCtypeClerk% = 22 NPCtypeTSG% = 23
+Const NPCtype966% = 18, NPCtype1048a = 19, NPCtype1499% = 20, NPCtype008% = 21, NPCtypeClerk% = 22, NPCtypeTSG% = 23, NPCtypeScientist% = 24
+Const NPCtypeOldMan2% = 25
 ;[End Block]
 
 Type NPCs
@@ -136,6 +137,32 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			
 			FreeTexture OldManEyes%
 			;[End Block]
+		Case NPCtypeOldMan2
+			;[Block]
+			n\NVName = "Old SCP-106"
+			n\Collider = CreatePivot()
+			n\GravityMult = 0.0
+			n\MaxGravity = 0.0
+			EntityRadius n\Collider, 0.2
+			EntityType n\Collider, HIT_PLAYER
+			n\obj = LoadAnimMesh_Strict("GFX\npcs\106.b3d")
+			
+			temp# = (GetINIFloat("DATA\NPCs.ini", "SCP-106", "scale") / 2.2)		
+			ScaleEntity n\obj, temp, temp, temp
+			
+			Local OldManEyes2% = LoadTexture_Strict("GFX\npcs\oldmaneyes2.jpg")
+			
+			n\Speed = (GetINIFloat("DATA\NPCs.ini", "SCP-106", "speed") / 100.0)
+			
+			n\obj2 = CreateSprite()
+			ScaleSprite(n\obj2, 0.03, 0.03)
+			EntityTexture(n\obj2, OldManEyes2)
+			EntityBlend (n\obj2, 3)
+			EntityFX(n\obj2, 1 + 8)
+			SpriteViewMode(n\obj2, 2)
+			
+			FreeTexture OldManEyes2%
+			;[End Block]
 		Case NPCtypeGuard
 			;[Block]
 			n\NVName = "Human"
@@ -213,6 +240,26 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			ScaleEntity n\obj, temp, temp, temp
 			
 			n\Speed = 2.0 / 100
+			
+			MeshCullBox (n\obj, -MeshWidth(ClassDObj), -MeshHeight(ClassDObj), -MeshDepth(ClassDObj), MeshWidth(ClassDObj)*2, MeshHeight(ClassDObj)*2, MeshDepth(ClassDObj)*2)
+			
+			n\CollRadius = 0.32
+			
+			n\HP = 100
+			;[End Block]
+		Case NPCtypeScientist
+			;[Block]
+			n\NVName = "Human"
+			n\Collider = CreatePivot()
+			EntityRadius n\Collider, 0.32
+			EntityType n\Collider, HIT_PLAYER
+			
+			n\obj = LoadAnimMesh_Strict("GFX\npcs\HalfLifeScientist\Scientist.b3d")
+			
+			temp# = 0.3 / MeshWidth(n\obj)
+			ScaleEntity n\obj, temp, temp, temp
+			
+			n\Speed = 50 / 100
 			
 			MeshCullBox (n\obj, -MeshWidth(ClassDObj), -MeshHeight(ClassDObj), -MeshDepth(ClassDObj), MeshWidth(ClassDObj)*2, MeshHeight(ClassDObj)*2, MeshDepth(ClassDObj)*2)
 			
@@ -949,7 +996,7 @@ Function UpdateNPCs()
 				EndIf
 				
 				;[End block]
-			Case NPCtypeOldMan ;------------------------------------------------------------------------------------------------------------------
+			Case NPCtypeOldMan, NPCtypeOldMan2 ;------------------------------------------------------------------------------------------------------------------
 				;[Block]
 				If Contained106 Then
 					n\Idle = True
@@ -1010,7 +1057,6 @@ Function UpdateNPCs()
 									PositionEntity(n\Collider, EntityX(Collider), EntityY(Collider) - 15, EntityZ(Collider))
 								EndIf
 								
-								PlaySound_Strict(DecaySFX(0))
 								PlaySound_Strict(HorrorSFX(18))
 							End If
 							
@@ -1155,8 +1201,7 @@ Function UpdateNPCs()
 										RotateEntity n\Collider, 0, CurveAngle(EntityYaw(n\obj), EntityYaw(n\Collider), 10.0), 0										
 										
 										If Ceil(n\Frame) = 110 And (Not GodMode) Then
-											PlaySound_Strict(DamageSFX(1))
-											PlaySound_Strict(HorrorSFX(5))											
+											PlaySound_Strict(DamageSFX(3))										
 											If PlayerRoom\RoomTemplate\Name = "pocketdimension" Then
 												DeathMSG = "Subject D-9341. Body partially decomposed by what is assumed to be SCP-106's "+Chr(34)+"corrosion"+Chr(34)+" effect. Body disposed of via incineration."
 												Kill()
@@ -3243,6 +3288,17 @@ Function UpdateNPCs()
 				
 				RotateEntity n\obj, EntityPitch(n\Collider), EntityYaw(n\Collider)-180.0, 0
 				;[End Block]
+			Case NPCtypeScientist
+			    ;[Block]
+			    Case 0 ; ~ Following the player
+  		          ;[Block]
+  		                n\CurrSpeed = CurveValue(n\Speed * 0.7, n\CurrSpeed, 20.0)
+  		                AnimateNPC(n, 1, 31, 1)
+  		                PointEntity(n\Collider, Collider)
+                        PositionEntity(n\obj, EntityX(n\Collider), EntityY(n\Collider) - 0.32, EntityZ(n\Collider))
+  		                If EntityDistance(n\Collider, Collider) > 0.3 Then MoveEntity(n\Collider, 0.0, 0.0, n\CurrSpeed * FPSFactor)
+  		          ;[End Block]
+                ;[End Block]
 			Case NPCtype5131
 				;[Block]
 				;If KeyHit(48) Then n\Idle = True : n\State2 = 0
@@ -5665,8 +5721,6 @@ Function TeleportMTFGroup(n.NPCs)
 		EndIf
 	Next
 	
-	DebugLog "Teleported MTF Group (dist:"+EntityDistance(n\Collider,Collider)+")"
-	
 End Function
 
 Function UpdateMTFUnit(n.NPCs)
@@ -5678,6 +5732,8 @@ Function UpdateMTFUnit(n.NPCs)
 			Case NPCtype173
                 realType = "173"
 			Case NPCtypeOldMan
+                realType = "106"
+            Case NPCtypeOldMan2
                 realType = "106"
 			Case NPCtypeGuard
                 realType = "guard"
@@ -6135,7 +6191,28 @@ Function UpdateMTFUnit(n.NPCs)
 								Exit
 							EndIf
 						EndIf
+					ElseIf n2\NPCtype = NPCtypeD And n2\IsDead = False
+						If OtherNPCSeesMeNPC(n2,n) Then
+							If EntityVisible(n\Collider,n2\Collider)
+								n\State = 9
+								n\EnemyX = EntityX(n2\Collider,True)
+								n\EnemyY = EntityY(n2\Collider,True)
+								n\EnemyZ = EntityZ(n2\Collider,True)
+								n\State2 = 70*15.0
+								n\State3 = 0.0
+								n\PathTimer = 0.0
+								n\PathStatus = 0
+								n\Target = n2
+								n\Reload = 70*5
+								DebugLog "Class-D Spotted :"+n\State2
+								;If n\Sound <> 0 Then FreeSound_Strict n\Sound : n\Sound = 0
+								;n\Sound = LoadSound_Strict("SFX\Character\MTF\Stop2.ogg")
+								;PlayMTFSound(n\Sound, n)
+								Exit
+							EndIf
+						EndIf
 					EndIf
+
 				Next
                 ;[End Block]
 			Case 1 ;searching for player
@@ -6468,6 +6545,28 @@ Function UpdateMTFUnit(n.NPCs)
 								;If n\MTFLeader=Null
 									If n\Sound <> 0 Then FreeSound_Strict n\Sound : n\Sound = 0
 									n\Sound = LoadSound_Strict("SFX\Character\MTF\049\Player0492_1.ogg")
+									PlayMTFSound(n\Sound, n)
+								;EndIf
+								Exit
+							EndIf
+						EndIf 
+					ElseIf n2\NPCtype = NPCtypeD And n2\IsDead = False
+						If OtherNPCSeesMeNPC(n2,n) Then
+							If EntityVisible(n\Collider,n2\Collider)
+								n\State = 9
+								n\EnemyX = EntityX(n2\Collider,True)
+								n\EnemyY = EntityY(n2\Collider,True)
+								n\EnemyZ = EntityZ(n2\Collider,True)
+								n\State2 = 70*15.0
+								n\State3 = 0.0
+								n\PathTimer = 0.0
+								n\PathStatus = 0
+								n\Target = n2
+								n\Reload = 70*5
+								DebugLog "Class-D Spotted. :"+n\State2
+								;If n\MTFLeader=Null
+									If n\Sound <> 0 Then FreeSound_Strict n\Sound : n\Sound = 0
+									n\Sound = LoadSound_Strict("SFX\Character\MTF\Stop2.ogg")
 									PlayMTFSound(n\Sound, n)
 								;EndIf
 								Exit
@@ -7119,7 +7218,7 @@ Function UpdateMTFUnit(n.NPCs)
 							Else
 								If (Not n\Target\IsDead)
 									If n\Sound <> 0 Then FreeSound_Strict n\Sound : n\Sound = 0
-									If n\NPCtype = NPCtypeZombie
+									If n\NPCtype = NPCtypeZombie Or NPCtypeD
 										n\Sound = LoadSound_Strict("SFX\Character\MTF\049\Player0492_2.ogg")
 										PlayMTFSound(n\Sound, n)
 									Else
@@ -7138,7 +7237,7 @@ Function UpdateMTFUnit(n.NPCs)
 						EndIf	
 					EndIf
 					n\PathStatus = 0
-				Else
+				Else 
 					If n\PathTimer<=0.0 Then
 						n\PathStatus = FindPath(n,EntityX(n\Target\Collider),EntityY(n\Target\Collider),EntityZ(n\Target\Collider))
 						If n\PathStatus = 1 Then
@@ -7540,6 +7639,11 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 			n\State = -1
 			consoleMSG = "SCP-106 spawned."
 			
+		Case "old106", "oldscp106", "scp-106 classic", "larryold"
+			n.NPCs = CreateNPC(NPCtypeOldMan2, EntityX(Collider), EntityY(Collider) - 0.5, EntityZ(Collider))
+			n\State = -1
+			consoleMSG = "Classic SCP-106 spawned."
+			
 		Case "173", "scp173", "scp-173", "statue"
 			n.NPCs = CreateNPC(NPCtype173, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
 			Curr173 = n
@@ -7573,6 +7677,11 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 		Case "class-d", "classd", "d"
 			n.NPCs = CreateNPC(NPCtypeD, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
 			consoleMSG = "D-Class spawned."
+			n\State = 1
+			
+		Case "scientist", "s"
+			n.NPCs = CreateNPC(NPCtypeScientist, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
+			consoleMSG = "Test Scientist spawned."
 			
 		Case "guard"
 			n.NPCs = CreateNPC(NPCtypeGuard, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
@@ -7581,6 +7690,10 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 		Case "mtf"
 			n.NPCs = CreateNPC(NPCtypeMTF, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
 			consoleMSG = "MTF unit spawned."
+			
+		Case "mtfold"
+			n.NPCs = CreateNPC(NPCtypeMTFOld, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
+			consoleMSG = "Classic MTF unit spawned."
 			
 		Case "apache", "helicopter"
 			n.NPCs = CreateNPC(NPCtypeApache, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
@@ -7715,7 +7828,7 @@ End Function
 Function NPCSpeedChange(n.NPCs)
 	
 	Select n\NPCtype
-		Case NPCtype173,NPCtypeOldMan,NPCtype096,NPCtypeTSG,NPCtype049,NPCtype939,NPCtypeMTF
+		Case NPCtype173,NPCtypeOldMan,NPCtype096,NPCtypeTSG,NPCtype049,NPCtype939,NPCtypeMTF,NPCtypeMTFOld
 			Select SelectedDifficulty\otherFactors
 				Case NORMAL
 					n\Speed = n\Speed * 1.1

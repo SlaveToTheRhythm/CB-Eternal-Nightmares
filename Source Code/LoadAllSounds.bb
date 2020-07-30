@@ -176,8 +176,8 @@ For i = 0 To 2
 	NeckSnapSFX(i) =  LoadSound_Strict("SFX\SCP\173\NeckSnap"+(i+1)+".ogg")
 Next
 
-;Dim DamageSFX%(10)
-For i = 0 To 9
+;Dim DamageSFX%(11)
+For i = 0 To 10
 	DamageSFX(i) = LoadSound_Strict("SFX\Character\D9341\Damage"+(i+1)+".ogg")
 Next
 

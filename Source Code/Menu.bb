@@ -202,7 +202,14 @@ Function UpdateMainMenu()
 				Case 3
 					txt = "ESCAPE"
 					If temp Then
-						RuntimeError("Memory Access Violation")
+						;DeInitExt
+						;alDestroy()
+						;FMOD_Pause(MusicCHN)
+						;FMOD_CloseStream(CurrMusicStream)
+						;FMOD_Close()
+						;FMOD_StopStream(CurrMusicStream)
+						FSOUND_Stream_Stop(CurrMusicStream)
+						;FSOUND_Close()
 						End
 					EndIf
 			End Select
@@ -348,7 +355,7 @@ Function UpdateMainMenu()
 							Else
 								SelectedDifficulty\otherFactors = EASY
 							EndIf
-							PlaySound_Strict(ButtonSFX)
+							PlaySound_Strict(ButtonMenuSFX)
 						EndIf
 					EndIf
 					Color 255,255,255
@@ -1134,6 +1141,7 @@ Function UpdateLauncher()
 	MaskImage MenuBlack, 255,255,0
 	LauncherIMG = LoadImage_Strict("GFX\menu\launcher.jpg")
 	ButtonSFX% = LoadSound_Strict("SFX\Interact\Button.ogg")
+	ButtonMenuSFX% = LoadSound_Strict("SFX\Interact\MenuButton.ogg")
 	Local i%	
 	
 	For i = 0 To 3
@@ -1265,6 +1273,10 @@ Function UpdateLauncher()
 		Text LauncherWidth-250,LauncherHeight-70,"Check for"
 		Text LauncherWidth-250,LauncherHeight-50,"updates on"
 		Text LauncherWidth-250,LauncherHeight-30,"launch"
+		
+		If DrawButton(LauncherWidth - 275, LauncherHeight - 50 - 55, 150, 30, "Console Commands", False, False, False) Then
+		    ExecFile("ConsoleCommands.txt")
+		EndIf
 		
 		If DrawButton(LauncherWidth - 30 - 90, LauncherHeight - 50 - 55, 100, 30, "Enter", False, False, False) Then
 			GraphicWidth = GfxModeWidths(SelectedGFXMode)
@@ -1671,7 +1683,7 @@ Function DrawButton%(x%, y%, width%, height%, txt$, bigfont% = True, waitForMous
 		Color(30, 30, 30)
 		If (MouseHit1 And (Not waitForMouseUp)) Or (MouseUp1 And waitForMouseUp) Then 
 			clicked = True
-			PlaySound_Strict(ButtonSFX)
+			PlaySound_Strict(ButtonMenuSFX)
 		EndIf
 		Rect(x + 4, y + 4, width - 8, height - 8)	
 	Else
@@ -1697,7 +1709,7 @@ Function DrawButton2%(x%, y%, width%, height%, txt$, bigfont% = True)
 	Local hit% = MouseHit(1)
 	If MouseOn(x, y, width, height) Then
 		Color(30, 30, 30)
-		If hit Then clicked = True : PlaySound_Strict(ButtonSFX)
+		If hit Then clicked = True : PlaySound_Strict(ButtonMenuSFX)
 		Rect(x + 4, y + 4, width - 8, height - 8)	
 	Else
 		Color(0, 0, 0)
@@ -1721,7 +1733,7 @@ Function DrawTick%(x%, y%, selected%, locked% = False)
 	
 	If Highlight Then
 		Color(50, 50, 50)
-		If MouseHit1 Then selected = (Not selected) : PlaySound_Strict (ButtonSFX)
+		If MouseHit1 Then selected = (Not selected) : PlaySound_Strict (ButtonMenuSFX)
 	Else
 		Color(0, 0, 0)		
 	End If
@@ -2617,7 +2629,7 @@ Function Button%(x,y,width,height,txt$, disabled%=False)
 	
 	Color 0,0,0
 	
-	If Pushed And MouseHit1 Then PlaySound_Strict ButtonSFX : Return True
+	If Pushed And MouseHit1 Then PlaySound_Strict ButtonMenuSFX : Return True
 End Function
 
 

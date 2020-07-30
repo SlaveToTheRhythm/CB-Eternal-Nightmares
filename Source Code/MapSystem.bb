@@ -3234,18 +3234,6 @@ Function FillRoom(r.Rooms)
 			TurnEntity(sc\CameraObj, 20, 0, 0)
 			;sc\FollowPlayer = True
 			
-			r\Objects[0] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[0], r\x, 0.5, r\z + 512.0 * RoomScale, True)
-			
-			r\Objects[1] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[1], r\x + 64.0 * RoomScale, 0.5, r\z - 640.0 * RoomScale, True)
-			
-			r\Objects[2] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[2], r\x, 0.5, r\z, True)
-			
-			r\Objects[3] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[3], r\x + 320.0 * RoomScale, 0.5, r\z + 704.0 * RoomScale, True)
-			
 			it = CreateItem("Night Vision Goggles", "nvgoggles", r\x + 320.0 * RoomScale, 0.5, r\z + 704.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			it\state = 300
@@ -4840,6 +4828,16 @@ Function FillRoom(r.Rooms)
 			PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 			d.Doors\open = True 
+		Case "room1warehouse"
+		    ; Warehouse entrance door
+		    d.Doors = CreateDoor(r\zone, r\x + 483.0 * RoomScale, 0.0, r\z - 415.0 * RoomScale, 180, r, False, False, 3)
+            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
+			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
+			
+			; 113's Door
+			d.Doors = CreateDoor(r\zone, r\x - 511.0 * RoomScale, 0.0, r\z - 415.0 * RoomScale, 180, r, False, False, 2)
+            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
+			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 		Case "room2officeslcz"
 		    d.Doors = CreateDoor(r\zone, r\x - 243.0 * RoomScale, 0.0, r\z - 2.0 * RoomScale, 90, r, False, False, 1)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
@@ -7466,6 +7464,7 @@ Function CreateMap()
 	SetRoom("914", ROOM2, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room1188", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room005", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
+	SetRoom("room1warehouse", ROOM1, Floor(0.2*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("conferenceroom", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room1archive",ROOM1,Floor(0.5*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room205", ROOM1, Floor(0.6*Float(Room1Amount[0])),min_pos,max_pos)

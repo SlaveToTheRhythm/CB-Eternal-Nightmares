@@ -1543,7 +1543,6 @@ Function UpdateEvents()
 				;[End Block]
 			Case "coffin", "coffin106"
 				;[Block]
-				
 				If e\EventState < MilliSecs2() Then
 					;SCP-079 starts broadcasting 895 camera feed on monitors after leaving the first zone
 					If PlayerZone > 0 Then 
@@ -3886,9 +3885,6 @@ Function UpdateEvents()
 										x = gridsz*gridsz
 									EndIf
 								Next 
-								If (spawnPoint<>Null) Then
-									e\room\NPC[i] =CreateNPC(NPCtype966, EntityX(spawnPoint\obj,True), EntityY(spawnPoint\obj,True), EntityZ(spawnPoint\obj,True))
-								EndIf
 							Next
 						EndIf
 					Else
@@ -7687,6 +7683,25 @@ Function UpdateEvents()
 					
 					it = CreateItem("Destroyed SCP-005", "destroyedscp005", r\x + 0.0 * RoomScale, r\y + 0.0 * RoomScale, r\z - 0.0 * RoomScale)
 			        EntityParent(it\collider, r\obj)
+					
+					RotateEntity e\room\NPC[0]\Collider, 0, EntityYaw(e\room\obj)-(Rand(20,60)),0, True	
+					
+					SetNPCFrame e\room\NPC[0], 19
+					e\room\NPC[0]\State=8
+					
+					;Delete e
+					RemoveEvent(e)
+				EndIf
+				;[End Block]
+			Case "room005"
+				;[Block]
+				If e\room\dist < 10.0 And e\room\dist > 0 Then
+					e\room\NPC[0]=CreateNPC(NPCtypeD, EntityX(e\room\obj,True)+1.0, 0.5, EntityZ(e\room\obj,True)+1.0)
+					e\room\NPC[0]\texture = "GFX\npcs\body1.jpg"
+					tex = LoadTexture_Strict(e\room\NPC[0]\texture)
+					EntityTexture(e\room\NPC[0]\obj, tex)
+					FreeTexture tex
+					;EntityTexture e\room\NPC[0]\obj,NTF_BodyTextures(0)
 					
 					RotateEntity e\room\NPC[0]\Collider, 0, EntityYaw(e\room\obj)-(Rand(20,60)),0, True	
 					

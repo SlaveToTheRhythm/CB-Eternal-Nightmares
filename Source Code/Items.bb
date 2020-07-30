@@ -127,7 +127,7 @@ Function InitItemTemplates()
 	CreateItemTemplate("Playing Card", "misc", "GFX\items\keycard.x", "GFX\items\INVcard.jpg", "", 0.0004,"GFX\items\card.jpg")
 	CreateItemTemplate("Mastercard", "misc", "GFX\items\keycard.x", "GFX\items\INVmastercard.jpg", "", 0.0004,"GFX\items\mastercard.jpg")
 	CreateItemTemplate("Key Card Omni", "key6", "GFX\items\keycard.x", "GFX\items\INVkeyomni.jpg", "", 0.0004,"GFX\items\keycardomni.jpg")
-	CreateItemTemplate("Destroyed SCP-005", "destroyedscp005", "GFX\items\scp_005.b3d", "GFX\items\INV_scp_005.png", "", 0.0004,"GFX\items\scp_005.png")
+	CreateItemTemplate("Destroyed SCP-005", "destroyedscp005", "GFX\items\scp_005.b3d", "GFX\items\INV005.jpg", "", 0.0004,"GFX\items\scp_005.png")
 	
 	it = CreateItemTemplate("SCP-860", "scp860", "GFX\items\key.b3d", "GFX\items\INVkey.jpg", "", 0.001)
 	it\sound = 3

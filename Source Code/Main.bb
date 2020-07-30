@@ -47,6 +47,7 @@ Global CompatibleNumber$ = "1.3.11" ;Only change this if the version given isn't
 
 Global MenuWhite%, MenuBlack%
 Global ButtonSFX%
+Global ButtonMenuSFX%
 
 Global EnableSFXRelease% = GetINIInt(OptionFile, "audio", "sfx release")
 Global EnableSFXRelease_Prev% = EnableSFXRelease%
@@ -296,6 +297,8 @@ Global WearingGasMask%, WearingHazmat%, WearingVest%, Wearing714%, WearingNightV
 Global NVTimer#
 
 Global SuperMan%, SuperManTimer#
+
+Global NonLethalSuperMan%
 
 Global Injuries#, Bloodloss#, Infect#, HealTimer#
 
@@ -1011,8 +1014,8 @@ Function UpdateConsole()
 					;[End Block]
 				Case "sanic"
 					;[Block]
-					SuperMan = Not SuperMan
-					If SuperMan = True Then
+					NonLethalSuperMan = Not NonLethalSuperMan 
+					If NonLethalSuperMan = True Then
 						CreateConsoleMsg("GOTTA GO FAST")
 					Else
 						CreateConsoleMsg("WHOA SLOW DOWN")
@@ -4152,6 +4155,19 @@ Function MovePlayer()
 	ElseIf DeathTimer < 0 
 		Kill()
 	EndIf
+	
+	If NonLethalSuperMan Then
+		Speed = Speed * 3	
+		HideEntity Fog
+	End If
+	
+	If DeathTimer > 0 Then
+		DeathTimer=DeathTimer-FPSfactor
+		If DeathTimer < 1 Then DeathTimer = -1.0
+	ElseIf DeathTimer < 0 
+		Kill()
+	EndIf
+
 	
 	If CurrSpeed > 0 Then
         Stamina = Min(Stamina + 0.15 * FPSfactor/1.25, 100.0)
@@ -7903,7 +7919,7 @@ Function LoadEntities()
 	
 	SprintIcon% = LoadImage_Strict("GFX\sprinticon.jpg")
 	BlinkIcon% = LoadImage_Strict("GFX\blinkicon.jpg")
-	CrouchIcon% = LoadImage_Strict("GFX\sneakicon.png")
+	CrouchIcon% = LoadImage_Strict("GFX\sneakicon.jpg")
 	HandIcon% = LoadImage_Strict("GFX\handsymbol1.png")
 	HandIcon2% = LoadImage_Strict("GFX\handsymbol2.png")
 
@@ -8832,6 +8848,7 @@ Function NullGame(playbuttonsfx%=True)
 	FallTimer = 0
 	Stamina = 100
 	BlurTimer = 0
+	NonLethalSuperMan = False
 	SuperMan = False
 	SuperManTimer = 0
 	Sanity = 0
