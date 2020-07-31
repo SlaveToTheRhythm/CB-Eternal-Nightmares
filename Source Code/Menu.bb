@@ -1576,6 +1576,7 @@ Function DrawLoading(percent%, shortloading=False)
 				;everyone uses landscape so it's probably a non-issue
 			EndIf
 		EndIf
+
 		
 		;not by any means a perfect solution
 		;Not even proper gamma correction but it's a nice looking alternative that works in windowed mode

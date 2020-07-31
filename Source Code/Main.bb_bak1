@@ -7919,7 +7919,7 @@ Function LoadEntities()
 	
 	SprintIcon% = LoadImage_Strict("GFX\sprinticon.jpg")
 	BlinkIcon% = LoadImage_Strict("GFX\blinkicon.jpg")
-	CrouchIcon% = LoadImage_Strict("GFX\sneakicon.png")
+	CrouchIcon% = LoadImage_Strict("GFX\sneakicon.jpg")
 	HandIcon% = LoadImage_Strict("GFX\handsymbol1.png")
 	HandIcon2% = LoadImage_Strict("GFX\handsymbol2.png")
 

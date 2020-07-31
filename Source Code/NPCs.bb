@@ -914,6 +914,7 @@ Function UpdateNPCs()
 													TurnEntity(Camera, 0, Rand(-100,-80), 0)
 												EndIf
 												Kill()
+												RuntimeError("You fool, you absolute fucking idiot")
 												
 											EndIf
 										Else

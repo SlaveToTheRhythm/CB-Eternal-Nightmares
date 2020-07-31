@@ -298,6 +298,8 @@ Global NVTimer#
 
 Global SuperMan%, SuperManTimer#
 
+Global NonLethalSuperMan%
+
 Global Injuries#, Bloodloss#, Infect#, HealTimer#
 
 Global RefinedItems%
@@ -1012,8 +1014,8 @@ Function UpdateConsole()
 					;[End Block]
 				Case "sanic"
 					;[Block]
-					SuperMan = Not SuperMan
-					If SuperMan = True Then
+					NonLethalSuperMan = Not NonLethalSuperMan 
+					If NonLethalSuperMan = True Then
 						CreateConsoleMsg("GOTTA GO FAST")
 					Else
 						CreateConsoleMsg("WHOA SLOW DOWN")
@@ -4153,6 +4155,19 @@ Function MovePlayer()
 	ElseIf DeathTimer < 0 
 		Kill()
 	EndIf
+	
+	If NonLethalSuperMan Then
+		Speed = Speed * 3	
+		HideEntity Fog
+	End If
+	
+	If DeathTimer > 0 Then
+		DeathTimer=DeathTimer-FPSfactor
+		If DeathTimer < 1 Then DeathTimer = -1.0
+	ElseIf DeathTimer < 0 
+		Kill()
+	EndIf
+
 	
 	If CurrSpeed > 0 Then
         Stamina = Min(Stamina + 0.15 * FPSfactor/1.25, 100.0)
@@ -8833,6 +8848,7 @@ Function NullGame(playbuttonsfx%=True)
 	FallTimer = 0
 	Stamina = 100
 	BlurTimer = 0
+	NonLethalSuperMan = False
 	SuperMan = False
 	SuperManTimer = 0
 	Sanity = 0

@@ -3885,9 +3885,6 @@ Function UpdateEvents()
 										x = gridsz*gridsz
 									EndIf
 								Next 
-								If (spawnPoint<>Null) Then
-									e\room\NPC[i] =CreateNPC(NPCtype966, EntityX(spawnPoint\obj,True), EntityY(spawnPoint\obj,True), EntityZ(spawnPoint\obj,True))
-								EndIf
 							Next
 						EndIf
 					Else

@@ -3234,18 +3234,6 @@ Function FillRoom(r.Rooms)
 			TurnEntity(sc\CameraObj, 20, 0, 0)
 			;sc\FollowPlayer = True
 			
-			r\Objects[0] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[0], r\x, 0.5, r\z + 512.0 * RoomScale, True)
-			
-			r\Objects[1] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[1], r\x + 64.0 * RoomScale, 0.5, r\z - 640.0 * RoomScale, True)
-			
-			r\Objects[2] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[2], r\x, 0.5, r\z, True)
-			
-			r\Objects[3] = CreatePivot(r\obj)
-			PositionEntity(r\Objects[3], r\x + 320.0 * RoomScale, 0.5, r\z + 704.0 * RoomScale, True)
-			
 			it = CreateItem("Night Vision Goggles", "nvgoggles", r\x + 320.0 * RoomScale, 0.5, r\z + 704.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			it\state = 300

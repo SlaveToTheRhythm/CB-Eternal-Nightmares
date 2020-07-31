@@ -1274,7 +1274,7 @@ Function UpdateLauncher()
 		Text LauncherWidth-250,LauncherHeight-50,"updates on"
 		Text LauncherWidth-250,LauncherHeight-30,"launch"
 		
-		If DrawButton(LauncherWidth - 275, LauncherHeight - 50, 150, 30, "Console Commands", False, False, False) Then
+		If DrawButton(LauncherWidth - 275, LauncherHeight - 50 - 55, 150, 30, "Console Commands", False, False, False) Then
 		    ExecFile("ConsoleCommands.txt")
 		EndIf
 		
@@ -1576,6 +1576,94 @@ Function DrawLoading(percent%, shortloading=False)
 				;everyone uses landscape so it's probably a non-issue
 			EndIf
 		EndIf
+		
+		If SelectedLoadingScreen\title = "SCP-173" Then
+			
+			If Not shortloading Then 
+				If firstloop Then 
+					If percent = 0 Then
+						PlaySound_Strict LoadTempSound("SFX\SCP\990\cwm1.cwm")
+					ElseIf percent = 100
+						PlaySound_Strict LoadTempSound("SFX\SCP\990\cwm2.cwm")
+					EndIf
+				EndIf
+			EndIf
+			
+			AASetFont Font2
+			strtemp$ = ""
+			temp = Rand(2,9)
+			For i = 0 To temp
+				strtemp$ = STRTEMP + Chr(Rand(48,122))
+			Next
+			AAText(GraphicWidth / 2, GraphicHeight / 2 + 80, strtemp, True, True)
+			
+			If percent = 0 Then 
+				If Rand(5)=1 Then
+					Select Rand(2)
+						Case 1
+							SelectedLoadingScreen\txt[0] = "It will happen on " + CurrentDate() + "."
+						Case 2
+							SelectedLoadingScreen\txt[0] = CurrentTime()
+					End Select
+				Else
+					Select Rand(2)
+						Case 1
+							SelectedLoadingScreen\txt[0] = "SCP-173 is constructed from concrete and rebar with traces of Krylon brand spray paint. It is animate and extremely hostile."
+						Case 2
+							SelectedLoadingScreen\txt[0] = "The object cannot move while within a direct line of sight. Line of sight must not be broken at any time with SCP-173. Personnel assigned to enter container are instructed to alert one another before blinking."
+					End Select
+				EndIf
+			EndIf
+			
+			strtemp$ = SelectedLoadingScreen\txt[0]
+			temp = Int(Len(SelectedLoadingScreen\txt[0])-Rand(5))
+			For i = 0 To Rand(10,15);temp
+				strtemp$ = Replace(SelectedLoadingScreen\txt[0],Mid(SelectedLoadingScreen\txt[0],Rand(1,Len(strtemp)-1),1),Chr(Rand(130,250)))
+			Next		
+			AASetFont Font1
+			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)		
+		Else
+			
+			Color 0,0,0
+			AASetFont Font2
+			AAText(GraphicWidth / 2 + 1, GraphicHeight / 2 + 80 + 1, SelectedLoadingScreen\title, True, True)
+			AASetFont Font1
+			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200+1, GraphicHeight / 2 +120+1,400,300,True)
+			
+			Color 255,255,255
+			AASetFont Font2
+			AAText(GraphicWidth / 2, GraphicHeight / 2 +80, SelectedLoadingScreen\title, True, True)
+			AASetFont Font1
+			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)
+			
+		EndIf
+		
+		Color 0,0,0
+		AAText(GraphicWidth / 2 + 1, GraphicHeight / 2 - 100 + 1, "LOADING - " + percent + " %", True, True)
+		Color 255,255,255
+		AAText(GraphicWidth / 2, GraphicHeight / 2 - 100, "LOADING - " + percent + " %", True, True)
+		
+		If percent = 100 Then 
+			If firstloop And SelectedLoadingScreen\title <> "CWM" Then PlaySound_Strict LoadTempSound(("SFX\Horror\Horror8.ogg"))
+			AAText(GraphicWidth / 2, GraphicHeight - 50, "PRESS ANY KEY TO CONTINUE", True, True)
+		Else
+			FlushKeys()
+			FlushMouse()
+		EndIf
+		
+		If BorderlessWindowed Then
+			If (RealGraphicWidth<>GraphicWidth) Or (RealGraphicHeight<>GraphicHeight) Then
+				SetBuffer TextureBuffer(fresize_texture)
+				ClsColor 0,0,0 : Cls
+				CopyRect 0,0,GraphicWidth,GraphicHeight,1024-GraphicWidth/2,1024-GraphicHeight/2,BackBuffer(),TextureBuffer(fresize_texture)
+				SetBuffer BackBuffer()
+				ClsColor 0,0,0 : Cls
+				ScaleRender(0,0,2050.0 / Float(GraphicWidth) * AspectRatioRatio, 2050.0 / Float(GraphicWidth) * AspectRatioRatio)
+				;might want to replace Float(GraphicWidth) with Max(GraphicWidth,GraphicHeight) if portrait sizes cause issues
+				;everyone uses landscape so it's probably a non-issue
+			EndIf
+		EndIf
+
 		
 		;not by any means a perfect solution
 		;Not even proper gamma correction but it's a nice looking alternative that works in windowed mode

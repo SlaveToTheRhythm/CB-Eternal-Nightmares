@@ -1508,7 +1508,7 @@ Function UpdateNPCs()
 										RotateEntity n\Collider, 0, CurveAngle(EntityYaw(n\obj), EntityYaw(n\Collider), 10.0), 0										
 										
 										If Ceil(n\Frame) = 110 And (Not GodMode) Then
-											PlaySound_Strict(DamageSFX(2))
+											PlaySound_Strict(DamageSFX(10))
 											KillTimer = -1											
 										EndIf
 									EndIf
