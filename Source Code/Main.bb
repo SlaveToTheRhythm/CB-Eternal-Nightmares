@@ -2424,12 +2424,14 @@ Function UseDoor(d.Doors, showmsg%=True, playsfx%=True)
 			If showmsg = True Then 
 				If Not (d\IsElevatorDoor>0) Then
 					PlaySound_Strict ButtonSFX2
-					If PlayerRoom\RoomTemplate\Name <> "room2elevator" Then
+					If PlayerRoom\RoomTemplate\Name <> "room2elevator" And PlayerRoom\RoomTemplate\Name <> "room2officeslcz" Then
                         If d\open Then
                             Msg = "You pushed the button but nothing happened."
                         Else    
                             Msg = "The door appears to be locked."
-                        EndIf    
+                        EndIf 
+   					ElseIf PlayerRoom\RoomTemplate\Name = "room2officeslcz"
+                        Msg = "You pushed the button but the elevator doesn't work."
                     Else
                         Msg = "The elevator appears to be broken."
                     EndIf

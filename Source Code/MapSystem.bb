@@ -4839,28 +4839,19 @@ Function FillRoom(r.Rooms)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 		Case "room2officeslcz"
+		
 		    d.Doors = CreateDoor(r\zone, r\x - 243.0 * RoomScale, 0.0, r\z - 2.0 * RoomScale, 90, r, False, False, 1)
-            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
-			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 			
-			d.Doors = CreateDoor(r\zone, r\x - 513.0 * RoomScale, 0.0, r\z - 243.0 * RoomScale, 0, r, False, False)
-            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
-			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
-			d.Doors\locked = True 
+			d = CreateDoor(r\zone, r\x - 513.0 * RoomScale, 0.0, r\z - 243.0 * RoomScale, 0, r, False, False)
+			d\locked = True 
 			
-			d.Doors = CreateDoor(r\zone, r\x - 1029.0 * RoomScale, 0.0, r\z - 245.0 * RoomScale, 0, r, False, False)
-            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
-			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
-			d.Doors\locked = True 
+			d = CreateDoor(r\zone, r\x - 1029.0 * RoomScale, 0.0, r\z - 245.0 * RoomScale, 0, r, False, False)
+			d\locked = True 
 			
-			d.Doors = CreateDoor(r\zone, r\x - 1541.0 * RoomScale, 0.0, r\z - 241.0 * RoomScale, 0, r, False, False)
-            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
-			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
+			d = CreateDoor(r\zone, r\x - 1541.0 * RoomScale, 0.0, r\z - 241.0 * RoomScale, 0, r, False, False)
 			
-			d.Doors = CreateDoor(r\zone, r\x + 255.0 * RoomScale, 0.0, r\z + 0.0 * RoomScale, 90, r, False, False)
-            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
-			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
-			d.Doors\open = True 
+			d = CreateDoor(r\zone, r\x + 255.0 * RoomScale, 0.0, r\z + 0.0 * RoomScale, 90, r, True, 3)
+			d\locked = True : d\open = True : d\AutoClose = False
 			
 			it = CreateItem("Level 2 Key Card", "key2", r\x - 1700.0 * RoomScale, r\y + 137.0 * RoomScale, r\z - 650.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
@@ -7480,8 +7471,8 @@ Function CreateMap()
 	SetRoom("room2scps", ROOM2, Floor(0.2*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2closetsold", ROOM2, Floor(0.2*Float(Room2Amount[2])),min_pos,max_pos)
 	SetRoom("lockroom2old", ROOM2C, Floor(0.2*Float(Room2Amount[0])),min_pos,max_pos)
-	SetRoom("room43storage", ROOM4, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
-	SetRoom("room2storage3", ROOM2, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
+	
+	SetRoom("room2storage3", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2storage", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2officeslcz", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2gw_b", ROOM2, Floor(0.4*Float(Room2Amount[0])),min_pos,max_pos)
@@ -7490,16 +7481,18 @@ Function CreateMap()
 	SetRoom("room2scps2",ROOM2,Floor(0.6*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room1123",ROOM2,Floor(0.7*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2elevator",ROOM2,Floor(0.85*Float(Room2Amount[0])),min_pos,max_pos)
-	SetRoom("room4catwalk", ROOM4, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
+	
 	SetRoom("coffin", ROOM1, Room1Amount[0]+Floor(0.7*Float(Room1Amount[1])),min_pos,max_pos)
 	
 	
 	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3storage"
 	
 	MapRoom(ROOM2C, Floor(0.5*Float(Room2CAmount[0]))) = "room1162"
-	MapRoom(ROOM2C, Floor(0.5*Float(Room2CAmount[0]))) = "lockroom2old"
+	MapRoom(ROOM2C, Floor(0.25*Float(Room2CAmount[0]))) = "lockroom2old"
 	
 	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room4info"
+	SetRoom("room4catwalk", ROOM4, Floor(0.65*Float(Room4Amount[0])),min_pos,max_pos)
+	SetRoom("room43storage", ROOM4, Floor(0.32*Float(Room4Amount[0])),min_pos,max_pos)
 	
 	;zone 2 --------------------------------------------------------------------------------------------------
 	
