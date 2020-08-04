@@ -4854,8 +4854,8 @@ Function DrawGUI()
 	
 	If HUDenabled Then 
 		
-		Local width% = 204, height% = 20
-		x% = 80
+		Local width% = 124, height% = 20
+		x% = 500
 		y% = GraphicHeight - 95
 		
 		Color 255, 255, 255	
