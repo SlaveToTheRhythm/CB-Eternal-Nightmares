@@ -5,7 +5,6 @@ Const NPCtype372% = 6, NPCtypeApache% = 7, NPCtypeMTF% = 8, NPCtype096 = 9
 Const NPCtype049% = 10, NPCtypeZombie% = 11, NPCtype5131% = 12, NPCtypeTentacle% = 13
 Const NPCtype860% = 14, NPCtype939% = 15, NPCtype066% = 16, NPCtypePdPlane% = 17
 Const NPCtype966% = 18, NPCtype1048a = 19, NPCtype1499% = 20, NPCtype008% = 21, NPCtypeClerk% = 22, NPCtypeTSG% = 23, NPCtypeScientist% = 24
-Const NPCtypeOldMan2% = 25
 ;[End Block]
 
 Type NPCs
@@ -136,32 +135,6 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			SpriteViewMode(n\obj2, 2)
 			
 			FreeTexture OldManEyes%
-			;[End Block]
-		Case NPCtypeOldMan2
-			;[Block]
-			n\NVName = "Old SCP-106"
-			n\Collider = CreatePivot()
-			n\GravityMult = 0.0
-			n\MaxGravity = 0.0
-			EntityRadius n\Collider, 0.2
-			EntityType n\Collider, HIT_PLAYER
-			n\obj = LoadAnimMesh_Strict("GFX\npcs\106.b3d")
-			
-			temp# = (GetINIFloat("DATA\NPCs.ini", "SCP-106", "scale") / 2.2)		
-			ScaleEntity n\obj, temp, temp, temp
-			
-			Local OldManEyes2% = LoadTexture_Strict("GFX\npcs\oldmaneyes2.jpg")
-			
-			n\Speed = (GetINIFloat("DATA\NPCs.ini", "SCP-106", "speed") / 100.0)
-			
-			n\obj2 = CreateSprite()
-			ScaleSprite(n\obj2, 0.03, 0.03)
-			EntityTexture(n\obj2, OldManEyes2)
-			EntityBlend (n\obj2, 3)
-			EntityFX(n\obj2, 1 + 8)
-			SpriteViewMode(n\obj2, 2)
-			
-			FreeTexture OldManEyes2%
 			;[End Block]
 		Case NPCtypeGuard
 			;[Block]
@@ -914,8 +887,7 @@ Function UpdateNPCs()
 													TurnEntity(Camera, 0, Rand(-100,-80), 0)
 												EndIf
 												Kill()
-												RuntimeError("You fool, you absolute fucking idiot")
-												
+													
 											EndIf
 										Else
 											PointEntity(n\Collider, Collider)
@@ -997,7 +969,7 @@ Function UpdateNPCs()
 				EndIf
 				
 				;[End block]
-			Case NPCtypeOldMan, NPCtypeOldMan2 ;------------------------------------------------------------------------------------------------------------------
+			Case NPCtypeOldMan ;------------------------------------------------------------------------------------------------------------------
 				;[Block]
 				If Contained106 Then
 					n\Idle = True

@@ -3220,25 +3220,6 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Document SCP-513", "paper", r\x - 480.0 * RoomScale, 104.0*RoomScale, r\z - 176.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
-		Case "room966"
-			;[Block]
-			d = CreateDoor(r\zone, r\x - 400.0 * RoomScale, 0, r\z, -90, r, False, False, 3)
-			d = CreateDoor(r\zone, r\x, 0, r\z - 480.0 * RoomScale, 180, r, False, False, 3)
-			;: d\buttons[0] = False
-			;PositionEntity (d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), r\z + 288.0 * RoomScale, True)
-			;PositionEntity (d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), r\z + 320.0 * RoomScale, True)
-			
-			sc.SecurityCams = CreateSecurityCam(r\x-312.0 * RoomScale, r\y + 414*RoomScale, r\z + 656*RoomScale, r)
-			sc\angle = 225
-			sc\turn = 45
-			TurnEntity(sc\CameraObj, 20, 0, 0)
-			;sc\FollowPlayer = True
-			
-			it = CreateItem("Night Vision Goggles", "nvgoggles", r\x + 320.0 * RoomScale, 0.5, r\z + 704.0 * RoomScale)
-			EntityParent(it\collider, r\obj)
-			it\state = 300
-			
-			;[End Block]
 		Case "room3storage"
 			;[Block]
 			r\Objects[0] = CreatePivot(r\obj)
@@ -4814,6 +4795,10 @@ Function FillRoom(r.Rooms)
 			PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 			d.Doors\open = True 
+		Case "room3tunnels166"
+		    d.Doors = CreateDoor(r\zone, r\x +  0.0 * RoomScale, 0.0, r\z + 412.0 * RoomScale, 0, r, False, False)
+            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
+			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 		Case "room1188"
 		    d.Doors = CreateDoor(r\zone, r\x + 831.0 * RoomScale, 0.0, r\z + 525.0 * RoomScale, 180, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
@@ -7459,6 +7444,7 @@ Function CreateMap()
 	SetRoom("conferenceroom", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room1archive",ROOM1,Floor(0.5*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room205", ROOM1, Floor(0.6*Float(Room1Amount[0])),min_pos,max_pos)
+	SetRoom("coffin", ROOM1, Room1Amount[0]+Floor(0.7*Float(Room1Amount[1])),min_pos,max_pos)
 	
 	MapRoom(ROOM2C, 0) = "lockroom"
 	
@@ -7481,10 +7467,9 @@ Function CreateMap()
 	SetRoom("room1123",ROOM2,Floor(0.7*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2elevator",ROOM2,Floor(0.85*Float(Room2Amount[0])),min_pos,max_pos)
 	
-	SetRoom("coffin", ROOM1, Room1Amount[0]+Floor(0.7*Float(Room1Amount[1])),min_pos,max_pos)
-	
 	
 	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3storage"
+	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3snacks"
 	
 	MapRoom(ROOM2C, Floor(0.5*Float(Room2CAmount[0]))) = "room1162"
 	MapRoom(ROOM2C, Floor(0.25*Float(Room2CAmount[0]))) = "lockroom2old"
@@ -7514,7 +7499,7 @@ Function CreateMap()
 	SetRoom("room2servers", ROOM2, Room2Amount[0]+Floor(0.9*Room2Amount[1]),min_pos,max_pos)
 	
 	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room513"
-	MapRoom(ROOM3, Room3Amount[0]+Floor(0.6*Float(Room3Amount[1]))) = "room966"
+	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room3tunnels166"
 	
 	MapRoom(ROOM2C, Room2CAmount[0]+Floor(0.5*Float(Room2CAmount[1]))) = "room2cpit"
 	
@@ -8577,7 +8562,6 @@ Function ValidRoom2slCamRoom(r.Rooms)
 	If RN$ = "room2nuke" Then Return True
 	If RN$ = "008" Then Return True
 	If RN$ = "room1162" Then Return True
-	If RN$ = "room966" Then Return True
 	If RN$ = "room2ccont" Then Return True
 	
 	Return False
