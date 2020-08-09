@@ -7444,7 +7444,7 @@ Function CreateMap()
 	SetRoom("conferenceroom", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room1archive",ROOM1,Floor(0.5*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room205", ROOM1, Floor(0.6*Float(Room1Amount[0])),min_pos,max_pos)
-	SetRoom("coffin", ROOM1, Room1Amount[0]+Floor(0.7*Float(Room1Amount[1])),min_pos,max_pos)
+	SetRoom("coffin", ROOM1, Floor(0.7*Float(Room1Amount[0])),min_pos,max_pos)
 	
 	MapRoom(ROOM2C, 0) = "lockroom"
 	
@@ -7475,8 +7475,8 @@ Function CreateMap()
 	MapRoom(ROOM2C, Floor(0.25*Float(Room2CAmount[0]))) = "lockroom2old"
 	
 	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room4info"
-	SetRoom("room4catwalk", ROOM4, Floor(0.65*Float(Room4Amount[0])),min_pos,max_pos)
-	SetRoom("room43storage", ROOM4, Floor(0.32*Float(Room4Amount[0])),min_pos,max_pos)
+	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room4catwalk"
+	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room43storage"
 	
 	;zone 2 --------------------------------------------------------------------------------------------------
 	
