@@ -43,6 +43,11 @@ Global Font1%, Font2%, Font3%, Font4%, Font5%
 Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
+
+Global ModVersionNumber$ = "ALPHA 0.0.7"
+
+Global DevTeamNames$ = "Keter-Class Studios"
+
 Global CompatibleNumber$ = "1.3.11" ;Only change this if the version given isn't working with the current build version - ENDSHN
 
 Global MenuWhite%, MenuBlack%
@@ -209,7 +214,7 @@ Global GameSaved%
 
 Global CanSave% = True
 
-AppTitle "SCP:CB - You Cannot Escape Mod v"+VersionNumber
+AppTitle "SCP:CB - You Cannot Escape Mod v"+ModVersionNumber
 
 PlayStartupVideos()
 
@@ -5862,6 +5867,7 @@ Function DrawGUI()
 						
 						DeathTimer = 0
 						Infect = 0
+						Injuries = 0
 						Stamina = 100
 						For i = 0 To 5
 							SCP1025state[i]=0
@@ -11783,6 +11789,7 @@ Function CatchErrors(location$)
 			errF = WriteFile(ErrorFile)
 			WriteLine errF,"An error occured in SCP - Containment Breach!"
 			WriteLine errF,"Version: "+VersionNumber
+			WriteLine errF,"Mod Version: "+ModVersionNumber
 			WriteLine errF,"Save compatible version: "+CompatibleNumber
 			WriteLine errF,"Date and time: "+CurrentDate()+" at "+CurrentTime()
 			WriteLine errF,"Total video memory (MB): "+TotalVidMem()/1024/1024

@@ -1103,9 +1103,17 @@ Function UpdateMainMenu()
 		
 	End If
 	
+	Color 255,27,38
+	AASetFont ConsoleFont
+	AAText 20,GraphicHeight-60,"You Cannot Escape Mod "+ModVersionNumber
+	
 	Color 255,255,255
 	AASetFont ConsoleFont
-	AAText 20,GraphicHeight-30,"v"+VersionNumber
+	AAText 20,GraphicHeight-45,"Developed by "+DevTeamNames
+	
+	Color 255,255,255
+	AASetFont ConsoleFont
+	AAText 20,GraphicHeight-30,"Running on SCP: Containment Breach v"+VersionNumber
 	
 	;DrawTiledImageRect(MenuBack, 985 * MenuScale, 860 * MenuScale, 200 * MenuScale, 20 * MenuScale, 1200 * MenuScale, 866 * MenuScale, 300, 20 * MenuScale)
 	
@@ -1176,7 +1184,7 @@ Function UpdateLauncher()
 		Local x% = 40
 		Local y% = 270 - 65
 		For i = 0 To (GFXModes - 1)
-			Color 0, 0, 0
+			Color 255, 255, 255
 			If SelectedGFXMode = i Then Rect(x - 1, y - 1, 100, 20, False)
 			
 			Text(x, y, (GfxModeWidths(i) + "x" + GfxModeHeights(i)))
@@ -1266,8 +1274,8 @@ Function UpdateLauncher()
 		Text LauncherWidth-250,LauncherHeight-50,"updates on"
 		Text LauncherWidth-250,LauncherHeight-30,"launch"
 		
-		If DrawButton(LauncherWidth - 275, LauncherHeight - 50 - 55, 150, 30, "Console Commands", False, False, False) Then
-		    ExecFile("ConsoleCommands.txt")
+		If DrawButton(LauncherWidth - 275, LauncherHeight - 50 - 55, 150, 30, "YCEM's Discord!", False, False, False) Then
+		    ExecFile("https://discord.gg/gJe6wRX")
 		EndIf
 		
 		If DrawButton(LauncherWidth - 30 - 90, LauncherHeight - 50 - 55, 100, 30, "Enter", False, False, False) Then
@@ -1635,7 +1643,7 @@ End Function
 Function InputBox$(x%, y%, width%, height%, Txt$, ID% = 0)
 	;TextBox(x,y,width,height,Txt$)
 	Color (255, 255, 255)
-	DrawTiledImageRect(MenuWhite, (x Mod 256), (y Mod 256), 512, 512, x, y, width, height)
+	DrawTiledImageRect(MenuBlack, (x Mod 256), (y Mod 256), 512, 512, x, y, width, height)
 	;Rect(x, y, width, height)
 	Color (0, 0, 0)
 	
