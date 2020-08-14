@@ -128,6 +128,8 @@ Function InitItemTemplates()
 	CreateItemTemplate("Mastercard", "misc", "GFX\items\keycard.x", "GFX\items\INVmastercard.jpg", "", 0.0004,"GFX\items\mastercard.jpg")
 	CreateItemTemplate("Key Card Omni", "key6", "GFX\items\keycard.x", "GFX\items\INVkeyomni.jpg", "", 0.0004,"GFX\items\keycardomni.jpg")
 	CreateItemTemplate("Destroyed SCP-005", "destroyedscp005", "GFX\items\scp_005.b3d", "GFX\items\INV005.jpg", "", 0.0004,"GFX\items\scp_005.png")
+	; F L O P P A
+	CreateItemTemplate("Floppa Sphere", "floppa",  "GFX\items\FloppaSphere.x", "GFX\items\INVflopspher.jpg", "", 0.004,"GFX\map\floppo.png")
 	
 	it = CreateItemTemplate("SCP-860", "scp860", "GFX\items\key.b3d", "GFX\items\INVkey.jpg", "", 0.001)
 	it\sound = 3
@@ -141,7 +143,7 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Dr. Allok's Note", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc106_2.jpg", 0.0025) : it\sound = 0
 	it = CreateItemTemplate("Recall Protocol RP-106-N", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docRP.jpg", 0.0025) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-682", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc682.jpg", 0.003) : it\sound = 0
-	it = CreateItemTemplate("Document SCP-166", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc166.jpg", 0.003) : it\sound = 0
+	it = CreateItemTemplate("Document SCP-166", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc166.jpg", 0.0025) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-173", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc173.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-372", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc372.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-049", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc049.jpg", 0.003) : it\sound = 0

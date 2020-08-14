@@ -1667,7 +1667,7 @@ Music(18) = "1499"
 Music(19) = "1499Danger"
 Music(20) = "049Chase"
 Music(21) = "..\Ending\MenuBreath"
-Music(22) = "914"
+Music(22) = "914new"
 Music(23) = "Ending"
 Music(24) = "Credits"
 Music(25) = "SaveMeFrom"
@@ -5881,6 +5881,14 @@ Function DrawGUI()
 						SelectedItem = Null
 					EndIf	
 					;[End Block]
+				Case "floppa"
+				    ;[Block]
+				    PlaySound_Strict LoadTempSound("SFX\Character\D9341\floppa.ogg")
+				
+				    DeathMSG = "A wild Caracal was found next to what is believed to be a 2020 'Floppa Sphere', the caracal was later identified as Subject D-9341 from various DNA testing, the caracal was later terminated."
+								
+				    DeathTimer = -5.9
+				    GiveAchievement(AchvFlopSpher)
 				Case "veryfinefirstaid"
 					;[Block]
 					If CanUseItem(False, False, True)
@@ -9533,6 +9541,12 @@ Function Use914(item.Items, setting$, x#, y#, z#)
 					it2 = CreateItem("Gas Mask", "supergasmask", x, y, z)
 					RemoveItem(item)
 			End Select
+		Case "destroyedscp005"
+		    Select setting
+		        Case "1:1"
+		            it2 = CreateItem("SCP-500-01", "scp500", x, y, x)
+		            RemoveItem(item)
+		    End Select 
 		Case "SCP-1499"
 				Select setting
 				Case "rough", "coarse"

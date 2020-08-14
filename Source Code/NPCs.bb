@@ -781,6 +781,8 @@ Function UpdateNPCs()
 									HeartBeatRate = Max(HeartBeatRate, 140)
 									HeartBeatVolume = 0.5
 									
+									PlaySound_Strict LoadTempSound("SFX\Character\D9341\Heartbeat2.ogg")
+									
 									Select Rand(5)
 										Case 1
 											PlaySound_Strict(HorrorSFX(1))
