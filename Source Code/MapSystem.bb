@@ -2719,6 +2719,9 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Destroyed SCP-005", "destroyedscp005", r\x - 914.0 * RoomScale, r\y + 137.0 * RoomScale, r\z + 61.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			
+			it = CreateItem("Dr. Pari's Note", "paper", r\x - 914.0 * RoomScale, r\y + 137.0 * RoomScale, r\z + 61.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
 			it = CreateItem("S-NAV 300 Navigator", "nav", r\x - 312.0 * RoomScale, r\y + 264.0 * RoomScale, r\z + 176.0 * RoomScale)
 			it\state = 20 : EntityParent(it\collider, r\obj)
 			;[End Block]
@@ -4823,6 +4826,16 @@ Function FillRoom(r.Rooms)
 			d.Doors = CreateDoor(r\zone, r\x - 511.0 * RoomScale, 0.0, r\z - 415.0 * RoomScale, 180, r, False, False, 2)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
+		Case "room2floppa"
+		    d.Doors = CreateDoor(r\zone, r\x + 280.0 * RoomScale, 0.0, r\z - 607.0 * RoomScale, 90, r, False, False)
+		
+			d.Doors = CreateDoor(r\zone, r\x + 860.0 * RoomScale, 0.0, r\z - 282.0 * RoomScale, 0, r, False, False)
+			PositionEntity(d\buttons[0], r\x + 750.0 * RoomScale, EntityY(d\buttons[0],True), r\z - 320 * RoomScale, True)
+			FreeEntity d\buttons[1]
+			
+			it = CreateItem("Floppa Sphere", "Floppa", r\x + 654.0 * RoomScale, r\y + 185.0 * RoomScale, r\z + 144.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+
 		Case "room2officeslcz"
 		
 		    d.Doors = CreateDoor(r\zone, r\x - 243.0 * RoomScale, 0.0, r\z - 2.0 * RoomScale, 90, r, False, False, 1)

@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "ALPHA 0.0.7"
+Global ModVersionNumber$ = "ALPHA 0.0.8"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
