@@ -11836,8 +11836,6 @@ Function CatchErrors(location$)
 				errStr = ErrorLog()
 			Wend
 		EndIf
-		Msg = " "
-		MsgTimer = 20*70
 		CloseFile errF
 	EndIf
 End Function

@@ -3969,7 +3969,7 @@ Function FillRoom(r.Rooms)
 			PositionEntity (r\Objects[6], EntityX(r\obj) + 700 * RoomScale, 100.0 * RoomScale, EntityZ(r\obj) + 320.0 * RoomScale)
 			
 			r\Objects[7] = CreatePivot()
-			PositionEntity (r\Objects[7], EntityX(r\obj) + 1472.0 * RoomScale, 100.0 * RoomScale, EntityZ(r\obj) + 912.0 * RoomScale)
+			PositionEntity (r\Objects[7], EntityX(r\obj) + 1216.0 * RoomScale, 100.0 * RoomScale, EntityZ(r\obj) + 912.0 * RoomScale)
 			
 			For i = 2 To 7
 				EntityParent(r\Objects[i], r\obj)
@@ -4826,7 +4826,7 @@ Function FillRoom(r.Rooms)
 			d.Doors = CreateDoor(r\zone, r\x - 511.0 * RoomScale, 0.0, r\z - 415.0 * RoomScale, 180, r, False, False, 2)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
-		Case "room2floppa"
+		Case "room2floppas"
 		    d.Doors = CreateDoor(r\zone, r\x + 280.0 * RoomScale, 0.0, r\z - 607.0 * RoomScale, 90, r, False, False)
 		
 			d.Doors = CreateDoor(r\zone, r\x + 860.0 * RoomScale, 0.0, r\z - 282.0 * RoomScale, 0, r, False, False)
@@ -7472,6 +7472,7 @@ Function CreateMap()
 	SetRoom("room2introcon", ROOM2, Floor(0.2*Float(Room2Amount[2])),min_pos,max_pos)
 	SetRoom("room2storage3", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2storage", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
+	SetRoom("room2floppas", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2toiletslcz", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
     SetRoom("room2lczoffices", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2brick", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
