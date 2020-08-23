@@ -4990,7 +4990,7 @@ Function UpdateEvents()
 							PlayerFallingPickDistance = 0.0
 							
 							If EntityY(Collider)<-6400*RoomScale And KillTimer >= 0 And FallTimer >= 0 Then
-								DeathMSG=""
+								DeathMSG="Subject D-9341 was found unconscious at the bottom of a dark elevator shaft in [REDACTED] that connects to 939's chamber, seems that the subject had a leap of faith from autopsy reports, body was disposed of after the breach expired."
 								PlaySound_Strict LoadTempSound("SFX\Room\PocketDimension\Impact.ogg")
 								KillTimer=-1.0
 							EndIf
@@ -7346,12 +7346,14 @@ Function UpdateEvents()
 				
 			Case "914"
 				;[Block]
-				If PlayerRoom = e\room Then
-					;GiveAchievement(Achv914)
+				If PlayerRoom = e\room Then	
+				
+					If EntityY(Collider)<-2050*RoomScale
+						e\EventState2=1
+					EndIf
 					
 					If e\room\RoomDoors[2]\open
 						GiveAchievement(Achv914)
-						e\EventState2=1
 					EndIf
 					
 					If e\EventState2=1

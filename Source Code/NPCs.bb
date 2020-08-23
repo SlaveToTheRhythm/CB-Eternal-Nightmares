@@ -89,7 +89,7 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			EntityType n\Collider, HIT_PLAYER
 			n\Gravity = True
 			
-			n\obj = LoadMesh_Strict("GFX\npcs\SCP173\173test.b3d")
+			n\obj = LoadMesh_Strict("GFX\npcs\173_2.b3d")
 			
 			;On Halloween set jack-o-latern texture.
 			If (Left(CurrentDate(), 7) = "31 Oct ") Then
@@ -782,6 +782,7 @@ Function UpdateNPCs()
 									HeartBeatVolume = 0.5
 									
 									PlaySound_Strict LoadTempSound("SFX\Character\D9341\Heartbeat2.ogg")
+									PlaySound_Strict(HorrorSFX(20))
 									
 									Select Rand(5)
 										Case 1
@@ -1032,7 +1033,7 @@ Function UpdateNPCs()
 									PositionEntity(n\Collider, EntityX(Collider), EntityY(Collider) - 15, EntityZ(Collider))
 								EndIf
 								
-								PlaySound_Strict(HorrorSFX(18))
+								PlaySound_Strict(HorrorSFX(19))
 							End If
 							
 							If Rand(500) = 1 Then PlaySound2(OldManSFX(Rand(0, 2)), Camera, n\Collider)
@@ -1176,7 +1177,7 @@ Function UpdateNPCs()
 										RotateEntity n\Collider, 0, CurveAngle(EntityYaw(n\obj), EntityYaw(n\Collider), 10.0), 0										
 										
 										If Ceil(n\Frame) = 110 And (Not GodMode) Then
-											PlaySound_Strict(DamageSFX(3))										
+											PlaySound_Strict(DamageSFX(11))										
 											If PlayerRoom\RoomTemplate\Name = "pocketdimension" Then
 												DeathMSG = "Subject D-9341. Body partially decomposed by what is assumed to be SCP-106's "+Chr(34)+"corrosion"+Chr(34)+" effect. Body disposed of via incineration."
 												Kill()
@@ -1292,7 +1293,7 @@ Function UpdateNPCs()
 							;	n\SoundChn = LoopSound2(n\Sound, n\SoundChn, Camera, n\Collider, 8.0, 1.0)
 							;EndIf
 							If n\SoundChn = 0
-								n\SoundChn = StreamSound_Strict("SFX\Music\096.ogg",0)
+								n\SoundChn = StreamSound_Strict("SFX\Music\0962.ogg",0)
 								n\SoundChn_IsStream = True
 							Else
 								UpdateStreamSoundOrigin(n\SoundChn,Camera,n\Collider,8.0,1.0)
@@ -1358,7 +1359,7 @@ Function UpdateNPCs()
 							;	n\SoundChn = LoopSound2(n\Sound, n\SoundChn, Camera, n\Collider, 7.5, 1.0)
 							;EndIf
 							If n\SoundChn = 0
-								n\SoundChn = StreamSound_Strict("SFX\SCP\096\Scream.ogg",0)
+								n\SoundChn = StreamSound_Strict("SFX\SCP\tsg_placeholder\096S_2.ogg",0)
 								n\SoundChn_IsStream = True
 							Else
 								UpdateStreamSoundOrigin(n\SoundChn,Camera,n\Collider,7.5,1.0)
@@ -1597,7 +1598,7 @@ Function UpdateNPCs()
 							;	n\SoundChn = LoopSound2(n\Sound, n\SoundChn, Camera, n\Collider, 14.0, 1.0)
 							;EndIf
 							If n\SoundChn = 0
-								n\SoundChn = StreamSound_Strict("SFX\Music\096.ogg",0)
+								n\SoundChn = StreamSound_Strict("SFX\Music\0962.ogg",0)
 								n\SoundChn_IsStream = True
 							Else
 								UpdateStreamSoundOrigin(n\SoundChn,Camera,n\Collider,14.0,1.0)

@@ -2239,7 +2239,7 @@ Function FillRoom(r.Rooms)
 			PositionEntity(sc\ScrObj, r\x + 96.0 * RoomScale, 1.1, r\z - 668.0 * RoomScale)
 			EntityParent(sc\ScrObj, r\obj)
 			
-			Local em.Emitters = CreateEmitter(r\x - 175.0 * RoomScale, 370.0 * RoomScale, r\z + 656.0 * RoomScale, 0)
+			Local em.Emitters = CreateEmitter(r\x - 175.0 * RoomScale, 370.0 * RoomScale, r\z + 656.0 * RoomScale, 10)
 			TurnEntity(em\Obj, 90, 0, 0, True)
 			EntityParent(em\Obj, r\obj)
 			em\RandAngle = 20
@@ -2248,7 +2248,7 @@ Function FillRoom(r.Rooms)
 			em\Achange = -0.006
 			em\Gravity = -0.24
 			
-			em.Emitters = CreateEmitter(r\x - 655.0 * RoomScale, 370.0 * RoomScale, r\z + 240.0 * RoomScale, 0)
+			em.Emitters = CreateEmitter(r\x - 655.0 * RoomScale, 370.0 * RoomScale, r\z + 240.0 * RoomScale, 10)
 			TurnEntity(em\Obj, 90, 0, 0, True)
 			EntityParent(em\Obj, r\obj)
 			em\RandAngle = 20
@@ -2658,7 +2658,7 @@ Function FillRoom(r.Rooms)
 			i = 0
 			For  xtemp% = -1 To 1 Step 2
 				For ztemp% = -1 To 1
-					em.Emitters = CreateEmitter(r\x + 202.0 * RoomScale * xtemp, 8.0 * RoomScale, r\z + 256.0 * RoomScale * ztemp, 0)
+					em.Emitters = CreateEmitter(r\x + 202.0 * RoomScale * xtemp, 8.0 * RoomScale, r\z + 256.0 * RoomScale * ztemp, 10)
 					em\RandAngle = 30
 					em\Speed = 0.0045
 					em\SizeChange = 0.007
@@ -3171,7 +3171,7 @@ Function FillRoom(r.Rooms)
 			PositionEntity(r\Objects[4], r\x - 576 * RoomScale, 0.5, r\z + 640.0 * RoomScale, True)
 			
 			For i = 0 To 1
-				em.Emitters = CreateEmitter(r\x - 272.0 * RoomScale, 10, r\z + (624.0-i*512) * RoomScale, 0)
+				em.Emitters = CreateEmitter(r\x - 272.0 * RoomScale, 10, r\z + (624.0-i*512) * RoomScale, 10)
 				TurnEntity(em\Obj, 90, 0, 0, True)
 				EntityParent(em\Obj, r\obj)
 				em\RandAngle = 15
@@ -3310,13 +3310,6 @@ Function FillRoom(r.Rooms)
 			PositionEntity r\RoomDoors[3]\buttons[0], r\x - 280.0*RoomScale, EntityY(r\RoomDoors[3]\buttons[0],True), r\z - 864.0 * RoomScale, True
 			;X=-176 | Z=+40
 			PositionEntity r\RoomDoors[3]\buttons[1], r\x - 632.0*RoomScale, EntityY(r\RoomDoors[3]\buttons[1],True), r\z - 784.0 * RoomScale, True
-			
-			em.Emitters = CreateEmitter(r\x + 5218.0 * RoomScale, -5584.0*RoomScale, r\z - 600* RoomScale, 0)
-			TurnEntity(em\Obj, 20, -100, 0, True)
-			EntityParent(em\Obj, r\obj) : em\Room = r
-			em\RandAngle = 15 : em\Speed = 0.03
-			em\SizeChange = 0.01 : em\Achange = -0.006
-			em\Gravity = -0.2 
 			
 			Select Rand(3)
 				Case 1
@@ -3608,7 +3601,7 @@ Function FillRoom(r.Rooms)
 			;[End Block]
 		Case "room3pit"
 			;[Block]
-			em.Emitters = CreateEmitter(r\x + 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 0)
+			em.Emitters = CreateEmitter(r\x + 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 10)
 			TurnEntity(em\Obj, -90, 0, 0)
 			EntityParent(em\Obj, r\obj)
 			em\RandAngle = 55
@@ -3616,7 +3609,7 @@ Function FillRoom(r.Rooms)
 			em\Achange = -0.015
 			em\SizeChange = 0.007
 			
-			em.Emitters = CreateEmitter(r\x - 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 0)
+			em.Emitters = CreateEmitter(r\x - 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 10)
 			TurnEntity(em\Obj, -90, 0, 0)
 			EntityParent(em\Obj, r\obj)
 			em\RandAngle = 55
@@ -5556,7 +5549,7 @@ Function FillRoom(r.Rooms)
 			;[End Block]
 		Case "room2cpit"
 			;[Block]
-			em.Emitters = CreateEmitter(r\x + 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 0)
+			em.Emitters = CreateEmitter(r\x + 512.0 * RoomScale, -76 * RoomScale, r\z - 688 * RoomScale, 10)
             TurnEntity(em\Obj, -90, 0, 0)
             EntityParent(em\Obj, r\obj)
             em\RandAngle = 55
@@ -7457,7 +7450,6 @@ Function CreateMap()
 	SetRoom("conferenceroom", ROOM1, Floor(0.3*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room1archive",ROOM1,Floor(0.5*Float(Room1Amount[0])),min_pos,max_pos)
 	SetRoom("room205", ROOM1, Floor(0.6*Float(Room1Amount[0])),min_pos,max_pos)
-	SetRoom("coffin", ROOM1, Floor(0.7*Float(Room1Amount[0])),min_pos,max_pos)
 	
 	MapRoom(ROOM2C, 0) = "lockroom"
 	
@@ -7472,7 +7464,7 @@ Function CreateMap()
 	SetRoom("room2introcon", ROOM2, Floor(0.2*Float(Room2Amount[2])),min_pos,max_pos)
 	SetRoom("room2storage3", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2storage", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
-	SetRoom("room2floppas", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
+	SetRoom("room2floppa", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2toiletslcz", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
     SetRoom("room2lczoffices", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
 	SetRoom("room2brick", ROOM2, Floor(0.3*Float(Room2Amount[0])),min_pos,max_pos)
@@ -7486,6 +7478,7 @@ Function CreateMap()
 	
 	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3storage"
 	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3snacks"
+	MapRoom(ROOM3, Floor(Rnd(0.2,0.8)*Float(Room3Amount[0]))) = "room3officeslcz"
 	
 	MapRoom(ROOM2C, Floor(0.5*Float(Room2CAmount[0]))) = "room1162"
 	MapRoom(ROOM2C, Floor(0.25*Float(Room2CAmount[0]))) = "lockroom2old"
@@ -7503,6 +7496,7 @@ Function CreateMap()
     SetRoom("room106", ROOM1, Room1Amount[0]+Floor(0.3*Float(Room1Amount[1])),min_pos,max_pos)
     SetRoom("008", ROOM1, Room1Amount[0]+Floor(0.4*Float(Room1Amount[1])),min_pos,max_pos)
     SetRoom("room035", ROOM1, Room1Amount[0]+Floor(0.5*Float(Room1Amount[1])),min_pos,max_pos)
+    SetRoom("coffin", ROOM1, Room1Amount[0]+Floor(0.5*Float(Room1Amount[1])),min_pos,max_pos)
 	
 	min_pos = Room2Amount[0]
 	max_pos = Room2Amount[0]+Room2Amount[1]-1

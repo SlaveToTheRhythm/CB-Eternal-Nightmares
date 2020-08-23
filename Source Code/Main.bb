@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "ALPHA 0.0.8"
+Global ModVersionNumber$ = "ALPHA 0.1.0"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -8331,6 +8331,7 @@ Function LoadEntities()
 	ParticleTextures(6) = LoadTexture_Strict("GFX\smoke2.png", 1 + 2)
 	ParticleTextures(7) = LoadTexture_Strict("GFX\spark.jpg", 1 + 2)
 	ParticleTextures(8) = LoadTexture_Strict("GFX\particle.png", 1 + 2)
+	ParticleTextures(10) = LoadTexture_Strict("GFX\smoke.png", 1 + 2)
 	
 	SetChunkDataValues()
 	
@@ -9541,7 +9542,7 @@ Function Use914(item.Items, setting$, x#, y#, z#)
 					it2 = CreateItem("Gas Mask", "supergasmask", x, y, z)
 					RemoveItem(item)
 			End Select
-		Case "destroyedscp005"
+		Case "Destroyed SCP-005"
 		    Select setting
 		        Case "1:1"
 		            it2 = CreateItem("SCP-500-01", "scp500", x, y, x)

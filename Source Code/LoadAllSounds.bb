@@ -92,7 +92,7 @@ Next
 ;CurrAmbientSFX%
 ;Dim AmbientSFXAmount(6)
 ;0 = light containment, 1 = heavy containment, 2 = entrance
-AmbientSFXAmount(0)=11 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
+AmbientSFXAmount(0)=18 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
 ;3 = general, 4 = pre-breach
 AmbientSFXAmount(3)=15 : AmbientSFXAmount(4)=5
 ;5 = forest
@@ -130,7 +130,7 @@ Next
 For i = 0 To 11
 	HorrorSFX(i) = LoadSound_Strict("SFX\Horror\Horror" + i + ".ogg")
 Next
-For i = 14 To 18
+For i = 14 To 20
 	HorrorSFX(i) = LoadSound_Strict("SFX\Horror\Horror" + i + ".ogg")
 Next
 
@@ -195,7 +195,7 @@ Next
  ApacheSFX = LoadSound_Strict("SFX\Character\Apache\Propeller.ogg")
 
  ;CurrStepSFX
-;Dim StepSFX%(4, 2, 8) ;(normal/metal, walk/run, id)
+;Dim StepSFX%(4, 2, 5) ;(normal/metal, walk/run, id)
 For i = 0 To 7
 	StepSFX(0, 0, i) = LoadSound_Strict("SFX\Step\Step" + (i + 1) + ".ogg")
 	StepSFX(1, 0, i) = LoadSound_Strict("SFX\Step\StepMetal" + (i + 1) + ".ogg")
