@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "ALPHA 0.1.0"
+Global ModVersionNumber$ = "v0.1.2"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -4868,9 +4868,9 @@ Function DrawGUI()
 		Color 255, 255, 255	
 		Rect (x, y, width, height, False)
 		If BlinkTimer < 160.0 Then
-  			Color(62, 4, 0)
+  			Color(166, 11, 0)
 		Else
-  			Color(33, 39, 40)
+  			Color(85, 101, 106)
 		EndIf        
 			Rect(x + 3, y + 3, Float(BlinkTimer * ((Width - 6.0) / BLINKFREQ)), 14)	
 		Color 0, 0, 0
@@ -4890,9 +4890,9 @@ Function DrawGUI()
 		Color 255, 255, 255
 		Rect (x, y, width, height, False)
 		If Stamina < 27.0 Then
-  			Color(62, 4, 0)
+  			Color(166, 11, 0)
 		Else
-  			Color(20, 25, 14)
+  			Color(52, 66, 35)
 		EndIf        
 			Rect(x + 3, y + 3, Float(Stamina * (Width - 6.0) / 100.0), 14)    	
 		
@@ -5733,12 +5733,14 @@ Function DrawGUI()
 						If WearingNightVision = 1 Then
 							Msg = "You removed the goggles."
 							CameraFogFar = StoredCameraFogFar
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGogglesOff.ogg")
 						Else
 							Msg = "You put on the goggles."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
 							CameraFogFar = 30
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGoggles.ogg")
 						EndIf
 						
 						WearingNightVision = (Not WearingNightVision)
@@ -5756,12 +5758,14 @@ Function DrawGUI()
 						If WearingNightVision = 2 Then
 							Msg = "You removed the goggles."
 							CameraFogFar = StoredCameraFogFar
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGogglesOff.ogg")
 						Else
 							Msg = "You put on the goggles."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
 							CameraFogFar = 30
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGoggles.ogg")
 						EndIf
 						
 						WearingNightVision = (Not WearingNightVision) * 2
@@ -5779,12 +5783,14 @@ Function DrawGUI()
 						If WearingNightVision = 3 Then
 							Msg = "You removed the goggles."
 							CameraFogFar = StoredCameraFogFar
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGogglesOff.ogg")
 						Else
 							Msg = "You put on the goggles."
 							WearingGasMask = 0
 							WearingNightVision = 0
 							StoredCameraFogFar = CameraFogFar
 							CameraFogFar = 30
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGoggles.ogg")
 						EndIf
 						
 						WearingNightVision = (Not WearingNightVision) * 3
@@ -11538,7 +11544,7 @@ Function RenderWorld2()
 			Color 255,0,0
 			AASetFont Font3
 			
-			AAText GraphicWidth/2,20*MenuScale,"WARNING: LOW BATTERY",True,False
+			AAText GraphicWidth/2,20*MenuScale,"WARNING: CRITICAL BATTERY LEVELS DETECTED",True,False
 			Color 255,255,255
 		EndIf
 	EndIf

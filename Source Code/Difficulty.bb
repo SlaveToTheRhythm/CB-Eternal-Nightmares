@@ -36,11 +36,11 @@ difficulties(SAFE)\b = 50
 
 difficulties(EUCLID) = New Difficulty
 difficulties(EUCLID)\name = "Euclid"
-difficulties(EUCLID)\description = "In Euclid difficulty, saving is only allowed at specific locations marked by lit up computer screens. "
+difficulties(EUCLID)\description = "In Euclid difficulty, you can save at anytime, but SCP's are aggressive. "
 difficulties(EUCLID)\description = difficulties(EUCLID)\description +"Euclid-class objects are inherently unpredictable, so that reliable containment is not always possible."
 difficulties(EUCLID)\permaDeath = False
-difficulties(EUCLID)\aggressiveNPCs = False
-difficulties(EUCLID)\saveType = SAVEONSCREENS
+difficulties(EUCLID)\aggressiveNPCs = True
+difficulties(EUCLID)\saveType = SAVEANYWHERE
 difficulties(EUCLID)\otherFactors = NORMAL
 difficulties(EUCLID)\r = 200
 difficulties(EUCLID)\g = 200
