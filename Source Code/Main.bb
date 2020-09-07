@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "v0.1.2"
+Global ModVersionNumber$ = "0.1.2"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -2010,7 +2010,6 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 	ScaleEntity(d\frameobj, (8.0 / 2048.0), (8.0 / 2048.0), (8.0 / 2048.0))
 	EntityPickMode d\frameobj,2
 	EntityType d\obj, HIT_MAP
-	EntityType d\obj2, HIT_MAP
 	
 	d\ID = DoorTempID
 	DoorTempID=DoorTempID+1

@@ -343,6 +343,8 @@ Function LoadRMesh(file$,rt.RoomTemplates)
 	Cls
 	SetBuffer BackBuffer()
 	
+	DebugLog "Loading rmesh: " + file
+	
 	Local pinkTexture%
 	pinkTexture=CreateTexture(4,4,1,1)
 	ClsColor 255,255,255
@@ -417,8 +419,10 @@ Function LoadRMesh(file$,rt.RoomTemplates)
 				If tex[j]=0 Then ;texture is not in cache
 					Select True
 						Case temp1i<3
+							DebugLog "Loading rmesh texture: " + file + temp1s
 							tex[j]=LoadTexture(file+temp1s,1)
 						Default
+							DebugLog "Loading rmesh texture: " + file + temp1s
 							tex[j]=LoadTexture(file+temp1s,3)
 					End Select
 					
@@ -7078,6 +7082,7 @@ Type Props
 End Type
 
 Function CreatePropObj(file$)
+	DebugLog ("Creating prop:" + file)
 	Local p.Props
 	For p.Props = Each Props
 		If p\file = file Then
