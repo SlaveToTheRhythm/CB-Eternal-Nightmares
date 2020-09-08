@@ -2002,7 +2002,6 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 		ScaleEntity(d\obj, (204.0 * RoomScale) / MeshWidth(d\obj), 312.0 * RoomScale / MeshHeight(d\obj), 16.0 * RoomScale / MeshDepth(d\obj))
 		
 		d\frameobj = CopyEntity(DoorFrameOBJ)
-		;entityType d\obj2, HIT_MAP
 	End If
 	
 	;scaleentity(d\obj, 0.1, 0.1, 0.1)
