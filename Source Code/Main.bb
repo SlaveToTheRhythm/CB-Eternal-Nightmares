@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "0.1.2"
+Global ModVersionNumber$ = "0.1.5"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -1716,6 +1716,8 @@ Global EndBreathSFX%
 
 Dim DecaySFX%(5)
 
+Dim ElevatorMusicSFX%(5)
+
 Global BurstSFX 
 
 DrawLoading(20, True)
@@ -1736,7 +1738,9 @@ Global RadioSquelch
 Global RadioStatic 
 Global RadioBuzz 
 
-Global ElevatorBeepSFX, ElevatorMoveSFX  
+Global ElevatorBeepSFX
+
+Dim ElevatorMoveSFX%(5)
 
 Dim PickSFX%(10)
 
@@ -5442,6 +5446,7 @@ Function DrawGUI()
 				Color 255, 0, 0
 				Rect(x - 1, y - 1, width + 2, height + 2)
 			EndIf
+			
 			
 			Color 255, 255, 255
 			DrawFrame(x, y, width, height, (x Mod 64), (x Mod 64))

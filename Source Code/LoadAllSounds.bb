@@ -48,6 +48,8 @@ For i = 0 To 3
 	DecaySFX(i) = LoadSound_Strict("SFX\SCP\106\Decay" + i + ".ogg")
 Next
 
+
+
 BurstSFX = LoadSound_Strict("SFX\Room\TunnelBurst.ogg")
 
 ;DrawLoading(20, True)
@@ -81,7 +83,11 @@ RadioStatic = LoadSound_Strict("SFX\Radio\static.ogg")
 RadioBuzz = LoadSound_Strict("SFX\Radio\buzz.ogg")
 
 ElevatorBeepSFX = LoadSound_Strict("SFX\General\Elevator\Beep.ogg") 
-ElevatorMoveSFX = LoadSound_Strict("SFX\General\Elevator\Moving.ogg") 
+
+;Dim ElevatorMoveSFX%(5)
+For i = 2 To 6
+    ElevatorMoveSFX(i) = LoadSound_Strict("SFX\General\Elevator\Moving" + i + ".ogg")
+Next
 
 ;Dim PickSFX%(10)
 For i = 0 To 3
