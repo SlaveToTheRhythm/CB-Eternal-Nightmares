@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "0.1.5"
+Global ModVersionNumber$ = "0.2.0"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -1078,6 +1078,8 @@ Function UpdateConsole()
 					
 					ShowEntity Collider
 					
+					HideEntity(BloodOverlay)
+					
 					KillTimer = 0
 					KillAnim = 0
 					;[End Block]
@@ -1716,8 +1718,6 @@ Global EndBreathSFX%
 
 Dim DecaySFX%(5)
 
-Dim ElevatorMusicSFX%(5)
-
 Global BurstSFX 
 
 DrawLoading(20, True)
@@ -1740,7 +1740,7 @@ Global RadioBuzz
 
 Global ElevatorBeepSFX
 
-Dim ElevatorMoveSFX%(5)
+Dim ElevatorMoveSFX%(10)
 
 Dim PickSFX%(10)
 
@@ -2815,6 +2815,8 @@ Global Collider%, Head%
 Global FogNVTexture%
 Global NVTexture%, NVOverlay%
 
+Global BloodTexture%, BloodOverlay%
+
 Global TeslaTexture%
 
 Global LightTexture%, Light%
@@ -3772,6 +3774,7 @@ Function Kill()
 	If KillTimer >= 0 Then
 		KillAnim = Rand(0,1)
 		PlaySound_Strict(DamageSFX(9))
+		ShowEntity(BloodOverlay)
 		If SelectedDifficulty\permaDeath Then
 			DeleteFile(CurrentDir() + SavePath + CurrSave+"\save.txt") 
 			DeleteDir(SavePath + CurrSave)
@@ -7786,6 +7789,7 @@ Function DrawMenu()
 				If (Not SelectedDifficulty\permaDeath) Then
 					If GameSaved Then
 						If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Reload") Then
+						    HideEntity(BloodOverlay)
 							DrawLoading(0)
 							
 							MenuOpen = False
@@ -7842,6 +7846,7 @@ Function DrawMenu()
 				y = y+104*MenuScale
 				If GameSaved And (Not SelectedDifficulty\permaDeath) Then
 					If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Reload") Then
+					    HideEntity(BloodOverlay)
 						DrawLoading(0)
 						
 						MenuOpen = False
@@ -8007,6 +8012,16 @@ Function LoadEntities()
 	EntityOrder GasMaskOverlay, -1003
 	MoveEntity(GasMaskOverlay, 0, 0, 1.0)
 	HideEntity(GasMaskOverlay)
+	
+	BloodTexture = LoadTexture_Strict("GFX\BloodOverlay.png", 1)
+	BloodOverlay = CreateSprite(ark_blur_cam)
+	ScaleSprite(BloodOverlay, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
+	EntityTexture(BloodOverlay, BloodTexture)
+	EntityBlend (BloodOverlay, 2)
+	EntityFX(BloodOverlay, 1)
+	EntityOrder BloodOverlay, -1003
+	MoveEntity(BloodOverlay, 0, 0, 1.0)
+	HideEntity(BloodOverlay)
 	
 	InfectTexture = LoadTexture_Strict("GFX\InfectOverlay.jpg", 1)
 	InfectOverlay = CreateSprite(ark_blur_cam)

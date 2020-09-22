@@ -6877,9 +6877,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 							inside = True
 							
 							If event\SoundCHN = 0 Then
-								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							Else
-								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							EndIf
 							
 							CameraShake = Sin(Abs(State)/3.0)*0.3
@@ -6977,9 +6977,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 							inside = True
 							
 							If event\SoundCHN = 0 Then
-								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							Else
-								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							EndIf
 							
 							CameraShake = Sin(Abs(State)/3.0)*0.3

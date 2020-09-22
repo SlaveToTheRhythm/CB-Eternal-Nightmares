@@ -84,8 +84,8 @@ RadioBuzz = LoadSound_Strict("SFX\Radio\buzz.ogg")
 
 ElevatorBeepSFX = LoadSound_Strict("SFX\General\Elevator\Beep.ogg") 
 
-;Dim ElevatorMoveSFX%(5)
-For i = 2 To 6
+;Dim ElevatorMoveSFX%(10)
+For i = 1 To 10
     ElevatorMoveSFX(i) = LoadSound_Strict("SFX\General\Elevator\Moving" + i + ".ogg")
 Next
 
