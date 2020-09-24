@@ -90,7 +90,7 @@ For i = 1 To 10
 Next
 
 ;Dim PickSFX%(10)
-For i = 0 To 3
+For i = 0 To 4
 	PickSFX(i) = LoadSound_Strict("SFX\Interact\PickItem" + i + ".ogg")
 Next
 

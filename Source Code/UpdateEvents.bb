@@ -6150,6 +6150,7 @@ Function UpdateEvents()
 								
 								If e\EventState2 = True Then ;magnets off -> 106 caught
 									Contained106 = True
+									GiveAchievement(Achv106REC)
 								Else ;magnets off -> 106 comes out and attacks
 									PositionEntity(Curr106\Collider, EntityX(e\room\Objects[6], True), EntityY(e\room\Objects[6], True), EntityZ(e\room\Objects[6], True))
 									
