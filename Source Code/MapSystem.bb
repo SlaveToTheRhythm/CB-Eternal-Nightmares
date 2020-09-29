@@ -4388,6 +4388,8 @@ Function FillRoom(r.Rooms)
             r\Objects[9] = CreatePivot()
 			PositionEntity(r\Objects[9], r\x + 2045.0 * RoomScale, r\y - 2496.0 * RoomScale, r\z + 646.0  * RoomScale)
             EntityParent(r\Objects[9], r\obj)
+
+            ;items
 			
 			it = CreateItem("Addendum: 5/14 Test Log", "paper", r\x - 2859.0 * RoomScale, r\y - 2301.0 * RoomScale, r\z - 5552.0 * RoomScale)
 			EntityParent(it\collider, r\obj)	
@@ -4396,6 +4398,9 @@ Function FillRoom(r.Rooms)
 			EntityParent(it\collider, r\obj) : RotateEntity(it\collider, 0, 90, 0)
 			
 			it = CreateItem("Dr. L's Note", "paper", r\x - 2844.0 * RoomScale, r\y - 2366.0 * RoomScale, r\z - 5297.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("SCP-372 Renovation", "paper", r\x - 4096.0 * RoomScale, r\y - 2456.0 * RoomScale, r\z + 5369.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
 		Case "173"
