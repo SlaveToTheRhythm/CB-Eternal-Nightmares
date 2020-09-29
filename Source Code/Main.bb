@@ -5034,8 +5034,8 @@ Function DrawGUI()
 			CameraProject(Camera, EntityX(ClosestButton,True),EntityY(ClosestButton,True)-MeshHeight(ButtonOBJ)*0.015,EntityZ(ClosestButton,True))
 			scale# = (ProjectedY()-projy)/462.0
 			
-			x = GraphicWidth/2-ImageWidth(KeypadHUD)*scale/2
-			y = GraphicHeight/2-ImageHeight(KeypadHUD)*scale/2		
+			x = GraphicWidth/2.-ImageWidth(KeypadHUD)*scale/2
+			y = GraphicHeight/2.-ImageHeight(KeypadHUD)*scale/2		
 			
 			AASetFont Font3
 			If KeypadMSG <> "" Then 

@@ -10,6 +10,7 @@
 - New documents explaining what the fuck is going on around the foundation since D-9341's escape
 - New SCP's
 - New NPC added to roam 914's chamber :)
+- SCP-005 explanation document. (Explains why it's broken, document is found in its chamber)
 
 ----------------------------------------------
 

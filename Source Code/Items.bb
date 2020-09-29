@@ -164,6 +164,12 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Document SCP-1499", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1499.png", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Incident Report SCP-1048-A", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1048a.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Dr. Pari's Note", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docLevelTwo.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("Pari's note regarding SCP-005", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc005.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("SCP-173's Decommission Attempt", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docInc173C.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("SCP-372 Renovation", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc914372REN.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("Document SCP-914", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc914.jpg", 0.002) : it\sound = 0
+    it = CreateItemTemplate("Document SCP-087-B", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc087.jpg", 0.002) : it\sound = 0
+	
 	
 	it = CreateItemTemplate("Drawing", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1048.jpg", 0.003) : it\sound = 0
 	

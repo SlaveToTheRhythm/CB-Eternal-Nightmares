@@ -1,13 +1,13 @@
 Global ResWidth% = 910
 Global ResHeight% = 660
-Global versionnumber$ = "2.1"
+Global versionnumber$ = "0.2.0"
 
 Loadingwindow=CreateWindow("", GraphicsWidth()/2-160,GraphicsHeight()/2-120,320,260,winhandle,8)
 panelloading = CreatePanel(0,0,320,260,Loadingwindow,0)
 SetPanelImage(panelloading,"Assets\map_logo.jpg")
 
 ; create a window to put the toolbar in
-WinHandle=CreateWindow("SCP-CB Map Creator "+versionnumber,GraphicsWidth()/2-ResWidth/2, GraphicsHeight()/2-ResHeight/2,ResWidth,ResHeight,0, 13) 
+WinHandle=CreateWindow("SCP:YCEM Map Creator "+versionnumber,GraphicsWidth()/2-ResWidth/2, GraphicsHeight()/2-ResHeight/2,ResWidth,ResHeight,0, 13) 
 Global MainHwnd = GetActiveWindow();User32.dll
 HideGadget WinHandle
 

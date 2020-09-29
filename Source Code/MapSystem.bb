@@ -3975,6 +3975,12 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Level 1 Key Card", "key1", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			
+			it = CreateItem("Ginger Pepsi", "ginpep", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("SCP-173's Decommission Attempt", "paper", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
 			;3384,510,2400
 			CreateDevilEmitter(r\x+3384.0*RoomScale,r\y+510.0*RoomScale,r\z+2400.0*RoomScale,r,1,4)
 			;[End Block]
@@ -4787,6 +4793,7 @@ Function FillRoom(r.Rooms)
 			Next
 			;[End Block]
 		Case "room005"
+		    ;------ Doors
 		    d.Doors = CreateDoor(r\zone, r\x +  192.0 * RoomScale, 0.0, r\z - 688.0 * RoomScale, 0, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
@@ -4795,6 +4802,11 @@ Function FillRoom(r.Rooms)
 			PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 			d.Doors\open = True 
+			
+			;------ Items
+			it = CreateItem("Pari's note regarding SCP-005", "paper", r\x + 54.0 * RoomScale, r\y + 141.0 * RoomScale, r\z - 377.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
 		Case "room3tunnels166"
 		    d.Doors = CreateDoor(r\zone, r\x +  0.0 * RoomScale, 0.0, r\z + 412.0 * RoomScale, 0, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
