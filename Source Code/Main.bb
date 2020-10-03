@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "0.1.5"
+Global ModVersionNumber$ = "0.2.0"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -298,7 +298,7 @@ Global SCP1025state#[6]
 
 Global HeartBeatRate#, HeartBeatTimer#, HeartBeatVolume#
 
-Global WearingGasMask%, WearingHazmat%, WearingVest%, Wearing714%, WearingNightVision%
+Global WearingGasMask%, WearingHazmat%, WearingVest%, Wearing714%, WearingNightVision%, HoldingP90%
 Global NVTimer#
 
 Global SuperMan%, SuperManTimer#
@@ -1078,6 +1078,8 @@ Function UpdateConsole()
 					
 					ShowEntity Collider
 					
+					HideEntity(BloodOverlay)
+					
 					KillTimer = 0
 					KillAnim = 0
 					;[End Block]
@@ -1645,7 +1647,7 @@ Global TempSoundIndex% = 0
 
 ;The Music now has to be pre-defined, as the new system uses streaming instead of the usual sound loading system Blitz3D has
 Dim Music$(40)
-Music(0) = "18_amb"
+Music(0) = "LightContainment"
 Music(1) = "HeavyContainment"
 Music(2) = "EntranceZone"
 Music(3) = "PD"
@@ -1716,8 +1718,6 @@ Global EndBreathSFX%
 
 Dim DecaySFX%(5)
 
-Dim ElevatorMusicSFX%(5)
-
 Global BurstSFX 
 
 DrawLoading(20, True)
@@ -1740,7 +1740,7 @@ Global RadioBuzz
 
 Global ElevatorBeepSFX
 
-Dim ElevatorMoveSFX%(5)
+Dim ElevatorMoveSFX%(10)
 
 Dim PickSFX%(10)
 
@@ -2815,6 +2815,14 @@ Global Collider%, Head%
 Global FogNVTexture%
 Global NVTexture%, NVOverlay%
 
+Global BloodTexture%, BloodOverlay%
+
+;------ P90
+
+Global P90Viewmodel, GunPivot
+
+;------ Thanks ENDSHN.
+
 Global TeslaTexture%
 
 Global LightTexture%, Light%
@@ -3772,6 +3780,7 @@ Function Kill()
 	If KillTimer >= 0 Then
 		KillAnim = Rand(0,1)
 		PlaySound_Strict(DamageSFX(9))
+		ShowEntity(BloodOverlay)
 		If SelectedDifficulty\permaDeath Then
 			DeleteFile(CurrentDir() + SavePath + CurrSave+"\save.txt") 
 			DeleteDir(SavePath + CurrSave)
@@ -4225,6 +4234,10 @@ Function MovePlayer()
 	If Wearing714 Then
 		Stamina = Min(Stamina, 10)
 		Sanity = Max(-850, Sanity)
+	EndIf
+	
+	If HoldingP90 Then
+	    Stamina = Min(Stamina, 90)
 	EndIf
 	
 	If IsZombie Then Crouch = False
@@ -5021,8 +5034,8 @@ Function DrawGUI()
 			CameraProject(Camera, EntityX(ClosestButton,True),EntityY(ClosestButton,True)-MeshHeight(ButtonOBJ)*0.015,EntityZ(ClosestButton,True))
 			scale# = (ProjectedY()-projy)/462.0
 			
-			x = GraphicWidth/2-ImageWidth(KeypadHUD)*scale/2
-			y = GraphicHeight/2-ImageHeight(KeypadHUD)*scale/2		
+			x = GraphicWidth/2.-ImageWidth(KeypadHUD)*scale/2
+			y = GraphicHeight/2.-ImageHeight(KeypadHUD)*scale/2		
 			
 			AASetFont Font3
 			If KeypadMSG <> "" Then 
@@ -5898,6 +5911,47 @@ Function DrawGUI()
 								
 				    DeathTimer = -5.9
 				    GiveAchievement(AchvFlopSpher)
+				Case "ginpep"
+				    ;[Block]
+				    GiveAchievement(AchvPep)
+				
+				    PlaySound_Strict LoadTempSound("SFX\SCP\294\ahh.ogg")
+						
+					If Infect > 0 Then
+						Msg = "You took a sip of the Pepsi, and your nausea is fading."
+					Else
+						Msg = "You took a sip of the Pepsi."
+					EndIf
+					MsgTimer = 70*7
+						
+					DeathTimer = 0
+					Infect = 0
+					Injuries = 0
+					Stamina = 100
+					For i = 0 To 5
+						SCP1025state[i]=0
+					Next
+					If StaminaEffect > 1.0 Then
+						StaminaEffect = 1.0
+						StaminaEffectTimer = 0.0
+					EndIf
+						
+					RemoveItem(SelectedItem)
+					SelectedItem = Null
+				Case "p90"
+				    ;[Block]
+				    If HoldingP90=2 Then
+						Msg = "You holster the P90"
+						HoldingP90 = False
+						HideEntity P90Viewmodel
+					Else
+					    ShowEntity P90Viewmodel
+						Msg = "You take the P90 out only to find out it has no ammo."
+						HoldingP90 = 2
+					EndIf
+					MsgTimer = 70 * 5
+					SelectedItem = Null					
+				    ;[End Block]
 				Case "veryfinefirstaid"
 					;[Block]
 					If CanUseItem(False, False, True)
@@ -7786,6 +7840,7 @@ Function DrawMenu()
 				If (Not SelectedDifficulty\permaDeath) Then
 					If GameSaved Then
 						If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Reload") Then
+						    HideEntity(BloodOverlay)
 							DrawLoading(0)
 							
 							MenuOpen = False
@@ -7842,6 +7897,7 @@ Function DrawMenu()
 				y = y+104*MenuScale
 				If GameSaved And (Not SelectedDifficulty\permaDeath) Then
 					If DrawButton(x, y, 390*MenuScale, 60*MenuScale, "Reload") Then
+					    HideEntity(BloodOverlay)
 						DrawLoading(0)
 						
 						MenuOpen = False
@@ -8007,6 +8063,30 @@ Function LoadEntities()
 	EntityOrder GasMaskOverlay, -1003
 	MoveEntity(GasMaskOverlay, 0, 0, 1.0)
 	HideEntity(GasMaskOverlay)
+	
+	BloodTexture = LoadTexture_Strict("GFX\BloodOverlay.png", 1)
+	BloodOverlay = CreateSprite(ark_blur_cam)
+	ScaleSprite(BloodOverlay, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
+	EntityTexture(BloodOverlay, BloodTexture)
+	EntityBlend (BloodOverlay, 2)
+	EntityFX(BloodOverlay, 1)
+	EntityOrder BloodOverlay, -1003
+	MoveEntity(BloodOverlay, 0, 0, 1.0)
+	HideEntity(BloodOverlay)
+	
+	;----- P90
+	
+	GunPivot = CreatePivot()
+	
+	EntityParent GunPivot, Camera
+	
+	P90Viewmodel = LoadAnimMesh_Strict("GFX\items\P90_Viewmodel.b3d")
+	ScaleEntity P90Viewmodel,0.005,0.005,0.005
+	EntityParent P90Viewmodel,GunPivot
+	MoveEntity P90Viewmodel,0.01,0.0,0.0
+	HideEntity P90Viewmodel
+	
+	;------ Thanks ENDSHN.
 	
 	InfectTexture = LoadTexture_Strict("GFX\InfectOverlay.jpg", 1)
 	InfectOverlay = CreateSprite(ark_blur_cam)
@@ -8830,6 +8910,7 @@ Function NullGame(playbuttonsfx%=True)
 	WearingHazmat = 0
 	WearingVest = 0
 	Wearing714 = 0
+	HoldingP90 = 0
 	If WearingNightVision Then
 		CameraFogFar = StoredCameraFogFar
 		WearingNightVision = 0

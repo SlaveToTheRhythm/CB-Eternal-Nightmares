@@ -1,0 +1,15 @@
+# File produced by Open Asset Import Library (http://www.assimp.sf.net)
+# (assimp v5.0.0)
+
+newmtl papertexture
+illum 1
+map_Kd papertexture.jpg
+
+newmtl red
+illum 1
+map_Kd red.jpg
+
+newmtl glass
+illum 1
+map_Kd glass.jpg
+

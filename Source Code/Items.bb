@@ -164,6 +164,12 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Document SCP-1499", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1499.png", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Incident Report SCP-1048-A", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1048a.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Dr. Pari's Note", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docLevelTwo.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("Pari's note regarding SCP-005", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc005.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("SCP-173's Decommission Attempt", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\docInc173C.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("SCP-372 Renovation", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc914372REN.jpg", 0.002) : it\sound = 0
+	it = CreateItemTemplate("Document SCP-914", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc914.jpg", 0.002) : it\sound = 0
+    it = CreateItemTemplate("Document SCP-087-B", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc087.jpg", 0.002) : it\sound = 0
+	
 	
 	it = CreateItemTemplate("Drawing", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc1048.jpg", 0.003) : it\sound = 0
 	
@@ -218,6 +224,8 @@ Function InitItemTemplates()
 	
 	it = CreateItemTemplate("cup", "cup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2
 	
+	it = CreateItemTemplate("Ginger Pepsi", "ginpep", "GFX\items\pepsi.x", "GFX\items\INVcup.jpg", "", 1) : it\sound = 2
+	
 	it = CreateItemTemplate("Empty Cup", "emptycup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2	
 	
 	it = CreateItemTemplate("SCP-500-01", "scp500", "GFX\items\pill.b3d", "GFX\items\INVpill.jpg", "", 0.0001) : it\sound = 2
@@ -231,6 +239,10 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Gas Mask", "gasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.02) : it\sound = 2
 	it = CreateItemTemplate("Gas Mask", "supergasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
 	it = CreateItemTemplate("Heavy Gas Mask", "gasmask3", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
+	
+	;------ P90
+	it = CreateItemTemplate("Project 90", "p90", "GFX\items\P90.b3d", "GFX\items\INVp90.jpg", "", 0.02) : it\sound = 4
+	;------ Thank you ENDSHN.
 	
 	it = CreateItemTemplate("Origami", "misc", "GFX\items\origami.b3d", "GFX\items\INVorigami.jpg", "", 0.003) : it\sound = 0
 	

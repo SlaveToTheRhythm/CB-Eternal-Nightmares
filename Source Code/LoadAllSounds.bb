@@ -84,13 +84,13 @@ RadioBuzz = LoadSound_Strict("SFX\Radio\buzz.ogg")
 
 ElevatorBeepSFX = LoadSound_Strict("SFX\General\Elevator\Beep.ogg") 
 
-;Dim ElevatorMoveSFX%(5)
-For i = 2 To 6
+;Dim ElevatorMoveSFX%(10)
+For i = 1 To 10
     ElevatorMoveSFX(i) = LoadSound_Strict("SFX\General\Elevator\Moving" + i + ".ogg")
 Next
 
 ;Dim PickSFX%(10)
-For i = 0 To 3
+For i = 0 To 4
 	PickSFX(i) = LoadSound_Strict("SFX\Interact\PickItem" + i + ".ogg")
 Next
 
@@ -98,7 +98,7 @@ Next
 ;CurrAmbientSFX%
 ;Dim AmbientSFXAmount(6)
 ;0 = light containment, 1 = heavy containment, 2 = entrance
-AmbientSFXAmount(0)=18 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
+AmbientSFXAmount(0)=19 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
 ;3 = general, 4 = pre-breach
 AmbientSFXAmount(3)=15 : AmbientSFXAmount(4)=5
 ;5 = forest

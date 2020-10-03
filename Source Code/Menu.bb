@@ -1,6 +1,7 @@
-Global MenuBack% = LoadImage_Strict("GFX\menu\backnew.jpg")
+Global MenuBack% = LoadImage_Strict("GFX\menu\ycemlogo.png")
 Global MenuText% = LoadImage_Strict("GFX\menu\scptext.jpg")
 Global Menu173% = LoadImage_Strict("GFX\menu\173back.jpg")
+Global MenuHCZ% = LoadImage_Strict("GFX\menu\hczcornerback.png")
 MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")
 MaskImage MenuBlack, 255,255,0
@@ -9,6 +10,7 @@ Global QuickLoadIcon% = LoadImage_Strict("GFX\menu\QuickLoading.png")
 ResizeImage(MenuBack, ImageWidth(MenuBack) * MenuScale, ImageHeight(MenuBack) * MenuScale)
 ResizeImage(MenuText, ImageWidth(MenuText) * MenuScale, ImageHeight(MenuText) * MenuScale)
 ResizeImage(Menu173, ImageWidth(Menu173) * MenuScale, ImageHeight(Menu173) * MenuScale)
+ResizeImage(MenuHCZ, ImageWidth(MenuHCZ) * MenuScale, ImageHeight(MenuHCZ) * MenuScale)
 ResizeImage(QuickLoadIcon, ImageWidth(QuickLoadIcon) * MenuScale, ImageHeight(QuickLoadIcon) * MenuScale)
 
 For i = 0 To 3
@@ -62,10 +64,14 @@ Function UpdateMainMenu()
 	
 	ShowPointer()
 	
-	DrawImage(MenuBack, 0, 0)
+	DrawImage(MenuBack, GraphicWidth / 2 - ImageWidth(MenuBack) / 2, 0)
 	
 	If (MilliSecs2() Mod MenuBlinkTimer(0)) >= Rand(MenuBlinkDuration(0)) Then
 		DrawImage(Menu173, GraphicWidth - ImageWidth(Menu173), GraphicHeight - ImageHeight(Menu173))
+	EndIf
+	
+	If (MilliSecs2() Mod MenuBlinkTimer(0)) >= Rand(MenuBlinkDuration(0)) Then
+		DrawImage(MenuHCZ, GraphicWidth / 2 - ImageWidth(MenuHCZ) = 0, GraphicHeight - ImageHeight(MenuHCZ))
 	EndIf
 	
 	If Rand(300) = 1 Then
@@ -122,9 +128,9 @@ Function UpdateMainMenu()
 	
 	DrawImage(MenuText, GraphicWidth / 2 - ImageWidth(MenuText) / 2, GraphicHeight - 20 * MenuScale - ImageHeight(MenuText))
 	
-	If GraphicWidth > 1240 * MenuScale Then
-		DrawTiledImageRect(MenuWhite, 0, 3, 512, 7 * MenuScale, 985.0 * MenuScale, 419.0 * MenuScale, (GraphicWidth - 1240 * MenuScale) + 300, 7 * MenuScale)
-	EndIf
+	;If GraphicWidth > 1240 * MenuScale Then
+	;	DrawTiledImageRect(MenuWhite, 0, 3, 512, 7 * MenuScale, 985.0 * MenuScale, 419.0 * MenuScale, (GraphicWidth - 1240 * MenuScale) + 300, 7 * MenuScale)
+	;EndIf
 	
 	If (Not MouseDown1)
 		OnSliderID = 0
@@ -133,8 +139,8 @@ Function UpdateMainMenu()
 	If MainMenuTab = 0 Then
 		For i% = 0 To 3
 			temp = False
-			x = 3 * MenuScale
-			y = (286 + 100 * i) * MenuScale
+			x = (GraphicWidth/2)-(300 * MenuScale)
+			y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 			
 			width = 580 * MenuScale
 			height = 70 * MenuScale
@@ -223,8 +229,8 @@ Function UpdateMainMenu()
 		
 	Else
 		
-		x = 3 * MenuScale
-		y = 286 * MenuScale
+		x = (GraphicWidth/2)-(300 * MenuScale)
+		y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 		
 		width = 400 * MenuScale
 		height = 70 * MenuScale
@@ -239,7 +245,9 @@ Function UpdateMainMenu()
 				Case 2
 					CurrLoadGamePage = 0
 					MainMenuTab = 0
-				Case 3,5,6,7 ;save the options
+				Case 3
+				    MainMenuTab = 0
+				Case 4,6,7,8 ;save the options
 					SaveOptionsINI()
 					
 					UserTrackCheck% = 0
@@ -247,7 +255,7 @@ Function UpdateMainMenu()
 					
 					AntiAlias Opt_AntiAlias
 					MainMenuTab = 0
-				Case 4 ;move back to the "new game" tab
+				Case 5 ;move back to the "new game" tab
 					MainMenuTab = 1
 					CurrLoadGamePage = 0
 					MouseHit1 = False
@@ -260,8 +268,8 @@ Function UpdateMainMenu()
 			Case 1 ; New game
 				;[Block]
 				
-				x = 3 * MenuScale
-				y = 286 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 				
 				width = 400 * MenuScale
 				height = 70 * MenuScale
@@ -270,8 +278,8 @@ Function UpdateMainMenu()
 				AASetFont Font2
 				AAText(x + width / 2, y + height / 2, "New Game", True, True)
 				
-				x = 3 * MenuScale
-				y = y + height + 20 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(104*MenuScale)+(72*i)
 				width = 580 * MenuScale
 				height = 330 * MenuScale
 				
@@ -410,16 +418,16 @@ Function UpdateMainMenu()
 			Case 2 ;load game
 				;[Block]
 				
-				x = 3 * MenuScale 
-				y = y + height + 20 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(104*MenuScale)+(72*i)
 				width = 580 * MenuScale
 				;height = 300 * MenuScale
 				height = 510 * MenuScale
 				
 				DrawFrame(x, y, width, height)
 				
-				x = 3 * MenuScale
-				y = 286 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 				
 				width = 400 * MenuScale
 				height = 70 * MenuScale
@@ -428,8 +436,8 @@ Function UpdateMainMenu()
 				AASetFont Font2
 				AAText(x + width / 2, y + height / 2, "Continue", True, True)
 				
-				x = 3 * MenuScale
-				y = y + height + 20 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(150*MenuScale)+(72*i)
 				width = 580 * MenuScale
 				height = 296 * MenuScale
 				
@@ -470,7 +478,7 @@ Function UpdateMainMenu()
 					AAText (x + 20 * MenuScale, y + 20 * MenuScale, "ERROR: No saved games found.")
 				Else
 					x = x + 20 * MenuScale
-					y = y + 20 * MenuScale
+					y = y + 60 * MenuScale
 					
 					For i% = (1+(6*CurrLoadGamePage)) To 6+(6*CurrLoadGamePage)
 						If i <= SaveGameAmount Then
@@ -552,8 +560,8 @@ Function UpdateMainMenu()
 			Case 3,5,6,7 ;options
 				;[Block]
 				
-				x = 3 * MenuScale
-				y = 286 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 				
 				width = 400 * MenuScale
 				height = 70 * MenuScale
@@ -562,8 +570,8 @@ Function UpdateMainMenu()
 				AASetFont Font2
 				AAText(x + width / 2, y + height / 2, "Settings", True, True)
 				
-				x = 3 * MenuScale
-				y = y + height + 20 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+			    y = (GraphicHeight/1.75)-(104*MenuScale)+(72*i)
 				width = 580 * MenuScale
 				height = 60 * MenuScale
 				DrawFrame(x, y, width, height)
@@ -1027,8 +1035,8 @@ Function UpdateMainMenu()
 				
 				DrawFrame(x, y, width, height)
 				
-				x = 3 * MenuScale
-				y = 286 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+		        y = (GraphicHeight/1.75)-(200*MenuScale)+(72*i)
 				
 				width = 400 * MenuScale
 				height = 70 * MenuScale
@@ -1037,8 +1045,8 @@ Function UpdateMainMenu()
 				AASetFont Font2
 				AAText(x + width / 2, y + height / 2, "LOAD MAP", True, True)
 				
-				x = 3 * MenuScale
-				y = y + height + 20 * MenuScale
+				x = (GraphicWidth/2)-(300 * MenuScale)
+		        y = (GraphicHeight/1.75)-(150*MenuScale)+(72*i)
 				width = 580 * MenuScale
 				height = 350 * MenuScale
 				
@@ -1084,7 +1092,7 @@ Function UpdateMainMenu()
 					AAText (x + 20 * MenuScale, y + 20 * MenuScale, "No saved maps. Use the Map Creator to create new maps.")
 				Else
 					x = x + 20 * MenuScale
-					y = y + 20 * MenuScale
+					y = y + 60 * MenuScale
 					For i = (1+(6*CurrLoadGamePage)) To 6+(6*CurrLoadGamePage)
 						If i <= SavedMapsAmount Then
 							DrawFrame(x,y,540* MenuScale, 70* MenuScale)

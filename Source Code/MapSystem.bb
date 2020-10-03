@@ -3975,6 +3975,12 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("Level 1 Key Card", "key1", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			
+			it = CreateItem("Ginger Pepsi", "ginpep", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("SCP-173's Decommission Attempt", "paper", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
 			;3384,510,2400
 			CreateDevilEmitter(r\x+3384.0*RoomScale,r\y+510.0*RoomScale,r\z+2400.0*RoomScale,r,1,4)
 			;[End Block]
@@ -4382,6 +4388,8 @@ Function FillRoom(r.Rooms)
             r\Objects[9] = CreatePivot()
 			PositionEntity(r\Objects[9], r\x + 2045.0 * RoomScale, r\y - 2496.0 * RoomScale, r\z + 646.0  * RoomScale)
             EntityParent(r\Objects[9], r\obj)
+
+            ;items
 			
 			it = CreateItem("Addendum: 5/14 Test Log", "paper", r\x - 2859.0 * RoomScale, r\y - 2301.0 * RoomScale, r\z - 5552.0 * RoomScale)
 			EntityParent(it\collider, r\obj)	
@@ -4390,6 +4398,9 @@ Function FillRoom(r.Rooms)
 			EntityParent(it\collider, r\obj) : RotateEntity(it\collider, 0, 90, 0)
 			
 			it = CreateItem("Dr. L's Note", "paper", r\x - 2844.0 * RoomScale, r\y - 2366.0 * RoomScale, r\z - 5297.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("SCP-372 Renovation", "paper", r\x - 4096.0 * RoomScale, r\y - 2456.0 * RoomScale, r\z + 5369.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
 		Case "173"
@@ -4787,6 +4798,7 @@ Function FillRoom(r.Rooms)
 			Next
 			;[End Block]
 		Case "room005"
+		    ;------ Doors
 		    d.Doors = CreateDoor(r\zone, r\x +  192.0 * RoomScale, 0.0, r\z - 688.0 * RoomScale, 0, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
@@ -4795,6 +4807,11 @@ Function FillRoom(r.Rooms)
 			PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 			d.Doors\open = True 
+			
+			;------ Items
+			it = CreateItem("Pari's note regarding SCP-005", "paper", r\x + 54.0 * RoomScale, r\y + 141.0 * RoomScale, r\z - 377.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
 		Case "room3tunnels166"
 		    d.Doors = CreateDoor(r\zone, r\x +  0.0 * RoomScale, 0.0, r\z + 412.0 * RoomScale, 0, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
@@ -6877,9 +6894,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 							inside = True
 							
 							If event\SoundCHN = 0 Then
-								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							Else
-								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							EndIf
 							
 							CameraShake = Sin(Abs(State)/3.0)*0.3
@@ -6977,9 +6994,9 @@ Function UpdateElevators#(State#, door1.Doors, door2.Doors, room1, room2, event.
 							inside = True
 							
 							If event\SoundCHN = 0 Then
-								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							Else
-								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,5)))
+								If (Not ChannelPlaying(event\SoundCHN)) Then event\SoundCHN = PlaySound_Strict(ElevatorMoveSFX(Rand(1,10)))
 							EndIf
 							
 							CameraShake = Sin(Abs(State)/3.0)*0.3
