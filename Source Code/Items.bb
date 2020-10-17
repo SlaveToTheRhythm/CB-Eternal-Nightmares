@@ -224,7 +224,7 @@ Function InitItemTemplates()
 	
 	it = CreateItemTemplate("cup", "cup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2
 	
-	it = CreateItemTemplate("Ginger Pepsi", "ginpep", "GFX\items\pepsi.x", "GFX\items\INVcup.jpg", "", 1) : it\sound = 2
+	it = CreateItemTemplate("Ginger Pepsi", "ginpep", "GFX\items\pepsi.x", "GFX\items\INVcola.jpg", "", 1) : it\sound = 2
 	
 	it = CreateItemTemplate("Empty Cup", "emptycup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2	
 	
