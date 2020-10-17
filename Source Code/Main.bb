@@ -6733,7 +6733,7 @@ Function DrawGUI()
 						y% = GraphicHeight / 2 + 80
 						Rect(x, y, width+4, height, False)
 						Color(100, 100, 100)    
-                        Rect(x + 3, y + 3, Float(SelectedItem\State * (Width - 6.0) / 100.0), 14)
+                        Rect(x + 3, y + 3, Float(SelectedItem\State * (width - 6.0) / 100.0), 14)
 						
 						SelectedItem\state = Min(SelectedItem\state+(FPSfactor/4.0),100)
 						

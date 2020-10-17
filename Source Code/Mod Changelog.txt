@@ -1,0 +1,24 @@
+﻿v0.2.0 - The HCZ Overhaul
+- HCZ Overhauled obviously
+- New LCZ Ambience by BerkeliumΛsset
+- 173, 049, 096 and Class-D Remodeled by Jasper.creations
+- New Keycard and Card Reader model by Jasper.creations
+- 5 more songs added to the random elevator song list
+- LCZ Room3 remastered
+- P90 (Working)
+- USP (Working)
+- Ginger Pepsi (yw battleforge)
+- New documents explaining what the fuck is going on around the foundation since D-9341's escape
+- New SCP's
+- New NPC added to roam 914's chamber :)
+- SCP-005 explanation document. (Explains why it's broken, document is found in its chamber)
+- New KeyPad System
+-------------------------------------------------
+=======
+
+----------------------------------------------
+
+v0.1.5
+- Added Randomized Elevator Sounds
+- Intro guard now has new music
+- I forgot the other additions
