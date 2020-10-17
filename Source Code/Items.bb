@@ -240,8 +240,11 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Gas Mask", "supergasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
 	it = CreateItemTemplate("Heavy Gas Mask", "gasmask3", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
 	
-	;------ P90
-	it = CreateItemTemplate("Project 90", "p90", "GFX\items\P90.b3d", "GFX\items\INVp90.jpg", "", 0.02) : it\sound = 4
+	;------ Guns
+	
+	CreateItemTemplate("Project 90", "p90", "GFX\items\P90.b3d", "GFX\items\INVp90.jpg", "", 0.02) : it\sound = 4
+	CreateItemTemplate("USP Tactical", "usp", "GFX\Items\USP.b3d", "GFX\Items\INVusp.jpg", "", 0.02)
+	
 	;------ Thank you ENDSHN.
 	
 	it = CreateItemTemplate("Origami", "misc", "GFX\items\origami.b3d", "GFX\items\INVorigami.jpg", "", 0.003) : it\sound = 0
@@ -804,6 +807,22 @@ Function DropItem(item.Items,playdropsound%=True)
 	End Select
 	
 	CatchErrors("DropItem")
+	
+	If IsAGun(item\itemtemplate\tempname) <> 0 Then
+        If IsAGun(item\itemtemplate\tempname) = HoldingGun Then
+            HoldingGun = 0
+            EqquipedGun\Deployed = 0
+            HideEntity USPViewModel
+            HideEntity P90Viewmodel
+            EqquipedGun\Deployed=0
+            EqquipedGun\ShootState# = 0.0
+            EqquipedGun\ReloadState# = 0.0
+            EqquipedGun\ShootAnim = 0
+            Animate2(USPViewModel,AnimTime(USPViewModel),0,0,False)
+            Animate2(P90Viewmodel,AnimTime(P90Viewmodel),0,0,False)
+            EqquipedGun = Null
+        EndIf
+    EndIf
 	
 End Function
 

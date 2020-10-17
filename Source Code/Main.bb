@@ -298,7 +298,7 @@ Global SCP1025state#[6]
 
 Global HeartBeatRate#, HeartBeatTimer#, HeartBeatVolume#
 
-Global WearingGasMask%, WearingHazmat%, WearingVest%, Wearing714%, WearingNightVision%, HoldingP90%
+Global WearingGasMask%, WearingHazmat%, WearingVest%, Wearing714%, WearingNightVision%
 Global NVTimer#
 
 Global SuperMan%, SuperManTimer#
@@ -328,6 +328,10 @@ Global GodMode%, NoClip%, NoClipSpeed# = 2.0
 Global CoffinDistance# = 100.0
 
 Global PlayerSoundVolume#
+
+Global YellowTexture% = LoadTexture_Strict("GFX\map\keypad_open.jpg")
+
+Global BlueTexture% = LoadTexture_Strict("GFX\map\keypad_closed.jpg")
 
 ;camera/lighting effects (blur, camera shake, etc)-------------------------------------------------------------------
 Global Shake#
@@ -1915,6 +1919,8 @@ DrawLoading(35, True)
 
 Include "Source Code\Items.bb"
 
+Include "Source Code\Guns.bb"
+
 ;--------------------------------------- Particles ------------------------------------------------------------
 
 Include "Source Code\Particles.bb"
@@ -1937,6 +1943,8 @@ Type Doors
 	Field dist#
 	
 	Field SoundCHN%
+	
+	Field OpenUpdated%
 	
 	Field Code$
 	
@@ -2017,7 +2025,7 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 	d\ID = DoorTempID
 	DoorTempID=DoorTempID+1
 	
-	d\KeyCard = keycard
+	d\KeyCard = KeyCard
 	d\Code = code
 	
 	d\Level = lvl
@@ -2028,9 +2036,9 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 			d\buttons[i]= CopyEntity(ButtonCodeOBJ)
 			EntityFX(d\buttons[i], 1)
 		Else
-			If keycard>0 Then
+			If KeyCard>0 Then
 				d\buttons[i]= CopyEntity(ButtonKeyOBJ)
-			ElseIf keycard<0
+			ElseIf KeyCard<0
 				d\buttons[i]= CopyEntity(ButtonScannerOBJ)	
 			Else
 				d\buttons[i] = CopyEntity(ButtonOBJ)
@@ -2330,6 +2338,26 @@ Function UpdateDoors()
 			
 		EndIf
 		UpdateSoundOrigin(d\SoundCHN,Camera,d\frameobj)
+		
+		If d\open <> d\OpenUpdated Then
+			If d\open = True Then
+				For i = 0 To 2
+					If d\buttons[i] <> 0 Then EntityTexture(d\buttons[i], YellowTexture)
+				Next 
+			Else
+				For i = 0 To 2
+					If d\buttons[i] <> 0 Then EntityTexture(d\buttons[i], BlueTexture)
+				Next
+			EndIf 
+			d\OpenUpdated = d\open
+		EndIf 
+		
+		If d\dir = 1 And d\open = 2 Then
+			If d\openstate > 48.0 Then
+				d\open = False
+				d\openstate = Min(d\openstate , 48.0)
+			EndIf
+		EndIf	
 		
 		If d\DoorHitOBJ<>0 Then
 			If DebugHUD Then
@@ -2817,12 +2845,6 @@ Global NVTexture%, NVOverlay%
 
 Global BloodTexture%, BloodOverlay%
 
-;------ P90
-
-Global P90Viewmodel, GunPivot
-
-;------ Thanks ENDSHN.
-
 Global TeslaTexture%
 
 Global LightTexture%, Light%
@@ -3087,6 +3109,7 @@ Repeat
 				UpdateRoomLights(Camera)
 			EndIf
 			UpdateDecals()
+			UpdateGuns()
 			UpdateMTF()
 			UpdateNPCs()
 			UpdateItems()
@@ -4236,9 +4259,6 @@ Function MovePlayer()
 		Sanity = Max(-850, Sanity)
 	EndIf
 	
-	If HoldingP90 Then
-	    Stamina = Min(Stamina, 90)
-	EndIf
 	
 	If IsZombie Then Crouch = False
 	
@@ -4887,7 +4907,7 @@ Function DrawGUI()
 		Else
   			Color(85, 101, 106)
 		EndIf        
-			Rect(x + 3, y + 3, Float(BlinkTimer * ((Width - 6.0) / BLINKFREQ)), 14)	
+			Rect(x + 3, y + 3, Float(BlinkTimer * ((width - 6.0) / BLINKFREQ)), 14)	
 		Color 0, 0, 0
 		Rect(x - 50, y, 30, 30)
 		
@@ -4909,7 +4929,7 @@ Function DrawGUI()
 		Else
   			Color(52, 66, 35)
 		EndIf        
-			Rect(x + 3, y + 3, Float(Stamina * (Width - 6.0) / 100.0), 14)    	
+			Rect(x + 3, y + 3, Float(Stamina * (width - 6.0) / 100.0), 14)    	
 		
 		Color 0, 0, 0
 		Rect(x - 50, y, 30, 30)
@@ -5488,6 +5508,28 @@ Function DrawGUI()
 								If Inventory(n)\itemtemplate\sound <> 66 Then PlaySound_Strict(PickSFX(Inventory(n)\itemtemplate\sound))
 								InvOpen = False
 								DoubleClick = False
+								If HoldingGun = 0 Then 
+									HoldingGun = IsAGun(Inventory(n)\itemtemplate\tempname)
+									If HoldingGun <> 0 Then
+										If HoldingGun = 1		
+											EqquipedGun = First Guns 
+											EqquipedGun\Deployed=0
+											EqquipedGun\ShootState# = 0.0
+											EqquipedGun\ReloadState# = 0.0
+											EqquipedGun\ShootAnim = 0
+											Animate2(P90Viewmodel,AnimTime(P90Viewmodel),0,0,False)
+										ElseIf HoldingGun = 2
+											EqquipedGun = Last Guns		
+											EqquipedGun\Deployed=0
+											EqquipedGun\ShootState# = 0.0
+											EqquipedGun\ReloadState# = 0.0
+											EqquipedGun\ShootAnim = 0
+											Animate2(USPViewModel,AnimTime(USPViewModel),0,0,False)
+										EndIf
+									EndIf
+								Else 
+									HoldingGun = 0
+								EndIf
 							EndIf
 							
 						EndIf
@@ -5938,20 +5980,6 @@ Function DrawGUI()
 						
 					RemoveItem(SelectedItem)
 					SelectedItem = Null
-				Case "p90"
-				    ;[Block]
-				    If HoldingP90=2 Then
-						Msg = "You holster the P90"
-						HoldingP90 = False
-						HideEntity P90Viewmodel
-					Else
-					    ShowEntity P90Viewmodel
-						Msg = "You take the P90 out only to find out it has no ammo."
-						HoldingP90 = 2
-					EndIf
-					MsgTimer = 70 * 5
-					SelectedItem = Null					
-				    ;[End Block]
 				Case "veryfinefirstaid"
 					;[Block]
 					If CanUseItem(False, False, True)
@@ -8074,20 +8102,6 @@ Function LoadEntities()
 	MoveEntity(BloodOverlay, 0, 0, 1.0)
 	HideEntity(BloodOverlay)
 	
-	;----- P90
-	
-	GunPivot = CreatePivot()
-	
-	EntityParent GunPivot, Camera
-	
-	P90Viewmodel = LoadAnimMesh_Strict("GFX\items\P90_Viewmodel.b3d")
-	ScaleEntity P90Viewmodel,0.005,0.005,0.005
-	EntityParent P90Viewmodel,GunPivot
-	MoveEntity P90Viewmodel,0.01,0.0,0.0
-	HideEntity P90Viewmodel
-	
-	;------ Thanks ENDSHN.
-	
 	InfectTexture = LoadTexture_Strict("GFX\InfectOverlay.jpg", 1)
 	InfectOverlay = CreateSprite(ark_blur_cam)
 	ScaleSprite(InfectOverlay, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
@@ -8260,13 +8274,13 @@ Function LoadEntities()
 	DoorColl = LoadMesh_Strict("GFX\map\doorcoll.x")
 	HideEntity DoorColl
 	
-	ButtonOBJ = LoadMesh_Strict("GFX\map\buttonold.x")
+	ButtonOBJ = LoadMesh_Strict("GFX\map\Button.b3d")
 	HideEntity ButtonOBJ
-	ButtonKeyOBJ = LoadMesh_Strict("GFX\map\ButtonKeycard.x")
+	ButtonKeyOBJ = LoadMesh_Strict("GFX\map\ButtonKeycard.b3d")
 	HideEntity ButtonKeyOBJ
-	ButtonCodeOBJ = LoadMesh_Strict("GFX\map\ButtonCode.x")
+	ButtonCodeOBJ = LoadMesh_Strict("GFX\map\ButtonCode.b3d")
 	HideEntity ButtonCodeOBJ	
-	ButtonScannerOBJ = LoadMesh_Strict("GFX\map\ButtonScanner.x")
+	ButtonScannerOBJ = LoadMesh_Strict("GFX\map\ButtonScanner.b3d")
 	HideEntity ButtonScannerOBJ	
 	
 	BigDoorOBJ(0) = LoadMesh_Strict("GFX\map\ContDoorLeft.x")
@@ -8563,6 +8577,7 @@ Function LoadEntities()
 	DrawLoading(30)
 	
 	;LoadRoomMeshes()
+	InitGuns()
 	
 	CatchErrors("LoadEntities")
 End Function
@@ -8910,7 +8925,6 @@ Function NullGame(playbuttonsfx%=True)
 	WearingHazmat = 0
 	WearingVest = 0
 	Wearing714 = 0
-	HoldingP90 = 0
 	If WearingNightVision Then
 		CameraFogFar = StoredCameraFogFar
 		WearingNightVision = 0
@@ -12264,21 +12278,16 @@ Function RotateEntity90DegreeAngles(entity%)
 	
 End Function
 
+Function GetGunType.Guns(ID)
+    For g.guns = Each guns
+        If g\ID = ID Then Return g
+    Next
+End Function
+
 
 
 
 ;~IDEal Editor Parameters:
-;~F#39#D8#177#17D#18D#241#2EC#2F5#315#329#32E#334#33A#340#346#34B#369#37F#394#39A
-;~F#3A0#3A7#3AE#3BB#3C1#3C7#3CD#3D4#3E3#3EC#3F8#40A#423#43F#444#451#463#47E#485#48B
-;~F#499#4AC#4B5#4BE#4E4#4F6#50D#519#525#538#53E#544#548#54E#553#572#581#590#596#5A5
-;~F#600#6A3#716#73A#7DC#7E9#8BC#959#972#980#9B2#A70#A7F#AB7#AD1#ADA#BB9#CFB#D0C#D43
-;~F#D6B#D7A#DA2#DCC#DE5#DF8#E28#E40#EF3#EFC#F13#F71#F9E#10E7#11D4#1365#14E9#1542#1571#158C
-;~F#15A3#15B6#15C9#15DC#15EB#1607#160B#160F#1618#1633#1666#16C0#16CB#16D7#16E3#170E#171E#175D#176A#1777
-;~F#178C#18D1#18ED#18FD#190D#191A#1944#196A#1983#1A3C#1A96#1AAC#1AB8#1ACF#1ADA#1AE7#1AF1#1AFF#1B58#1BD2
-;~F#1C2C#1C67#1CB7#1E05#1E11#1ED3#1FAF#203D#20D9#2106#2137#224C#225E#227A#2284#2291#22B5#22F5#2335#2385
-;~F#23BE#23D2#23E7#23EB#240B#2413#243E#26A5#2763#27C2#281A#28C6#28D0#28D6#28E0#28EC#28F7#28FB#2936#293E
-;~F#2946#294D#2954#2961#2967#2972#29B1#29C0#29DE#2A0C#2A13#2A26#2A3F#2A6C#2A77#2A7C#2A96#2AA2#2ABD#2B0F
-;~F#2B1D#2B25#2B2D#2B59#2B62#2B8B#2B90#2B95#2B9A#2BA3#2BB4#2C59#2C67#2CD2#2CE4#2D03#2D12#2D29#2D4C#2D50
-;~F#2D54#2D82#2DA0#2DAB#2DD9#2DF7#2E42#2E5B#2E6A#2E7A#2E8A#2EC5
-;~B#11DC#1454#1BF2
+;~F#33E#344#34A#3A4#3CB#3D8#427#482#49D#51D#1AB2#2AA4
+;~B#11F0#1468#1C0E
 ;~C#Blitz3D
