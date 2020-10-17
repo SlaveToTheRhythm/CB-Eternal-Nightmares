@@ -14,6 +14,9 @@
 - SCP-005 explanation document. (Explains why it's broken, document is found in its chamber)
 - New KeyPad System
 -------------------------------------------------
+=======
+
+----------------------------------------------
 
 v0.1.5
 - Added Randomized Elevator Sounds
