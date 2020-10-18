@@ -240,6 +240,10 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Gas Mask", "supergasmask", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
 	it = CreateItemTemplate("Heavy Gas Mask", "gasmask3", "GFX\items\gasmask.b3d", "GFX\items\INVgasmask.jpg", "", 0.021) : it\sound = 2
 	
+	;------ Just for you, RetroTreeStudios <3
+	
+	it = CreateItemTemplate("Thomas Bangalters' Helmet", "tbhelmet", "GFX\items\ThomasHelmet.x", "GFX\items\INVgasmask.jpg", "", 0.21) : it\sound = 4
+	
 	;------ Guns
 	
 	CreateItemTemplate("Project 90", "p90", "GFX\items\P90.b3d", "GFX\items\INVp90.jpg", "", 0.02) : it\sound = 4

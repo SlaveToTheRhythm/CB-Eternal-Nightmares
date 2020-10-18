@@ -7534,6 +7534,8 @@ Function CreateMap()
 	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room513"
 	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room3tunnels166"
 	
+	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room4tunnels"
+	
 	MapRoom(ROOM2C, Room2CAmount[0]+Floor(0.5*Float(Room2CAmount[1]))) = "room2cpit"
 	
 	
