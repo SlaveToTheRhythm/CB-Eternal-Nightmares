@@ -209,7 +209,9 @@ For i = 0 To 7
 	StepSFX(1, 1, i) = LoadSound_Strict("SFX\Step\RunMetal" + (i + 1) + ".ogg")
 	If i < 3
 		StepSFX(2, 0, i) = LoadSound_Strict("SFX\Character\MTF\Step" + (i + 1) + ".ogg")
-		StepSFX(3, 0, i) = LoadSound_Strict("SFX\SCP\049\Step"+ (i + 1) + ".ogg")
+	EndIf
+	If i < 5
+	    StepSFX(3, 0, i) = LoadSound_Strict("SFX\SCP\049\metal_walk0"+ (i + 1) + ".ogg")
 	EndIf
 	If i < 4
         StepSFX(4, 0, i) = LoadSound_Strict("SFX\Step\SCP\StepSCP" + (i + 1) + ".ogg");new one 1.3.9

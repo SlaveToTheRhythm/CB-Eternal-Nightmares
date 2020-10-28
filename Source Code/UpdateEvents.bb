@@ -6880,7 +6880,7 @@ Function UpdateEvents()
 					EndIf
 				End If
 				;[End Block]
-			Case "tunnel2smoke"
+			Case "room2claustrophobiasmoke"
 				;[Block]
 				If PlayerRoom = e\room Then
 					If e\room\dist < 3.5 Then
@@ -6909,7 +6909,7 @@ Function UpdateEvents()
 				EndIf
 				
 				;[End Block]
-			Case "tunnel2"
+			Case "room2clastrophobia"
 				;[Block]
 				If PlayerRoom = e\room Then
 					If Curr173\Idle > 1 Then

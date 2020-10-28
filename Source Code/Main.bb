@@ -247,6 +247,8 @@ AASetFont Font2
 
 Global BlinkMeterIMG% = LoadImage_Strict("GFX\blinkmeter.jpg")
 
+Global LoadingMeterIMG% = LoadImage_Strict("GFX\Loadingmeter.jpg")
+
 DrawLoading(0, True)
 
 ; - -Viewport.
@@ -2840,6 +2842,8 @@ Global InfectTexture%, InfectOverlay%
 Global DarkTexture%, Dark%
 Global Collider%, Head%
 
+
+Global TBTexture%, TBOverlay%
 Global FogNVTexture%
 Global NVTexture%, NVOverlay%
 
@@ -4671,6 +4675,10 @@ Function MouseLook()
 		ElseIf WearingNightVision=3 Then
 			EntityColor(NVOverlay, 255,0,0)
 			AmbientLightRooms(15)
+		ElseIf WearingNightVision=4
+		    ShowEntity(TBOverlay)
+		    EntityColor(TBOverlay, 153,0,140)
+		    AmbientLightRooms(15)
 		Else
 			EntityColor(NVOverlay, 0,255,0)
 			AmbientLightRooms(15)
@@ -4678,6 +4686,7 @@ Function MouseLook()
 		EntityTexture(Fog, FogNVTexture)
 	Else
 		AmbientLightRooms(0)
+		HideEntity(TBOverlay)
 		HideEntity(NVOverlay)
 		EntityTexture(Fog, FogTexture)
 	EndIf
@@ -5471,6 +5480,8 @@ Function DrawGUI()
 						If WearingNightVision=3 Then Rect(x - 3, y - 3, width + 6, height + 6)
 					Case "scp427"
 						If I_427\Using=1 Then Rect(x - 3, y - 3, width + 6, height + 6)
+				    Case "tbhelmet"
+				        If WearingNightVision=4 Then Rect(x - 3, y - 3, width + 6, height + 6)
 				End Select
 			EndIf
 			
@@ -5856,6 +5867,31 @@ Function DrawGUI()
 						Msg = "You need to take off SCP-1499 in order to put on the goggles."
 					Else
 						Msg = "You need to take off the hazmat suit in order to put on the goggles."
+					EndIf
+					SelectedItem = Null
+					MsgTimer = 70 * 5
+					;[End Block]
+				Case "tbhelmet"
+				    ;[Block]
+					If Wearing1499 = 0 And WearingHazmat = 0 Then
+						If WearingNightVision = 4 Then
+							Msg = "You took off the helmet."
+							CameraFogFar = StoredCameraFogFar
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGogglesOff.ogg")
+						Else
+							Msg = "You put on the helmet."
+							WearingGasMask = 0
+							WearingNightVision = 0
+							StoredCameraFogFar = CameraFogFar
+							CameraFogFar = 30
+							PlaySound_Strict LoadTempSound("SFX\Interact\NightVisionGoggles.ogg")
+						EndIf
+						
+						WearingNightVision = (Not WearingNightVision) * 4
+					ElseIf Wearing1499 > 0 Then
+						Msg = "You need to take off SCP-1499 in order to wear the helmet."
+					Else
+						Msg = "You need to take off the hazmat suit in order to wear the helmet."
 					EndIf
 					SelectedItem = Null
 					MsgTimer = 70 * 5
@@ -8122,6 +8158,23 @@ Function LoadEntities()
 	EntityOrder NVOverlay, -1003
 	MoveEntity(NVOverlay, 0, 0, 1.0)
 	HideEntity(NVOverlay)
+	NVBlink = CreateSprite(ark_blur_cam)
+	ScaleSprite(NVBlink, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
+	EntityColor(NVBlink,0,0,0)
+	EntityFX(NVBlink, 1)
+	EntityOrder NVBlink, -1005
+	MoveEntity(NVBlink, 0, 0, 1.0)
+	HideEntity(NVBlink)
+	
+	TBTexture = LoadTexture_Strict("GFX\ThomasOverlay.jpg", 1)
+	TBOverlay = CreateSprite(ark_blur_cam)
+	ScaleSprite(TBOverlay, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
+	EntityTexture(TBOverlay, NVTexture)
+	EntityBlend (TBOverlay, 2)
+	EntityFX(TBOverlay, 1)
+	EntityOrder TBOverlay, -1003
+	MoveEntity(TBOverlay, 0, 0, 1.0)
+	HideEntity(TBOverlay)
 	NVBlink = CreateSprite(ark_blur_cam)
 	ScaleSprite(NVBlink, Max(GraphicWidth / 1024.0, 1.0), Max(GraphicHeight / 1024.0 * 0.8, 0.8))
 	EntityColor(NVBlink,0,0,0)
@@ -11488,9 +11541,9 @@ Function RenderWorld2()
 	CameraProjMode ark_blur_cam,0
 	CameraProjMode Camera,1
 	
-	If WearingNightVision>0 And WearingNightVision<3 Then
+	If WearingNightVision>0 And WearingNightVision<4 Then
 		AmbientLight Min(Brightness*2,255), Min(Brightness*2,255), Min(Brightness*2,255)
-	ElseIf WearingNightVision=3
+	ElseIf WearingNightVision=4
 		AmbientLight 255,255,255
 	ElseIf PlayerRoom<>Null
 		If (PlayerRoom\RoomTemplate\Name<>"173") And (PlayerRoom\RoomTemplate\Name<>"exit1") And (PlayerRoom\RoomTemplate\Name<>"gatea") Then
@@ -11533,7 +11586,7 @@ Function RenderWorld2()
 	
 	CurrTrisAmount = TrisRendered()
 
-	If hasBattery=0 And WearingNightVision<>3
+	If hasBattery=0 And WearingNightVision<>4
 		IsNVGBlinking% = True
 		ShowEntity NVBlink%
 	EndIf

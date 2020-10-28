@@ -1479,11 +1479,11 @@ Function DrawLoading(percent%, shortloading=False)
 		
 		Local width% = 300, height% = 20
 		x% = GraphicWidth / 2 - width / 2
-		y% = GraphicHeight / 2 + 30 - 100
+		y% = GraphicHeight / 1 + 65 - 100
 		
 		Rect(x, y, width+4, height, False)
 		For  i% = 1 To Int((width - 2) * (percent / 100.0) / 10)
-			DrawImage(BlinkMeterIMG, x + 3 + 10 * (i - 1), y + 3)
+			DrawImage(LoadingMeterIMG, x + 3 + 10 * (i - 1), y + 3)
 		Next
 		
 		If SelectedLoadingScreen\title = "CWM" Then
@@ -1550,27 +1550,22 @@ Function DrawLoading(percent%, shortloading=False)
 				strtemp$ = Replace(SelectedLoadingScreen\txt[0],Mid(SelectedLoadingScreen\txt[0],Rand(1,Len(strtemp)-1),1),Chr(Rand(130,250)))
 			Next		
 			AASetFont Font1
-			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)		
+			RowText(strtemp, GraphicWidth / 2-200, GraphicHeight / 1 +120,400,300,True)		
 		Else
 			
 			Color 0,0,0
 			AASetFont Font2
-			AAText(GraphicWidth / 2 + 1, GraphicHeight / 2 + 80 + 1, SelectedLoadingScreen\title, True, True)
+			AAText(GraphicWidth / 2 + 1, GraphicHeight / 1 -80 + 1, SelectedLoadingScreen\title, True, True)
 			AASetFont Font1
 			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200+1, GraphicHeight / 2 +120+1,400,300,True)
 			
 			Color 255,255,255
 			AASetFont Font2
-			AAText(GraphicWidth / 2, GraphicHeight / 2 +80, SelectedLoadingScreen\title, True, True)
+			AAText(GraphicWidth / 2, GraphicHeight / 1 -80, SelectedLoadingScreen\title, True, True)
 			AASetFont Font1
 			RowText(SelectedLoadingScreen\txt[LoadingScreenText], GraphicWidth / 2-200, GraphicHeight / 2 +120,400,300,True)
 			
 		EndIf
-		
-		Color 0,0,0
-		AAText(GraphicWidth / 2 + 1, GraphicHeight / 2 - 100 + 1, "LOADING - " + percent + " %", True, True)
-		Color 255,255,255
-		AAText(GraphicWidth / 2, GraphicHeight / 2 - 100, "LOADING - " + percent + " %", True, True)
 		
 		If percent = 100 Then 
 			If firstloop And SelectedLoadingScreen\title <> "CWM" Then PlaySound_Strict LoadTempSound(("SFX\Horror\Horror8.ogg"))
