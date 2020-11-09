@@ -145,6 +145,7 @@ Function InitItemTemplates()
 	it = CreateItemTemplate("Document SCP-682", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc682.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-166", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc166.jpg", 0.002) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-173", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc173.jpg", 0.003) : it\sound = 0
+	it = CreateItemTemplate("Level 0 Clearance SCP-173 Document", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc173lvl0.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-372", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc372.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-049", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc049.jpg", 0.003) : it\sound = 0
 	it = CreateItemTemplate("Document SCP-096", "paper", "GFX\items\paper.x", "GFX\items\INVpaper.jpg", "GFX\items\doc096.jpg", 0.003) : it\sound = 0
@@ -224,7 +225,11 @@ Function InitItemTemplates()
 	
 	it = CreateItemTemplate("cup", "cup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2
 	
+	;----- yw battleforge <3
+	
 	it = CreateItemTemplate("Ginger Pepsi", "ginpep", "GFX\items\pepsi.x", "GFX\items\INVcola.jpg", "", 1) : it\sound = 2
+	
+	it = CreateItemTemplate("SCP-1188", "1188", "GFX\items\1188.x", "GFX\items\INVhazmat.jpg", "", 1) : it\sound = 4
 	
 	it = CreateItemTemplate("Empty Cup", "emptycup", "GFX\items\cup.x", "GFX\items\INVcup.jpg", "", 0.04) : it\sound = 2	
 	
@@ -247,7 +252,7 @@ Function InitItemTemplates()
 	;------ Guns
 	
 	CreateItemTemplate("Project 90", "p90", "GFX\items\P90.b3d", "GFX\items\INVp90.jpg", "", 0.02) : it\sound = 4
-	CreateItemTemplate("USP Tactical", "usp", "GFX\Items\USP.b3d", "GFX\Items\INVusp.jpg", "", 0.02)
+	CreateItemTemplate("USP Tactical", "usp", "GFX\Items\USP.b3d", "GFX\Items\INVusp.jpg", "", 0.02) : it\sound = 4
 	
 	;------ Thank you ENDSHN.
 	

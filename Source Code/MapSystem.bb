@@ -4813,7 +4813,7 @@ Function FillRoom(r.Rooms)
 			EntityParent(it\collider, r\obj)
 			
 		Case "room3tunnels166"
-		    d.Doors = CreateDoor(r\zone, r\x +  0.0 * RoomScale, 0.0, r\z + 412.0 * RoomScale, 0, r, False, False)
+		    d.Doors = CreateDoor(r\zone, r\x +  0.0 * RoomScale, 0.0, r\z + 1014.0 * RoomScale, 0, r, False, False)
             PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
 			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 		Case "room1188"
@@ -7533,8 +7533,6 @@ Function CreateMap()
 	
 	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room513"
 	MapRoom(ROOM3, Room3Amount[0]+Floor(0.3*Float(Room3Amount[1]))) = "room3tunnels166"
-	
-	MapRoom(ROOM4, Floor(0.3*Float(Room4Amount[0]))) = "room4tunnels"
 	
 	MapRoom(ROOM2C, Room2CAmount[0]+Floor(0.5*Float(Room2CAmount[1]))) = "room2cpit"
 	

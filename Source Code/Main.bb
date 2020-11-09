@@ -44,7 +44,7 @@ Global ConsoleFont%
 
 Global VersionNumber$ = "1.3.11"
 
-Global ModVersionNumber$ = "0.2.0"
+Global ModVersionNumber$ = "0.1.8"
 
 Global DevTeamNames$ = "Keter-Class Studios"
 
@@ -214,7 +214,7 @@ Global GameSaved%
 
 Global CanSave% = True
 
-AppTitle "SCP:CB - You Cannot Escape Mod v"+ModVersionNumber
+AppTitle "SCP:CB - Eternal Nightmares v"+ModVersionNumber
 
 PlayStartupVideos()
 
@@ -1664,7 +1664,7 @@ Music(7) = "Room3Storage"
 Music(8) = "Room049"
 Music(9) = "8601"
 Music(10) = "106"
-Music(11) = "Menu"
+Music(11) = "EternalNightmares"
 Music(12) = "8601Cancer"
 Music(13) = "Intro"
 Music(14) = "178"
@@ -2013,7 +2013,7 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 		d\frameobj = CopyEntity(DoorFrameElevOBJ)
 	Else
 		d\obj = CopyEntity(DoorOBJ)
-		ScaleEntity(d\obj, (204.0 * RoomScale) / MeshWidth(d\obj), 312.0 * RoomScale / MeshHeight(d\obj), 16.0 * RoomScale / MeshDepth(d\obj))
+		ScaleEntity(d\obj, (192.0 * RoomScale) / MeshWidth(d\obj), 318.0 * RoomScale / MeshHeight(d\obj), 14.0 * RoomScale / MeshDepth(d\obj))
 		
 		d\frameobj = CopyEntity(DoorFrameOBJ)
 	End If
@@ -4911,7 +4911,7 @@ Function DrawGUI()
 		
 		Color 255, 255, 255	
 		Rect (x, y, width, height, False)
-		If BlinkTimer < 160.0 Then
+		If BlinkTimer < 180.0 Then
   			Color(166, 11, 0)
 		Else
   			Color(85, 101, 106)
@@ -5108,7 +5108,7 @@ Function DrawGUI()
 										
 										If SelectedDoor\Code = Str(AccessCode) Then
 											GiveAchievement(AchvMaynard)
-										ElseIf SelectedDoor\Code = "7816"
+										ElseIf SelectedDoor\Code = "2056"
 											GiveAchievement(AchvHarp)
 										EndIf									
 										
@@ -8058,7 +8058,7 @@ Function LoadEntities()
 		TempSounds[i]=0
 	Next
 	
-	PauseMenuIMG% = LoadImage_Strict("GFX\menu\pausemenu.jpg")
+	PauseMenuIMG% = LoadImage_Strict("GFX\menu\Menus\pausemenu.jpg")
 	MaskImage PauseMenuIMG, 255,255,0
 	ScaleImage PauseMenuIMG,MenuScale,MenuScale
 	
