@@ -1,7 +1,7 @@
-Global MenuBack% = LoadImage_Strict("GFX\menu\ycemlogo.png")
-Global MenuText% = LoadImage_Strict("GFX\menu\scptext.jpg")
-Global Menu173% = LoadImage_Strict("GFX\menu\173back.jpg")
-Global MenuHCZ% = LoadImage_Strict("GFX\menu\hczcornerback.png")
+Global MenuBack% = LoadImage_Strict("GFX\menu\Menus\enlogo.png")
+Global MenuText% = LoadImage_Strict("GFX\menu\Menus\scptext.jpg")
+Global Menu173% = LoadImage_Strict("GFX\menu\BackImages\173back.jpg")
+Global MenuHCZ% = LoadImage_Strict("GFX\menu\BackImages\hczcornerback.png")
 MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")
 MaskImage MenuBlack, 255,255,0
@@ -1121,7 +1121,7 @@ Function UpdateMainMenu()
 	
 	Color 255,27,38
 	AASetFont ConsoleFont
-	AAText 20,GraphicHeight-60,"You Cannot Escape Mod "+ModVersionNumber
+	AAText 20,GraphicHeight-60,"Eternal Nightmares v"+ModVersionNumber
 	
 	Color 255,255,255
 	AASetFont ConsoleFont
@@ -1155,7 +1155,7 @@ Function UpdateLauncher()
 	MenuWhite = LoadImage_Strict("GFX\menu\menuwhite.jpg")
 	MenuBlack = LoadImage_Strict("GFX\menu\menublack.jpg")	
 	MaskImage MenuBlack, 255,255,0
-	LauncherIMG = LoadImage_Strict("GFX\menu\launcher.jpg")
+	LauncherIMG = LoadImage_Strict("GFX\menu\Menus\launcher.jpg")
 	ButtonSFX% = LoadSound_Strict("SFX\Interact\Button.ogg")
 	ButtonMenuSFX% = LoadSound_Strict("SFX\Interact\MenuButton.ogg")
 	Local i%	
@@ -1182,7 +1182,7 @@ Function UpdateLauncher()
 	BlinkMeterIMG% = LoadImage_Strict("GFX\blinkmeter.jpg")
 	CheckForUpdates()
 	
-	AppTitle "You Cannot Escape Mod Launcher"
+	AppTitle "Eternal Nightmares Launcher"
 	
 	Repeat
 		

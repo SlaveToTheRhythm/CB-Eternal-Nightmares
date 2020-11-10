@@ -5,6 +5,7 @@ Const NPCtype372% = 6, NPCtypeApache% = 7, NPCtypeMTF% = 8, NPCtype096 = 9
 Const NPCtype049% = 10, NPCtypeZombie% = 11, NPCtype5131% = 12, NPCtypeTentacle% = 13
 Const NPCtype860% = 14, NPCtype939% = 15, NPCtype066% = 16, NPCtypePdPlane% = 17
 Const NPCtype966% = 18, NPCtype1048a = 19, NPCtype1499% = 20, NPCtype008% = 21, NPCtypeClerk% = 22, NPCtypeTSG% = 23, NPCtypeScientist% = 24
+Const NPCtype017 = 25
 ;[End Block]
 
 Type NPCs
@@ -296,6 +297,26 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			n\CollRadius = 0.26
 			;[End Block]
 		Case NPCtype049
+			;[Block]
+			n\NVName = "SCP-049"
+			n\Collider = CreatePivot()
+			EntityRadius n\Collider, 0.2
+			EntityType n\Collider, HIT_PLAYER
+			;n\obj = LoadAnimMesh_Strict("GFX\npcs\scp-049.b3d")
+			n\obj = CopyEntity(NPC049OBJ)
+			
+			n\Speed = (GetINIFloat("DATA\NPCs.ini", "SCP-049", "speed") / 100.0)
+			
+			temp# = GetINIFloat("DATA\NPCs.ini", "SCP-049", "scale")
+			ScaleEntity n\obj, temp, temp, temp	
+			
+			n\Sound = LoadSound_Strict("SFX\SCP\049\049Breath.ogg")
+			
+			If HorrorSFX(13)=0 Then HorrorSFX(13)=LoadSound_Strict("SFX\Horror\Horror13.ogg")
+			
+			n\CanUseElevator = True
+			;[End Block]
+		Case NPCtype017
 			;[Block]
 			n\NVName = "SCP-049"
 			n\Collider = CreatePivot()
@@ -2112,7 +2133,7 @@ Function UpdateNPCs()
 				
 				RotateEntity n\obj, EntityPitch(n\Collider), EntityYaw(n\Collider), 0
 				;[End Block]
-			Case NPCtype049
+			Case NPCtype049, NPCtype017
 				;[Block]
 				;n\state = the "main state" of the NPC
 				;n\state2 = attacks the player when the value is above 0.0
@@ -5725,6 +5746,8 @@ Function UpdateMTFUnit(n.NPCs)
                 realType = "096"
 			Case NPCtype049
                 realType = "049"
+            Case NPCtype017
+                realType = "017"
 			Case NPCtypeZombie
                 realType = "zombie"
 			Case NPCtype5131
@@ -7588,6 +7611,11 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 			n.NPCs = CreateNPC(NPCtype049, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
 			n\State = 1
 			consoleMSG = "SCP-049 spawned."
+			
+		Case "017", "scp017", "scp-017", "shadowperson"
+		    n.NPCs = CreateNPC(NPCtype017, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
+			n\State = 1
+			consoleMSG = "SCP-017 spawned."
 			
 		Case "049-2", "0492", "scp-049-2", "scp049-2", "049zombie"
 			n.NPCs = CreateNPC(NPCtypeZombie, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))

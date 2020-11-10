@@ -14,8 +14,8 @@ Global ShootEmptySFX
 
 Global MuzzleFlash
 
-Global P90Ammo% = 200
-Global USPAmmo% = 200
+Global P90Ammo% = 0
+Global USPAmmo% = 0
 Global M9Ammo% = 0
 
 Global KEY_RELOAD = 19

@@ -854,7 +854,7 @@ Function UpdateEvents()
 											DrawHandIcon = True
 											
 											If MouseHit1 Then
-												SelectedItem = CreateItem("Document SCP-173", "paper", 0.0, 0.0, 0.0)
+												SelectedItem = CreateItem("Level 0 Clearance SCP-173 Document", "paper", 0.0, 0.0, 0.0)
 												EntityType SelectedItem\collider,HIT_ITEM
 												
 												PickItem(SelectedItem)
