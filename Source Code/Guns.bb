@@ -109,8 +109,8 @@ Function InitGuns()
 	Kevlar_Health% = 100
 	Kevlar_ExtraHealth% = 0
 	
-	P90Ammo% = 200
-	USPAmmo% = 200
+	P90Ammo% = 0
+	USPAmmo% = 0
 	M9Ammo% = 0
 	
 	Weapon_InSlot1$ = "p90"

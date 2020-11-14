@@ -1684,7 +1684,7 @@ Global MusicVolume# = GetINIFloat(OptionFile, "audio", "music volume")
 ;Global MusicCHN% = StreamSound_Strict("SFX\Music\"+Music(2)+".ogg", MusicVolume, CurrMusicStream)
 
 Global CurrMusicStream, MusicCHN
-MusicCHN = StreamSound_Strict("SFX\Music\"+Music(2)+".ogg",MusicVolume,Mode)
+MusicCHN = StreamSound_Strict("SFX\Music\"+Music(22)+".ogg",MusicVolume,Mode)
 
 Global CurrMusicVolume# = 1.0, NowPlaying%=2, ShouldPlay%=11
 Global CurrMusic% = 1
@@ -2023,6 +2023,7 @@ Function CreateDoor.Doors(lvl, x#, y#, z#, angle#, room.Rooms, dopen% = False,  
 	ScaleEntity(d\frameobj, (8.0 / 2048.0), (8.0 / 2048.0), (8.0 / 2048.0))
 	EntityPickMode d\frameobj,2
 	EntityType d\obj, HIT_MAP
+	EntityType d\obj2, HIT_MAP
 	
 	d\ID = DoorTempID
 	DoorTempID=DoorTempID+1
@@ -4434,7 +4435,7 @@ Function MovePlayer()
 					DropSpeed# = 0
 				EndIf
 			Else
-				DropSpeed# = Min(Max(DropSpeed - 0.006 * FPSfactor, -2.0), 0.0)
+				DropSpeed# = Min(Max(DropSpeed - 0.00001 * FPSfactor, -2.0), 0.0)
 			EndIf
 		EndIf
 		PlayerFallingPickDistance# = 10.0

@@ -130,6 +130,8 @@ Function InitItemTemplates()
 	CreateItemTemplate("Destroyed SCP-005", "destroyedscp005", "GFX\items\scp_005.b3d", "GFX\items\INV005.jpg", "", 0.0004,"GFX\items\scp_005.png")
 	; F L O P P A
 	CreateItemTemplate("Floppa Sphere", "floppa",  "GFX\items\FloppaSphere.x", "GFX\items\INVflopspher.jpg", "", 0.004,"GFX\map\floppo.png")
+	; g r a p e
+	it = CreateItemTemplate("Grape Noun", "noun", "GFX\items\Grape.x", "GFX\items\INVGrape.jpg", "", 0.004) : it\sound = 2
 	
 	it = CreateItemTemplate("SCP-860", "scp860", "GFX\items\key.b3d", "GFX\items\INVkey.jpg", "", 0.001)
 	it\sound = 3

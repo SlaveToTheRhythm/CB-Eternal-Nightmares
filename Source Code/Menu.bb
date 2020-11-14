@@ -1195,10 +1195,10 @@ Function UpdateLauncher()
 		Color 255, 255, 255
 		DrawImage(LauncherIMG, 0, 0)
 		
-		Text(20, 240 - 65, "Resolution: ")
+		Text(100, 200 - 65, "Resolution: ")
 		
-		Local x% = 40
-		Local y% = 270 - 65
+		Local x% = 100
+		Local y% = 220 - 65
 		For i = 0 To (GFXModes - 1)
 			Color 255, 255, 255
 			If SelectedGFXMode = i Then Rect(x - 1, y - 1, 100, 20, False)
@@ -1211,19 +1211,19 @@ Function UpdateLauncher()
 			EndIf
 			
 			y=y+20
-			If y >= 250 - 65 + (LauncherHeight - 80 - 260) Then y = 270 - 65 : x=x+100
+			If y >= 250 - 180 + (LauncherHeight - 80 - 260) Then y = 270 - 135 : x=x+100
 		Next
 		
 		;-----------------------------------------------------------------
 		Color 255, 255, 255
-		x = 30
+		x = 100
 		y = 369
-		Rect(x - 10, y, 340, 95)
-		Text(x - 10, y - 25, "Graphics:")
+		
+		Text(x + 1 - 1, y - 15, "Graphics:")
 		
 		y=y+10
 		For i = 1 To CountGfxDrivers()
-			Color 0, 0, 0
+			Color 200, 200, 200
 			If SelectedGFXDriver = i Then Rect(x - 1, y - 1, 290, 20, False)
 			;text(x, y, bbGfxDriverName(i))
 			LimitText(GfxDriverName(i), x, y, 290, False)
@@ -1236,13 +1236,13 @@ Function UpdateLauncher()
 			y=y+20
 		Next
 		
-		Fullscreen = DrawTick(40 + 430 - 15, 260 - 55 + 5 - 8, Fullscreen, BorderlessWindowed)
-		BorderlessWindowed = DrawTick(40 + 430 - 15, 260 - 55 + 35, BorderlessWindowed)
+		Fullscreen = DrawTick(100, 220, Fullscreen, BorderlessWindowed)
+		BorderlessWindowed = DrawTick(40 + 430 - 15, 220, BorderlessWindowed)
 		lock% = False
 
 		If BorderlessWindowed Or (Not Fullscreen) Then lock% = True
-		Bit16Mode = DrawTick(40 + 430 - 15, 260 - 55 + 65 + 8, Bit16Mode,lock%)
-		LauncherEnabled = DrawTick(40 + 430 - 15, 260 - 55 + 95 + 8, LauncherEnabled)
+		Bit16Mode = DrawTick(220, 220, Bit16Mode,lock%)
+		LauncherEnabled = DrawTick(310, 220, LauncherEnabled)
 
 		If BorderlessWindowed
  		   Color 255, 0, 0
@@ -1251,10 +1251,10 @@ Function UpdateLauncher()
   		  Color 255, 255, 255
 		EndIf
 
-		Text(40 + 430 + 15, 262 - 55 + 5 - 8, "Fullscreen")
+		Text(100 + 30, 220, "Fullscreen")
 		Color 255, 255, 255
-		Text(40 + 430 + 15, 262 - 55 + 35 - 8, "Borderless",False,False)
-		Text(40 + 430 + 15, 262 - 55 + 35 + 12, "windowed mode",False,False)
+		Text(40 + 430 + 15, 220, "Borderless",False,False)
+		Text(40 + 430 + 15, 220 + 20, "windowed mode",False,False)
 
 		If BorderlessWindowed Or (Not Fullscreen)
  		   Color 255, 0, 0
@@ -1263,38 +1263,27 @@ Function UpdateLauncher()
 		    Color 255, 255, 255
 		EndIf
 
-		Text(40 + 430 + 15, 262 - 55 + 65 + 8, "16 Bit")
+		Text(220 + 30, 220, "16 Bit")
 		Color 255, 255, 255
-		Text(40 + 430 + 15, 262 - 55 + 95 + 8, "Use launcher")
+		Text(310 + 30, 220, "Use launcher")
 		
 		If (Not BorderlessWindowed)
 			If Fullscreen
-				Text(40+ 260 + 15, 262 - 55 + 140, "Current Resolution: "+(GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + "," + (16+(16*(Not Bit16Mode)))))
+				Text(100, 280, "Current Resolution: "+(GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + "," + (16+(16*(Not Bit16Mode)))))
 			Else
-				Text(40+ 260 + 15, 262 - 55 + 140, "Current Resolution: "+(GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + ",32"))
+				Text(100, 280, "Current Resolution: "+(GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + ",32"))
 			EndIf
 		Else
-			Text(40+ 260 + 15, 262 - 55 + 140, "Current Resolution: "+GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + ",32")
-			If GfxModeWidths(SelectedGFXMode)<G_viewport_width Then
-				Text(40+ 260 + 65, 262 - 55 + 160, "(upscaled to")
-				Text(40+ 260 + 65, 262 - 55 + 180, G_viewport_width + "x" + G_viewport_height + ",32)")
-			ElseIf GfxModeWidths(SelectedGFXMode)>G_viewport_width Then
-				Text(40+ 260 + 65, 262 - 55 + 160, "(downscaled to")
-				Text(40+ 260 + 65, 262 - 55 + 180, G_viewport_width + "x" + G_viewport_height + ",32)")
-			EndIf
+			Text(100, 280, "Current Resolution: "+GfxModeWidths(SelectedGFXMode) + "x" + GfxModeHeights(SelectedGFXMode) + ",32")
 		EndIf
+		Color 255,0,0
+		Text 100,250,"Check for updates is disabled."
 		
-		UpdateCheckEnabled = DrawTick(LauncherWidth - 275, LauncherHeight - 50, UpdateCheckEnabled)
-		Color 255,255,255
-		Text LauncherWidth-250,LauncherHeight-70,"Check for"
-		Text LauncherWidth-250,LauncherHeight-50,"updates on"
-		Text LauncherWidth-250,LauncherHeight-30,"launch"
-		
-		If DrawButton(LauncherWidth - 275, LauncherHeight - 50 - 55, 150, 30, "YCEM's Discord!", False, False, False) Then
+		If DrawButton(100, 310, 150, 30, "Our Discord!", False, False, False) Then
 		    ExecFile("https://discord.gg/gJe6wRX")
 		EndIf
 		
-		If DrawButton(LauncherWidth - 30 - 90, LauncherHeight - 50 - 55, 100, 30, "Enter", False, False, False) Then
+		If DrawButton(260, 310, 100, 30, "Enter", False, False, False) Then
 			GraphicWidth = GfxModeWidths(SelectedGFXMode)
 			GraphicHeight = GfxModeHeights(SelectedGFXMode)
 			RealGraphicWidth = GraphicWidth
@@ -1302,7 +1291,7 @@ Function UpdateLauncher()
 			Exit
 		EndIf
 		
-		If DrawButton(LauncherWidth - 30 - 90, LauncherHeight - 50, 100, 30, "Leave", False, False, False) Then End
+		If DrawButton(370, 310, 100, 30, "Leave", False, False, False) Then End
 		Flip
 	Forever
 	
