@@ -3908,50 +3908,9 @@ Function FillRoom(r.Rooms)
 			FreeEntity(r\RoomDoors[2]\buttons[1]) : r\RoomDoors[2]\buttons[1] = 0
 			r\RoomDoors[2]\MTFClose = False
 			
-			d.Doors = CreateDoor(r\zone, r\x + 1392.0 * RoomScale, 384.0*RoomScale, r\z + 64.0 * RoomScale, 90, r, True)
-			d\AutoClose = False
-			d\MTFClose = False
-			d\locked = True
-			
-			d.Doors = CreateDoor(r\zone, r\x - 640.0 * RoomScale, 384.0*RoomScale, r\z + 64.0 * RoomScale, 90, r, False)
+			d.Doors = CreateDoor(r\zone, r\x + 3344.0 * RoomScale, 384.0*RoomScale, r\z + 1275.0 * RoomScale, 0, r, False)
 			d\locked = True : d\AutoClose = False
 			
-			d.Doors = CreateDoor(r\zone, r\x + 1280.0 * RoomScale, 384.0*RoomScale, r\z + 312.0 * RoomScale, 180, r, True)
-			d\locked = True : d\AutoClose = False
-			PositionEntity(d\buttons[0], r\x + 1120.0 * RoomScale, EntityY(d\buttons[0],True), r\z + 328.0 * RoomScale, True)
-			PositionEntity(d\buttons[1], r\x + 1120.0 * RoomScale, EntityY(d\buttons[1],True), r\z + 296.0 * RoomScale, True)
-			FreeEntity(d\obj2) : d\obj2=0
-			d\MTFClose = False
-			
-			d.Doors = CreateDoor(r\zone, r\x, 0, r\z + 1184.0 * RoomScale, 0, r, False)
-			d\locked = True
-			
-			r\Objects[0] = LoadMesh_Strict("GFX\map\IntroDesk.b3d")
-			ScaleEntity r\Objects[0], RoomScale, RoomScale ,RoomScale
-			PositionEntity r\Objects[0], r\x + 272.0 * RoomScale, 0, r\z + 400.0 * RoomScale
-			EntityParent r\Objects[0], r\obj
-			
-			de.Decals = CreateDecal(0, r\x + 272.0 * RoomScale, 0.005, r\z + 262.0 * RoomScale, 90, Rand(360), 0)
-			EntityParent(de\obj, r\obj)
-			
-			r\Objects[1] = LoadMesh_Strict("GFX\map\IntroDrawer.b3d")
-			ScaleEntity r\Objects[1], RoomScale, RoomScale ,RoomScale
-			PositionEntity r\Objects[1], r\x + 448.0 * RoomScale, 0, r\z + 192.0 * RoomScale
-			EntityParent r\Objects[1], r\obj
-			
-			de.Decals = CreateDecal(0, r\x + 456.0 * RoomScale, 0.005, r\z + 135.0 * RoomScale, 90, Rand(360), 0)
-			EntityParent(de\obj, r\obj)
-			
-			sc.SecurityCams = CreateSecurityCam(r\x - 336.0 * RoomScale, r\y + 352 * RoomScale, r\z + 48.0 * RoomScale, r, True)
-			sc\angle = 270
-			sc\turn = 45
-			sc\room = r
-			TurnEntity(sc\CameraObj, 20, 0, 0)
-			EntityParent(sc\obj, r\obj)
-			
-			PositionEntity(sc\ScrObj, r\x + 1456 * RoomScale, 608 * RoomScale, r\z +352.0 * RoomScale)
-			TurnEntity(sc\ScrObj, 0, 90, 0)
-			EntityParent(sc\ScrObj, r\obj)
 			
 			r\Objects[2] = CreatePivot()
 			PositionEntity (r\Objects[2], EntityX(r\obj) + 40.0 * RoomScale, 460.0 * RoomScale, EntityZ(r\obj) + 1072.0 * RoomScale)
@@ -3980,9 +3939,6 @@ Function FillRoom(r.Rooms)
 			
 			it = CreateItem("SCP-173's Decommission Attempt", "paper", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
-			
-			;3384,510,2400
-			CreateDevilEmitter(r\x+3384.0*RoomScale,r\y+510.0*RoomScale,r\z+2400.0*RoomScale,r,1,4)
 			;[End Block]
 		Case "room2scps"
 			;[Block]
@@ -4403,6 +4359,16 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("SCP-372 Renovation", "paper", r\x - 4096.0 * RoomScale, r\y - 2456.0 * RoomScale, r\z + 5369.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
+		Case "room3snacks"
+		    ;[Block]
+		    it = CreateItem("cup", "cup", r\x-888 * RoomScale, 176*RoomScale, r\z-728.0 * RoomScale, 87,62,45)
+			EntityParent(it\collider, r\obj) : it\name = "Cup of Coffee"
+			
+			it = CreateItem("cup", "cup", r\x-856 * RoomScale, 176*RoomScale, r\z-608.0 * RoomScale, 87,62,45)
+			EntityParent(it\collider, r\obj) : it\name = "Cup of Coffee"
+			
+			it = CreateItem("cup", "cup", r\x-556 * RoomScale, 176*RoomScale, r\z-884.0 * RoomScale, 87,62,45)
+			EntityParent(it\collider, r\obj) : it\name = "Cup of Coffee"
 		Case "173"
 			;[Block]
 			r\Objects[0] = CreatePivot()
@@ -5577,10 +5543,6 @@ Function FillRoom(r.Rooms)
             em\Speed = 0.0005
             em\Achange = -0.015
             em\SizeChange = 0.007
-            
-            d = CreateDoor(r\zone,r\x-256.0*RoomScale, 0.0, r\z-752.0*RoomScale,90,r,False,2,3)
-            d\locked = True : d\open = False : d\AutoClose = False : d\MTFClose = False : d\DisableWaypoint = True
-			PositionEntity d\buttons[0],r\x-240.0*RoomScale,EntityY(d\buttons[0],True),EntityZ(d\buttons[0],True),True
 			
 			it = CreateItem("Dr L's Note", "paper", r\x - 160.0 * RoomScale, 32.0 * RoomScale, r\z - 353.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
