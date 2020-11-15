@@ -1753,13 +1753,13 @@ Dim PickSFX%(10)
 Global AmbientSFXCHN%, CurrAmbientSFX%
 Dim AmbientSFXAmount(6)
 ;0 = light containment, 1 = heavy containment, 2 = entrance
-AmbientSFXAmount(0)=8 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
+AmbientSFXAmount(0)=18 : AmbientSFXAmount(1)=11 : AmbientSFXAmount(2)=12
 ;3 = general, 4 = pre-breach
 AmbientSFXAmount(3)=15 : AmbientSFXAmount(4)=5
 ;5 = forest
 AmbientSFXAmount(5)=10
 
-Dim AmbientSFX%(6, 15)
+Dim AmbientSFX%(6, 18)
 
 Dim OldManSFX%(8)
 
@@ -5988,7 +5988,7 @@ Function DrawGUI()
 				
 				    DeathMSG = "A wild Caracal was found next to what is believed to be a 2020 'Floppa Sphere', the caracal was later identified as Subject D-9341 from various DNA testing, the caracal was later terminated."
 								
-				    DeathTimer = -5.9
+				    Kill()
 				    GiveAchievement(AchvFlopSpher)
 				Case "ginpep"
 				    ;[Block]

@@ -150,6 +150,7 @@ Function UpdateEvents()
 								NowPlaying = ShouldPlay
 								
 								PlaySound_Strict(IntroSFX(11))
+								PlaySound_Strict LoadTempSound("SFX\Character\D9341\VoiceLines\WakeUp.ogg")
 								BlurTimer = 500
 								ShowEntity Light
 								EntityAlpha(Light, 0.5)
@@ -226,7 +227,8 @@ Function UpdateEvents()
 								If e\room\NPC[3]\Sound2 = 0
 									e\room\NPC[3]\Sound2 = LoadSound_Strict("SFX\Room\Intro\Guard\Ulgrin\BeforeDoorOpen.ogg")
 									e\room\NPC[3]\SoundChn2 = PlaySound2(e\room\NPC[3]\Sound2,Camera,e\room\NPC[3]\Collider)
-									DebugLog "Playing guard sound before cell opening"
+									PlaySound_Strict LoadTempSound("SFX\Character\D9341\VoiceLines\Interested.ogg")
+									DebugLog "Playing guard sound before cell opening, D-1731 speaks"
 								EndIf
 								
 								UpdateSoundOrigin(e\room\NPC[3]\SoundChn2,Camera,e\room\NPC[3]\Collider)
@@ -715,6 +717,8 @@ Function UpdateEvents()
 								IntroSFX(16) = LoadSound_Strict("SFX\Room\Intro\Horror.ogg")
 								IntroSFX(17) = LoadSound_Strict("SFX\Room\Intro\See173.ogg")
 								IntroSFX(18) = LoadSound_Strict("SFX\Room\Intro\173Chamber.ogg")
+								IntroSFX(19) = LoadSound_Strict("SFX\Character\D9341\VoiceLines\See173.ogg")
+								IntroSFX(20) = LoadSound_Strict("SFX\Character\D9341\VoiceLines\OhShit.ogg")
 								
 								Curr173\Idle = True
 								
@@ -795,6 +799,7 @@ Function UpdateEvents()
 									If EntityInView(Curr173\obj, Camera) Then
 										Msg = "Press "+KeyName(KEY_BLINK)+" to blink."
 										MsgTimer = 70*4
+										PlaySound_Strict IntroSFX(19)
 										PlaySound_Strict IntroSFX(17)
 										IntroSFX(17)=0
 									EndIf
@@ -879,6 +884,8 @@ Function UpdateEvents()
 								e\SoundCHN = PlaySound_Strict(IntroSFX(7)) ;bang
 							ElseIf e\EventState => 10740 And e\EventState - FPSfactor < 10740 ;"there seems to be a problem..."
 								e\SoundCHN = PlaySound_Strict(IntroSFX(2))
+								;D-1731 reacts to it
+								PlaySound_Strict IntroSFX(20)
 							ElseIf e\EventState => 11145 And e\EventState - FPSfactor < 11145;"I don't like this"
 								e\SoundCHN = PlaySound_Strict(IntroSFX(10))
 								e\room\NPC[1]\Sound = LoadSound_Strict("SFX\Room\Intro\ClassD\DontLikeThis.ogg")

@@ -1,0 +1,14 @@
+---===Eternal Nightmares v0.4.0 Changelog===---
+Light Containment Zone has been revamped.
+Heavy Containment Zone has been completed.
+Entrance Zone has been mostly completed.
+SCP-049 has new voice lines and is slightly faster.
+SCP-096 has new sounds
+tsg_placeholder command ("spawn tsg")
+Post breach intro finally! (dont stand in the doorway cause it might send you into a wall)
+Disabling the intro gives you a new entrance to 173's broken chamber.
+Ginger Pepsi for Battleforge!
+Recontaining SCP-106 gives you a new achievement.
+Floppa Sphere achievement only obtainable through a custom map for the time being.
+Fixed the bug where LCZ-HCZ checkpoint had an open door
+New voice acting!
