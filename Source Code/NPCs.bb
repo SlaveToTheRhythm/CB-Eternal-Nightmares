@@ -5743,8 +5743,6 @@ Function UpdateMTFUnit(n.NPCs)
                 realType = "173"
 			Case NPCtypeOldMan
                 realType = "106"
-            Case NPCtypeOldMan2
-                realType = "106"
 			Case NPCtypeGuard
                 realType = "guard"
 			Case NPCtypeD
@@ -7655,11 +7653,6 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 			n.NPCs = CreateNPC(NPCtypeOldMan, EntityX(Collider), EntityY(Collider) - 0.5, EntityZ(Collider))
 			n\State = -1
 			consoleMSG = "SCP-106 spawned."
-			
-		Case "old106", "oldscp106", "scp-106 classic", "larryold"
-			n.NPCs = CreateNPC(NPCtypeOldMan2, EntityX(Collider), EntityY(Collider) - 0.5, EntityZ(Collider))
-			n\State = -1
-			consoleMSG = "Classic SCP-106 spawned."
 			
 		Case "173", "scp173", "scp-173", "statue"
 			n.NPCs = CreateNPC(NPCtype173, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
