@@ -3,12 +3,25 @@ Light Containment Zone has been revamped.
 Heavy Containment Zone has been completed.
 Entrance Zone has been mostly completed.
 SCP-049 has new voice lines and is slightly faster.
+New 049 model
 SCP-096 has new sounds
 tsg_placeholder command ("spawn tsg")
-Post breach intro finally! (dont stand in the doorway cause it might send you into a wall)
+Documents have been changed, this includes a new document in 005's containment chamber.
+005's dead body has been tweaked, it can now have a chance of spawning in either the SCP's room or the observation room or it doesn't spawn at all.
+Post breach intro finally! (dont stand in the doorway cause it might send you into a wall when transitioning from the intro to post-breach)
 Disabling the intro gives you a new entrance to 173's broken chamber.
 Ginger Pepsi for Battleforge!
+Fixed the bug where random sounds would play
+Cleaned up the game directory
+room2sl's event has been re-added for 049's new animations and voice lines
+Item positions have been changed
+Room3snacks has been changed
+The elevator now has new songs! All are youtube friendly thanks to my editing skills (incase any let's players play) and yes we tested many times and still no claims
 Recontaining SCP-106 gives you a new achievement.
-Floppa Sphere achievement only obtainable through a custom map for the time being.
+Floppa Sphere achievement only obtainable through a custom map for the time being (due to copyrighted music, sorry achievement runners)
 Fixed the bug where LCZ-HCZ checkpoint had an open door
-New voice acting!
+New voice acting! (D-1731 now says things in the intro)
+SCP labels have been changed.
+Ulgrin now gives you a level 0 clearance SCP-173 document like he should have in vanilla CB.
+Changed the intro video, it's now simple.
+

@@ -3948,13 +3948,7 @@ Function FillRoom(r.Rooms)
 				EntityParent(r\Objects[i], r\obj)
 			Next
 			
-			it = CreateItem("Level 1 Key Card", "key1", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
-			EntityParent(it\collider, r\obj)
-			
-			it = CreateItem("Ginger Pepsi", "ginpep", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
-			EntityParent(it\collider, r\obj)
-			
-			it = CreateItem("SCP-173's Decommission Attempt", "paper", r\x + 438.0 * RoomScale, r\y + 164.0 * RoomScale, r\z + 932.0 * RoomScale)
+			it = CreateItem("Level 1 Key Card", "key1", r\x - 240.0 * RoomScale, r\y + 5.0 * RoomScale, r\z - 824.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
 		Case "room2scps"
@@ -4849,6 +4843,12 @@ Function FillRoom(r.Rooms)
 			d\locked = True : d\open = True : d\AutoClose = False
 			
 			it = CreateItem("Level 2 Key Card", "key2", r\x - 1700.0 * RoomScale, r\y + 137.0 * RoomScale, r\z - 650.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("Ginger Pepsi", "ginpep", r\x - 1700.0 * RoomScale, r\y + 137.0 * RoomScale, r\z - 650.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
+			
+			it = CreateItem("SCP-173's Decommission Attempt", "paper", r\x - 1700.0 * RoomScale, r\y + 137.0 * RoomScale, r\z - 650.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 		Case "room1123"
 			;[Block]

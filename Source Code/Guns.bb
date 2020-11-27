@@ -1,6 +1,6 @@
 ;This BB file is actually defining the weapons and all their functions. You can easily add your own weapon by first putting it as a new type variable into
 ;the "InitGuns" function. After this, you need to update your gun using the "UpdateGuns" function. If you still not know how to add a new gun into the game,
-;then write me a PM at the UnderTowGames Forum (my username on this forum: PXLSHN). But if you really wanna add a new weapon into that game, then you should
+;But If you really wanna add a New weapon into that game, Then you should
 ;try it out first by yourself (just using the code inside the "InitGuns" and "UpdateGuns" functions as a template.
 ;BTW: You need to let the worldmodel load by creating a item that is the gun, so it can be held in the inventory. The viewmodel of the gun must be loaded inside
 ;the main.bb file (also changing the scale values and other things there).

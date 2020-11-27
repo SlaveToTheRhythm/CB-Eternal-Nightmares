@@ -187,6 +187,8 @@ For i = 0 To 10
 	DamageSFX(i) = LoadSound_Strict("SFX\Character\D9341\Damage"+(i+1)+".ogg")
 Next
 
+AchievementSFX = LoadSound_Strict("SFX\General\Achievement.ogg")
+
 ;Dim MTFSFX%(8)
 
 ;Dim CoughSFX%(3)
@@ -210,7 +212,7 @@ For i = 0 To 7
 	If i < 3
 		StepSFX(2, 0, i) = LoadSound_Strict("SFX\Character\MTF\Step" + (i + 1) + ".ogg")
 	EndIf
-	If i < 5
+	If i < 8
 	    StepSFX(3, 0, i) = LoadSound_Strict("SFX\SCP\049\metal_walk0"+ (i + 1) + ".ogg")
 	EndIf
 	If i < 4

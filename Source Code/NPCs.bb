@@ -2274,7 +2274,7 @@ Function UpdateNPCs()
 										
 										If n\PrevState = 3 Then n\PrevState = 2
 										
-										If dist < 3.0 Then
+										If dist < 5.0 Then
 											AnimateNPC(n, Max(Min(AnimTime(n\obj),428.0),387), 463.0, n\CurrSpeed*38)
 										Else
 											If n\Frame>428.0 Then
@@ -2466,7 +2466,20 @@ Function UpdateNPCs()
 									If (prevFrame < 361 And n\Frame=>361) Or (prevFrame < 377 And n\Frame=>377) Then
 										PlaySound2(StepSFX(3,0,Rand(0,2)),Camera, n\Collider, 8.0, Rnd(0.8,1.0))						
 									ElseIf (prevFrame < 431 And n\Frame=>431) Or (prevFrame < 447 And n\Frame=>447) Then
-										PlaySound2(StepSFX(3,0,Rand(0,2)),Camera, n\Collider, 8.0, Rnd(0.8,1.0))
+									    PlaySound2(StepSFX(3,0,Rand(0,2)),Camera, n\Collider, 8.0, Rnd(0.8,1.0))
+									    ;049 charges at the player.
+									    n\CurrSpeed = 0.04
+									    ;Play an audio cue to alert the player.
+									    If n\PrevState = 0 And ChannelPlaying(n\SoundChn2)=False
+											If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
+											If Rand(30)=1
+												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Pursuing2.ogg")
+											Else
+												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Pursuing"+Rand(1,2)+".ogg")
+											EndIf
+											n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+											n\PrevState = 1
+										EndIf
 									EndIf
 								EndIf
 								
