@@ -1784,6 +1784,8 @@ Dim CommotionState%(25)
 
 Global HeartBeatSFX 
 
+Global AchievementSFX
+
 Global VomitSFX%
 
 Dim BreathSFX(2,5)

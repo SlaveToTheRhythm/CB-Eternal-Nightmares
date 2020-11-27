@@ -3389,6 +3389,23 @@ Function FillRoom(r.Rooms)
 				FreeEntity d\buttons[i] : d\buttons[i]=0
 			Next
 			;[End Block]
+		Case "room250"
+		    ; doors
+		    d.Doors = CreateDoor(r\zone, r\x + 5648.8 * RoomScale, r\y - 3534.1 * RoomScale, r\z + 6710.6 * RoomScale, 90, r, False, False)
+			d\AutoClose = False
+			
+            d.Doors = CreateDoor(r\zone, r\x + 2175.1 * RoomScale, r\y - 3534.1 * RoomScale, r\z + 4300.3 * RoomScale, 0, r, False, False)
+			d\AutoClose = False
+			
+			d.Doors = CreateDoor(r\zone, r\x + 1712.8 * RoomScale, r\y - 3534.1 * RoomScale, r\z + 1471.7 * RoomScale, 90, r, False, False)
+			d\AutoClose = False
+			
+			d.Doors = CreateDoor(r\zone, r\x + 4719.8 * RoomScale, r\y - 3534.1 * RoomScale, r\z + 1471.5 * RoomScale, 90, r, False, False)
+			d\AutoClose = False
+			
+			;items
+			it = CreateItem("First Aid Kit", "firstaid", r\x + 2124.8 * RoomScale, r\y - 3388.5 * RoomScale, r\z + 4627.0 * RoomScale)
+			EntityParent(it\collider, r\obj)
 		Case "room049"
 			;[Block]
 			r\Objects[0] = CreatePivot(r\obj)
