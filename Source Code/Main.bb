@@ -1679,6 +1679,7 @@ Music(22) = "914new"
 Music(23) = "Ending"
 Music(24) = "Credits"
 Music(25) = "SaveMeFrom"
+Music(26) = "017Chase"
 
 Global MusicVolume# = GetINIFloat(OptionFile, "audio", "music volume")
 ;Global MusicCHN% = StreamSound_Strict("SFX\Music\"+Music(2)+".ogg", MusicVolume, CurrMusicStream)

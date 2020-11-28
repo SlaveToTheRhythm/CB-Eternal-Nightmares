@@ -2469,17 +2469,6 @@ Function UpdateNPCs()
 									    PlaySound2(StepSFX(3,0,Rand(0,2)),Camera, n\Collider, 8.0, Rnd(0.8,1.0))
 									    ;049 charges at the player.
 									    n\CurrSpeed = 0.04
-									    ;Play an audio cue to alert the player.
-									    If n\PrevState = 0 And ChannelPlaying(n\SoundChn2)=False
-											If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
-											If Rand(30)=1
-												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Pursuing2.ogg")
-											Else
-												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Pursuing"+Rand(1,2)+".ogg")
-											EndIf
-											n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
-											n\PrevState = 1
-										EndIf
 									EndIf
 								EndIf
 								
