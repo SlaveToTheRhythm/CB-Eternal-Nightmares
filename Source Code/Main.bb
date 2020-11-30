@@ -2869,7 +2869,7 @@ Dim DecalTextures%(20)
 Global Monitor%, MonitorTexture%
 Global CamBaseOBJ%, CamOBJ%
 
-Global LiquidObj%,MTFObj%,GuardObj%,ClassDObj%
+Global LiquidObj%,MTFObj%,GuardObj%,ClassDObj%,HumanObj%
 Global ApacheObj%,ApacheRotorObj%
 
 Global UnableToMove% = False
@@ -7697,6 +7697,9 @@ Function DrawMenu()
 					InputBox(x + 200 * MenuScale, y + 180 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_SAVE,210)),11)	
 					AAText(x, y + 200 * MenuScale, "Open/Close Console")
 					InputBox(x + 200 * MenuScale, y + 200 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_CONSOLE,210)),12)
+					AAText(x, y + 200 * MenuScale, "Toggle Noclip")
+					InputBox(x + 200 * MenuScale, y + 220 * MenuScale,100*MenuScale,20*MenuScale,KeyName(Min(KEY_CONSOLE,210)),13)
+					
 					
 					If MouseOn(x,y,300*MenuScale,220*MenuScale)
 						DrawOptionsTooltip(tx,ty,tw,th,"controls")
@@ -8263,6 +8266,7 @@ Function LoadEntities()
 	
 	
 	ClassDObj = LoadAnimMesh_Strict("GFX\npcs\classd.b3d") ;optimized Class-D's and scientists/researchers
+	HumanObj = LoadAnimMesh_Strict("GFX\npcs\humanmale.b3d") ;optimized human models for Eternal Nightmares
 	ApacheObj = LoadAnimMesh_Strict("GFX\apache.b3d") ;optimized Apaches (helicopters)
 	ApacheRotorObj = LoadAnimMesh_Strict("GFX\apacherotor.b3d") ;optimized the Apaches even more
 	
@@ -9705,7 +9709,7 @@ Function Use914(item.Items, setting$, x#, y#, z#)
 			End Select
 		Case "Destroyed SCP-005"
 		    Select setting
-		        Case "1:1"
+		        Case "fine"
 		            it2 = CreateItem("SCP-500-01", "scp500", x, y, x)
 		            RemoveItem(item)
 		    End Select 

@@ -559,7 +559,7 @@ Function UpdateEvents()
 								e\room\NPC[0] = CreateNPC(NPCtypeGuard, EntityX(e\room\Objects[0], True), EntityY(e\room\Objects[0], True), EntityZ(e\room\Objects[0], True))
 								e\room\NPC[0]\Angle = 180
 								
-								e\room\NPC[1] = CreateNPC(NPCtypeD, EntityX(e\room\Objects[1], True), 0.5, EntityZ(e\room\Objects[1], True))
+								e\room\NPC[1] = CreateNPC(NPCtypeD2, EntityX(e\room\Objects[1], True), 0.5, EntityZ(e\room\Objects[1], True))
 								PointEntity(e\room\NPC[1]\Collider, e\room\Objects[5])
 								
 								e\room\NPC[2] = CreateNPC(NPCtypeD, EntityX(e\room\Objects[2], True), 0.5, EntityZ(e\room\Objects[2], True))
@@ -734,12 +734,12 @@ Function UpdateEvents()
 								RotateEntity e\room\NPC[5]\Collider, 0, e\room\angle+180, 0, True
 								e\room\NPC[5]\State = 7
 								e\room\NPC[5]\Sound2 = LoadSound_Strict("SFX\Room\Intro\Guard\PlayerEscape.ogg")
-								e\room\NPC[6] = CreateNPC(NPCtypeD, e\room\x-3712*RoomScale, -0.3, e\room\z-2208*RoomScale)
+								e\room\NPC[6] = CreateNPC(NPCtypeD2, e\room\x-3712*RoomScale, -0.3, e\room\z-2208*RoomScale)
 								;tex = LoadTexture_Strict("GFX\npcs\scientist2.jpg")
 								;EntityTexture e\room\NPC[6]\obj, DTextures[4]
 								;FreeTexture tex
 								ChangeNPCTextureID(e\room\NPC[6],3)
-								e\room\NPC[7] = CreateNPC(NPCtypeD, e\room\x-3712*RoomScale, -0.3, e\room\z-2208*RoomScale)
+								e\room\NPC[7] = CreateNPC(NPCtypeD2, e\room\x-3712*RoomScale, -0.3, e\room\z-2208*RoomScale)
 								;tex = LoadTexture_Strict("GFX\npcs\scientist.jpg")
 								e\room\NPC[7]\Sound = LoadSound_Strict("SFX\Room\Intro\Scientist\Conversation.ogg")
 								;EntityTexture e\room\NPC[7]\obj, DTextures[3]
@@ -750,9 +750,9 @@ Function UpdateEvents()
 								
 								e\room\NPC[8] = CreateNPC(NPCtypeGuard, e\room\x-3800.0*RoomScale, 1.0, e\room\z-3900.0*RoomScale)
 								e\room\NPC[8]\State = 7
-								e\room\NPC[9] = CreateNPC(NPCtypeD, e\room\x-4000.0*RoomScale, 1.1, e\room\z-3900.0*RoomScale)
+								e\room\NPC[9] = CreateNPC(NPCtypeD2, e\room\x-4000.0*RoomScale, 1.1, e\room\z-3900.0*RoomScale)
 								e\room\NPC[9]\State2 = 1.0
-								tex = LoadTexture_Strict("GFX\npcs\classd3.jpg")
+								tex = LoadTexture_Strict("GFX\npcs\cd2.jpg")
 								EntityTexture e\room\NPC[9]\obj, tex
 								FreeTexture tex
 								e\room\NPC[10] = CreateNPC(NPCtypeGuard, e\room\x-4200.0*RoomScale, 1.0, e\room\z-3900.0*RoomScale)
@@ -2693,7 +2693,7 @@ Function UpdateEvents()
 										temp3 = 5
 									EndIf
 									
-									e\room\NPC[0] = CreateNPC(NPCtypeClerk,EntityX(e\room\Objects[temp3],True),0.5,EntityZ(e\room\Objects[temp3],True))
+									e\room\NPC[0] = CreateNPC(NPCtypeD2,EntityX(e\room\Objects[temp3],True),0.5,EntityZ(e\room\Objects[temp3],True))
 									PointEntity e\room\NPC[0]\Collider,e\room\Objects[2]
 									e\room\NPC[0]\State = 2
 									e\EventStr = "step1"
@@ -7460,6 +7460,23 @@ Function UpdateEvents()
 				
 				;[End Block]
 			;New Events in SCP:CB version 1.3 - ENDSHN
+			Case "room2inter"
+			    If e\room\dist < 10.0 And e\room\dist > 0 Then
+					e\room\NPC[0]=CreateNPC(NPCtypeD2, EntityX(e\room\obj,True)=0.0, 643.5, EntityZ(e\room\obj,True)-1.0)
+					e\room\NPC[0]\texture = "GFX\npcs\st1.jpg"
+					tex = LoadTexture_Strict(e\room\NPC[0]\texture)
+					EntityTexture(e\room\NPC[0]\obj, tex)
+					FreeTexture tex
+					;EntityTexture e\room\NPC[0]\obj,NTF_BodyTextures(0)
+					
+					RotateEntity e\room\NPC[0]\Collider,0,e\room\angle+90,0
+					
+					SetNPCFrame e\room\NPC[0], 19
+					e\room\NPC[0]\State=1
+					
+					;Delete e
+					RemoveEvent(e)
+				EndIf
 			Case "room4tunnels"
 				;[Block]
 				If e\room\dist < 10.0 And e\room\dist > 0 Then
@@ -7485,8 +7502,8 @@ Function UpdateEvents()
 			Case "room005"
 				;[Block]
 				If e\room\dist < 10.0 And e\room\dist > 0 Then
-					e\room\NPC[0]=CreateNPC(NPCtypeD, EntityX(e\room\obj,True)+1.0, 0.5, EntityZ(e\room\obj,True)+1.0)
-					e\room\NPC[0]\texture = "GFX\npcs\body1.jpg"
+					e\room\NPC[0]=CreateNPC(NPCtypeD2, EntityX(e\room\obj,True)+1.0, 0.5, EntityZ(e\room\obj,True)+1.0)
+					e\room\NPC[0]\texture = "GFX\npcs\cd1.jpg"
 					tex = LoadTexture_Strict(e\room\NPC[0]\texture)
 					EntityTexture(e\room\NPC[0]\obj, tex)
 					FreeTexture tex

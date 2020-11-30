@@ -1,3 +1,4 @@
+
 ;--------------Eternal Nightmares Mod--------------
 ;After editing the other .bb's you MUST compile this in order for it to work! - Keter-Class
 ;--------------WARNINGS--------------

@@ -5,7 +5,7 @@ Const NPCtype372% = 6, NPCtypeApache% = 7, NPCtypeMTF% = 8, NPCtype096 = 9
 Const NPCtype049% = 10, NPCtypeZombie% = 11, NPCtype5131% = 12, NPCtypeTentacle% = 13
 Const NPCtype860% = 14, NPCtype939% = 15, NPCtype066% = 16, NPCtypePdPlane% = 17
 Const NPCtype966% = 18, NPCtype1048a = 19, NPCtype1499% = 20, NPCtype008% = 21, NPCtypeClerk% = 22, NPCtypeTSG% = 23, NPCtypeScientist% = 24
-Const NPCtype017 = 25
+Const NPCtype017 = 25, NPCtypeD2% = 26
 ;[End Block]
 
 Type NPCs
@@ -209,6 +209,26 @@ Function CreateNPC.NPCs(NPCtype%, x#, y#, z#)
 			EntityType n\Collider, HIT_PLAYER
 			
 			n\obj = CopyEntity(ClassDObj)
+			
+			temp# = 0.5 / MeshWidth(n\obj)
+			ScaleEntity n\obj, temp, temp, temp
+			
+			n\Speed = 2.0 / 100
+			
+			MeshCullBox (n\obj, -MeshWidth(ClassDObj), -MeshHeight(ClassDObj), -MeshDepth(ClassDObj), MeshWidth(ClassDObj)*2, MeshHeight(ClassDObj)*2, MeshDepth(ClassDObj)*2)
+			
+			n\CollRadius = 0.32
+			
+			n\HP = 100
+			;[End Block]
+		Case NPCtypeD2
+			;[Block]
+			n\NVName = "Human"
+			n\Collider = CreatePivot()
+			EntityRadius n\Collider, 0.32
+			EntityType n\Collider, HIT_PLAYER
+			
+			n\obj = CopyEntity(HumanObj)
 			
 			temp# = 0.5 / MeshWidth(n\obj)
 			ScaleEntity n\obj, temp, temp, temp
@@ -3232,7 +3252,7 @@ Function UpdateNPCs()
 				UpdateMTFUnit(n)
 				
 				;[End Block]
-			Case NPCtypeD,NPCtypeClerk 	;------------------------------------------------------------------------------------------------------------------
+			Case NPCtypeD,NPCtypeClerk,NPCTypeD2 	;------------------------------------------------------------------------------------------------------------------
 				;[Block]
 				RotateEntity(n\Collider, 0, EntityYaw(n\Collider), EntityRoll(n\Collider), True)
 				
@@ -5736,6 +5756,8 @@ Function UpdateMTFUnit(n.NPCs)
                 realType = "guard"
 			Case NPCtypeD
                 realType = "d"
+            Case NPCtypeD2
+                realType = "d"
 			Case NPCtype372
                 realType = "372"
 			Case NPCtypeApache
@@ -7676,6 +7698,10 @@ Function Console_SpawnNPC(c_input$, c_state$ = "")
 		Case "class-d", "classd", "d"
 			n.NPCs = CreateNPC(NPCtypeD, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
 			consoleMSG = "D-Class spawned."
+			n\State = 1
+		Case "class-d2", "classd2", "d2"
+		    n.NPCs = CreateNPC(NPCtypeD2, EntityX(Collider), EntityY(Collider) + 0.2, EntityZ(Collider))
+			consoleMSG = "D-Class #2 spawned."
 			n\State = 1
 			
 		Case "scientist", "s"

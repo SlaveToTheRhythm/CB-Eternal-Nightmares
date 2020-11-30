@@ -4370,6 +4370,10 @@ Function FillRoom(r.Rooms)
 			it = CreateItem("SCP-372 Renovation", "paper", r\x - 4096.0 * RoomScale, r\y - 2456.0 * RoomScale, r\z + 5369.0 * RoomScale)
 			EntityParent(it\collider, r\obj)
 			;[End Block]
+		Case "room2inter"
+		    d.Doors = CreateDoor(r\zone, r\x +  253.0 * RoomScale, 640.0, r\z + 95.0 * RoomScale, 90, r, False, False)
+            PositionEntity(d\buttons[0], EntityX(d\buttons[0],True), EntityY(d\buttons[0],True), EntityZ(d\buttons[0],True), True)
+			PositionEntity(d\buttons[1], EntityX(d\buttons[1],True), EntityY(d\buttons[1],True), EntityZ(d\buttons[1],True), True)
 		Case "room3snacks"
 		    ;[Block]
 		    it = CreateItem("cup", "cup", r\x-888 * RoomScale, 176*RoomScale, r\z-728.0 * RoomScale, 87,62,45)
